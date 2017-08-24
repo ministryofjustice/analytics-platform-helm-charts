@@ -1,0 +1,10 @@
+ToolsDomain: dev.mojanalytics.xyz
+API:
+  Image:
+    Repository: quay.io/mojanalytics/control-panel
+    Tag: deploy
+    PullPolicy: Always
+  Environment:
+    DB_HOST: terraform-00929dfbd185b131952f4913db.cyfs8aeszqyh.eu-west-1.rds.amazonaws.com
+    DEBUG: "True"
+    ALLOWED_HOSTS: "*"

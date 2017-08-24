@@ -1,0 +1,4 @@
+apiVersion: v1
+description: Analytics Platform Control Panel API webapp
+name: control-panel
+version: 0.1.0

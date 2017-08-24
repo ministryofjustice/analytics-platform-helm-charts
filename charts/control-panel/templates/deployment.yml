@@ -1,0 +1,44 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: {{ template "fullname" . }}
+  labels:
+    chart: "{{ .Chart.Name }}-{{ .Chart.Version | replace "+" "_" }}"
+    app: {{ template "fullname" .}}
+spec:
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: "{{ .Chart.Name }}"
+    spec:
+      containers:
+        - name: api
+          image: "{{ .Values.API.Image.Repository }}:{{ .Values.API.Image.Tag }}"
+          imagePullPolicy: {{ .Values.API.Image.PullPolicy }}
+          ports:
+            - name: http
+              containerPort: 8000
+          env:
+            - name: ALLOWED_HOSTS
+              value: "{{ .Values.API.Environment.ALLOWED_HOSTS }}"
+            - name: DB_HOST
+              value: "{{ .Values.API.Environment.DB_HOST }}"
+            - name: DB_NAME
+              value: "controlpanel"
+            - name: DB_USER
+              value: "controlpanel"
+            - name: DB_PASSWORD
+              value: "controlpanel"
+            - name: DEBUG
+              value: "{{ .Values.API.Environment.DEBUG }}"
+            - name: DJANGO_SETTINGS_MODULE
+              value: "control_panel_api.settings"
+          livenessProbe:
+            httpGet:
+              path: /
+              port: http
+          readinessProbe:
+            httpGet:
+              path: /
+              port: http
