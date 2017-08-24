@@ -3,14 +3,14 @@ kind: Deployment
 metadata:
   name: {{ template "fullname" . }}
   labels:
-    chart: "{{ .Chart.Name }}-{{ .Chart.Version | replace "+" "_" }}"
+    chart: {{ .Chart.Name }}-{{ .Chart.Version | replace "+" "_" }}
     app: {{ template "fullname" .}}
 spec:
   replicas: 1
   template:
     metadata:
       labels:
-        app: "{{ .Chart.Name }}"
+        app: {{ template "fullname" . }}
     spec:
       containers:
         - name: api
@@ -34,11 +34,3 @@ spec:
               value: "{{ .Values.API.Environment.DEBUG }}"
             - name: DJANGO_SETTINGS_MODULE
               value: "control_panel_api.settings"
-          livenessProbe:
-            httpGet:
-              path: /
-              port: http
-          readinessProbe:
-            httpGet:
-              path: /
-              port: http
