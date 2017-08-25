@@ -5,6 +5,6 @@ API:
     Tag: deploy
     PullPolicy: Always
   Environment:
-    DB_HOST: terraform-00929dfbd185b131952f4913db.cyfs8aeszqyh.eu-west-1.rds.amazonaws.com
+    DB_HOST: dev-control-panel-db.cyfs8aeszqyh.eu-west-1.rds.amazonaws.com
     DEBUG: "True"
     ALLOWED_HOSTS: "control-panel.services.dev.mojanalytics.xyz"

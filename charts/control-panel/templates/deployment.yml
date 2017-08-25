@@ -34,3 +34,9 @@ spec:
               value: "{{ .Values.API.Environment.DEBUG }}"
             - name: DJANGO_SETTINGS_MODULE
               value: "control_panel_api.settings"
+          readinessProbe:
+            httpGet:
+              path: /auth/login
+              port: http
+            initialDelaySeconds: 5
+            periodSeconds: 5
