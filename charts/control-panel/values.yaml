@@ -6,3 +6,4 @@ API:
     PullPolicy: Always
   Environment:
     DB_HOST: dev-control-panel-db.cyfs8aeszqyh.eu-west-1.rds.amazonaws.com
+    DEBUG: "True"
