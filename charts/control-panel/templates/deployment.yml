@@ -21,7 +21,10 @@ spec:
               containerPort: 8000
           env:
             - name: ALLOWED_HOSTS
-              value: "{{ .Values.API.Environment.ALLOWED_HOSTS }}"
+              value: "*"
+              #valueFrom:
+                #fieldRef:
+                  #fieldPath: status.podIP
             - name: DB_HOST
               value: "{{ .Values.API.Environment.DB_HOST }}"
             - name: DB_NAME
