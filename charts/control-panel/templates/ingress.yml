@@ -9,7 +9,7 @@ metadata:
     kubernetes.io/ingress.class: "nginx"
 spec:
   rules:
-  - host: "control-panel.services.{{ .Values.ServicesDomain }}"
+  - host: "control-panel.{{ .Values.ServicesDomain }}"
     http:
       paths:
       - backend:
