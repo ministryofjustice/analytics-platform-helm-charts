@@ -6,7 +6,6 @@ metadata:
     chart: "{{ .Chart.Name }}-{{ .Chart.Version | replace "+" "_" }}"
     app: {{ template "fullname" . }}
 spec:
-  sessionAffinity: ClientIP
   ports:
   - port: 80
     targetPort: 8000

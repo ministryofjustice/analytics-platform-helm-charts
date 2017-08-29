@@ -6,7 +6,7 @@ metadata:
     chart: {{ .Chart.Name }}-{{ .Chart.Version | replace "+" "_" }}
     app: {{ template "fullname" .}}
 spec:
-  replicas: 1
+  replicas: 3
   template:
     metadata:
       labels:
@@ -28,11 +28,11 @@ spec:
             - name: DB_HOST
               value: "{{ .Values.API.Environment.DB_HOST }}"
             - name: DB_NAME
-              value: "controlpanel"
+              value: "{{ .Values.API.Environment.DB_NAME }}"
             - name: DB_USER
-              value: "controlpanel"
+              value: "{{ .Values.API.Environment.DB_USER }}"
             - name: DB_PASSWORD
-              value: "controlpanel"
+              value: "{{ .Values.API.Environment.DB_PASSWORD }}"
             - name: DEBUG
               value: "{{ .Values.API.Environment.DEBUG }}"
             - name: DJANGO_SETTINGS_MODULE
