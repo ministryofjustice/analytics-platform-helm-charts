@@ -1,5 +1,6 @@
 ServicesDomain: ""
 API:
+  Branch: ""
   Image:
     Repository: quay.io/mojanalytics/control-panel
     Tag: 0.1.0
