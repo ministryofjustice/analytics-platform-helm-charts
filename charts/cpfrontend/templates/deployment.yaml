@@ -1,0 +1,42 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: {{ template "fullname" . }}
+  labels:
+    chart: {{ .Chart.Name }}-{{ .Chart.Version | replace "+" "_" }}
+    app: {{ template "fullname" .}}
+spec:
+  replicas: 3
+  template:
+    metadata:
+      labels:
+        app: {{ template "fullname" . }}
+    spec:
+      containers:
+        - name: api
+          image: "{{ .Values.Frontend.Image.Repository }}:{{ .Values.Frontend.Image.Tag }}"
+          imagePullPolicy: {{ .Values.Frontend.Image.PullPolicy }}
+          ports:
+            - name: http
+              containerPort: 3000
+          env:
+            - name: API_USER
+              valueFrom:
+                secretKeyRef:
+                  name: {{ .Release.Name }}
+                  key: api-user
+            - name: API_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: {{ .Release.Name }}
+                  key: api-password
+            - name: API_URL
+              value: "cpanel{{- if .Values.Frontend.Branch -}}-{{ .Values.Frontend.Branch}}{{- end -}}-cpanel"
+            - name: ENV
+              value: "{{ .Values.Frontend.Environment.ENV }}"
+          readinessProbe:
+            httpGet:
+              path: /
+              port: http
+            initialDelaySeconds: 5
+            periodSeconds: 5
