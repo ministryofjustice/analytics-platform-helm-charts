@@ -47,7 +47,7 @@ spec:
                   key: postgres-password
               {{- else -}}
                   value: "{{ .Values.API.RDSPassword }}"
-              {{- endif }}
+              {{- end }}
             - name: DEBUG
               value: "{{ .Values.API.Debug }}"
             - name: DJANGO_SETTINGS_MODULE
