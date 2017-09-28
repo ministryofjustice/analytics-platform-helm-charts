@@ -12,6 +12,7 @@ API:
     IAM_ARN_BASE: ""
     K8S_WORKER_ROLE_NAME: ""
     LOGS_BUCKET_NAME: ""
+  RDSPassword: ""
 AWS:
   DefaultRegion: "eu-west-1"
   IAMRole: ""

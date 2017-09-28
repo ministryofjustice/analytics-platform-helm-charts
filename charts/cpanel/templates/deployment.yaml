@@ -40,10 +40,14 @@ spec:
             - name: DB_USER
               value: "{{ .Values.postgresql.postgresUser }}"
             - name: DB_PASSWORD
+              {{ if .Values.tag.branch -}}
               valueFrom:
                 secretKeyRef:
                   name: {{ printf "%s-%s" .Release.Name "postgresql" | trunc 63 | trimSuffix "-" }}
                   key: postgres-password
+              {{- else -}}
+                  value: "{{ .Values.API.RDSPassword }}"
+              {{- endif }}
             - name: DEBUG
               value: "{{ .Values.API.Debug }}"
             - name: DJANGO_SETTINGS_MODULE
