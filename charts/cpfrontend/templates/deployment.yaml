@@ -23,12 +23,12 @@ spec:
             - name: API_USER
               valueFrom:
                 secretKeyRef:
-                  name: {{ .Release.Name }}
+                  name: {{ template "fullname" . }}
                   key: api-user
             - name: API_PASSWORD
               valueFrom:
                 secretKeyRef:
-                  name: {{ .Release.Name }}
+                  name: {{ template "fullname" . }}
                   key: api-password
             - name: API_URL
               value: "cpanel{{- if .Values.Frontend.Branch -}}-{{ .Values.Frontend.Branch}}{{- end -}}-cpanel"
