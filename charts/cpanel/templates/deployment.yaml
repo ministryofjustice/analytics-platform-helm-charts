@@ -28,17 +28,24 @@ spec:
                 #fieldRef:
                   #fieldPath: status.podIP
             - name: BUCKET_REGION
-              value: "{{ .Values.API.Environment.BUCKET_REGION }}"
+              value: "{{ .Values.AWS.DefaultRegion }}"
             - name: DB_HOST
-              value: "{{ .Values.API.Environment.DB_HOST }}"
+              value: {{ if .Values.tags.branch -}}
+                  "{{ printf "%s-%s" .Release.Name "postgresql" | trunc 63 | trimSuffix "-" }}"
+                {{- else -}}
+                  "{{ .Values.postgresql.postgresHost }}"
+                {{- end }}
             - name: DB_NAME
-              value: "{{ .Values.API.Environment.DB_NAME }}"
+              value: "{{ .Values.postgresql.postgresDatabase }}"
             - name: DB_USER
-              value: "{{ .Values.API.Environment.DB_USER }}"
+              value: "{{ .Values.postgresql.postgresUser }}"
             - name: DB_PASSWORD
-              value: "{{ .Values.API.Environment.DB_PASSWORD }}"
+              valueFrom:
+                secretKeyRef:
+                  name: {{ printf "%s-%s" .Release.Name "postgresql" | trunc 63 | trimSuffix "-" }}
+                  key: postgres-password
             - name: DEBUG
-              value: "{{ .Values.API.Environment.DEBUG }}"
+              value: "{{ .Values.API.Debug }}"
             - name: DJANGO_SETTINGS_MODULE
               value: "control_panel_api.settings"
             - name: ENV

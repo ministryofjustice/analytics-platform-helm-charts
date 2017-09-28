@@ -1,20 +1,25 @@
 ServicesDomain: ""
 API:
-  Branch: ""
+  DeployOwnDatabase: false
+  Branch: "api"
   Image:
     Repository: quay.io/mojanalytics/control-panel
     Tag: 0.1.0
     PullPolicy: IfNotPresent
   Environment:
-    BUCKET_REGION: "eu-west-1"
-    DB_HOST: ""
-    DB_NAME: ""
-    DB_PASSWORD: ""
-    DB_USER: ""
     DEBUG: "False"
     ENV: ""
     IAM_ARN_BASE: ""
     K8S_WORKER_ROLE_NAME: ""
     LOGS_BUCKET_NAME: ""
 AWS:
+  DefaultRegion: "eu-west-1"
   IAMRole: ""
+tags:
+  branch: false
+
+postgresql:
+    postgresHost: ""
+    postgresUser: ""
+    postgresPassword: ""
+    postgresDatabase: ""
