@@ -49,7 +49,7 @@ spec:
                   value: "{{ .Values.API.RDSPassword }}"
               {{- end }}
             - name: DEBUG
-              value: "{{ .Values.API.Environment.Debug }}"
+              value: "{{ .Values.API.Environment.DEBUG }}"
             - name: DJANGO_SETTINGS_MODULE
               value: "control_panel_api.settings"
             - name: ENV
