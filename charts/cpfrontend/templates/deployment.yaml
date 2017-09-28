@@ -31,7 +31,7 @@ spec:
                   name: {{ template "fullname" . }}
                   key: api-password
             - name: API_URL
-              value: "cpanel{{- if .Values.Frontend.Branch -}}-{{ .Values.Frontend.Branch}}{{- end -}}-cpanel"
+              value: "{{ .Values.Frontend.Environment.API_URL }}"
             - name: ENV
               value: "{{ .Values.Frontend.Environment.ENV }}"
           readinessProbe:
