@@ -12,19 +12,19 @@ spec:
       labels:
         app: "{{ .Chart.Name }}"
       annotations:
-        iam.amazonaws.com/role: {{ .Values.AWS.IAMRole }}
+        iam.amazonaws.com/role: {{ .Values.aws.iamRole }}
     spec:
       containers:
 
         - name: rstudio-auth-proxy
-          image: "{{ .Values.AuthProxy.Image.Repository }}:{{ .Values.AuthProxy.Image.Tag }}"
-          imagePullPolicy: {{ .Values.AuthProxy.Image.PullPolicy }}
+          image: "{{ .Values.authProxy.image.repository }}:{{ .Values.authProxy.image.tag }}"
+          imagePullPolicy: {{ .Values.authProxy.image.pullPolicy }}
           ports:
             - name: http
-              containerPort: 3000
+              containerPort: {{ .Values.authProxy.express.port }}
           env:
             - name: USER
-              value: {{ .Values.Username }}
+              value: {{ .Values.username }}
             - name: AUTH0_CLIENT_SECRET
               valueFrom:
                 secretKeyRef:
@@ -55,12 +55,14 @@ spec:
                 secretKeyRef:
                   name: {{ template "fullname" . }}
                   key: secure_cookie_key
-            - name: SHINY_HOST
+            - name: PROXY_TARGET_HOST
               value: localhost
-            - name: SHINY_PORT
-              value: "8787"
-            - name: PORT
-              value: "3000"
+            - name: PROXY_TARGET_PORT
+              value: {{ .Values.rstudio.port }}
+            - name: EXPRESS_HOST
+              value: {{ .Values.authProxy.express.host }}
+            - name: EXPRESS_PORT
+              value: {{ .Values.authProxy.express.port }}
           readinessProbe:
             httpGet:
               path: /login?healthz
@@ -68,17 +70,17 @@ spec:
             initialDelaySeconds: 5
             periodSeconds: 5
           resources:
-{{ toYaml .Values.AuthProxy.resources | indent 12 }}
+{{ toYaml .Values.authProxy.resources | indent 12 }}
 
         - name: r-studio-server
-          image: "{{ .Values.RStudio.Image.Repository }}:{{ .Values.RStudio.Image.Tag }}"
-          imagePullPolicy: {{ .Values.RStudio.Image.PullPolicy }}
+          image: "{{ .Values.rstudio.image.Repository }}:{{ .Values.rstudio.image.tag }}"
+          imagePullPolicy: {{ .Values.rstudio.image.pullPolicy }}
           ports:
             - name: http
-              containerPort: 8787
+              containerPort: {{ .Values.rstudio.port }}
           env:
             - name: USER
-              value: {{ .Values.Username }}
+              value: {{ .Values.username }}
             - name: AWS_DEFAULT_REGION
               valueFrom:
                 secretKeyRef:
@@ -90,7 +92,7 @@ spec:
                   name: {{ template "fullname" . }}
                   key: secure_cookie_key
             - name: TOOLS_DOMAIN
-              value: {{ .Values.ToolsDomain }}
+              value: {{ .Values.toolsDomain }}
           readinessProbe:
             httpGet:
               path: /
@@ -99,9 +101,9 @@ spec:
             periodSeconds: 5
           volumeMounts:
             - name: home
-              mountPath: "/home/{{ .Values.Username }}"
+              mountPath: "/home/{{ .Values.username }}"
           resources:
-{{ toYaml .Values.RStudio.resources | indent 12 }}
+{{ toYaml .Values.rstudio.resources | indent 12 }}
 
       volumes:
         - name: home

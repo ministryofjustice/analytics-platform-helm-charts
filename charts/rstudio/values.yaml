@@ -1,19 +1,21 @@
-Username: ""
-ToolsDomain: "tools.EXAMPLE.COM"
-CookieSecret: ""
-SecureCookieKey: ""
-OAuth:
-  ClientSecret: ""
-  ClientId: ""
-  Domain: "AUTH0_USER.eu.auth0.com"
-AWS:
-  IAMRole: ""
-  DefaultRegion: "eu-west-1"
-AuthProxy:
-  Image:
-    Repository: quay.io/mojanalytics/rstudio-auth-proxy
-    Tag: "latest"
-    PullPolicy: "IfNotPresent"
+username: ""
+toolsDomain: "tools.EXAMPLE.COM"
+aws:
+  iamRole: ""
+  defaultRegion: "eu-west-1"
+authProxy:
+  auth0:
+    clientSecret: ""
+    clientId: ""
+    domain: "AUTH0_USER.eu.auth0.com"
+  cookieSecret: ""
+  express:
+    host: "0.0.0.0"
+    port: "3000"
+  image:
+    repository: quay.io/mojanalytics/rstudio-auth-proxy
+    tag: "latest"
+    pullPolicy: "IfNotPresent"
   resources:
     limits:
       cpu: 100m
@@ -21,11 +23,13 @@ AuthProxy:
     requests:
       cpu: 25m
       memory: 64Mi
-RStudio:
-  Image:
-    Repository: quay.io/mojanalytics/rstudio
-    Tag: "latest"
-    PullPolicy: "Always"
+rstudio:
+  secureCookieKey: ""
+  port: "8787"
+  image:
+    repository: quay.io/mojanalytics/rstudio
+    tag: "latest"
+    pullPolicy: "Always"
   resources:
     limits:
       cpu: 1.5
