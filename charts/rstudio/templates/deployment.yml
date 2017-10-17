@@ -62,7 +62,7 @@ spec:
             - name: EXPRESS_HOST
               value: {{ .Values.authProxy.express.host }}
             - name: EXPRESS_PORT
-              value: {{ .Values.authProxy.express.port }}
+              value: "{{ .Values.authProxy.express.port }}"
           readinessProbe:
             httpGet:
               path: /login?healthz

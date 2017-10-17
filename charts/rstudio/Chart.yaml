@@ -1,4 +1,4 @@
 apiVersion: v1
 description: RStudio with Auth0 authentication proxy
 name: rstudio
-version: 1.2.2
+version: 1.2.3
