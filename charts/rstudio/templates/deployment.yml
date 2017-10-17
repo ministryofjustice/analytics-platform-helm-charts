@@ -58,7 +58,7 @@ spec:
             - name: PROXY_TARGET_HOST
               value: localhost
             - name: PROXY_TARGET_PORT
-              value: {{ .Values.rstudio.port }}
+              value: "{{ .Values.rstudio.port }}"
             - name: EXPRESS_HOST
               value: {{ .Values.authProxy.express.host }}
             - name: EXPRESS_PORT
