@@ -73,7 +73,7 @@ spec:
 {{ toYaml .Values.authProxy.resources | indent 12 }}
 
         - name: r-studio-server
-          image: "{{ .Values.rstudio.image.Repository }}:{{ .Values.rstudio.image.tag }}"
+          image: "{{ .Values.rstudio.image.repository }}:{{ .Values.rstudio.image.tag }}"
           imagePullPolicy: {{ .Values.rstudio.image.pullPolicy }}
           ports:
             - name: http
