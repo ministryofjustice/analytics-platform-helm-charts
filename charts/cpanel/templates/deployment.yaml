@@ -60,6 +60,8 @@ spec:
               value: "{{ .Values.API.Environment.K8S_WORKER_ROLE_NAME }}"
             - name: LOGS_BUCKET_NAME
               value: "{{ .Values.API.Environment.LOGS_BUCKET_NAME }}"
+            - name: SAML_PROVIDER
+              value: "{{ .Values.API.Environment.SAML_PROVIDER }}"
             - name: SENTRY_DSN
               valueFrom:
                 secretKeyRef:
