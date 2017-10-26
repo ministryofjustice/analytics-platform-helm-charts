@@ -6,7 +6,8 @@ Frontend:
     Tag: 0.1.0
     PullPolicy: IfNotPresent
   Environment:
-    API_PASSWORD: ""
-    API_URL: ""
-    API_USER: ""
+    AUTH0_CLIENT_ID: ""
+    AUTH0_CLIENT_SECRET: ""
+    AUTH0_DOMAIN: ""
     ENV: ""
+    SENTRY_DSN: ""

@@ -20,20 +20,25 @@ spec:
             - name: http
               containerPort: 3000
           env:
-            - name: API_USER
+            - name: AUTH0_CLIENT_ID
               valueFrom:
                 secretKeyRef:
                   name: {{ template "fullname" . }}
-                  key: api-user
-            - name: API_PASSWORD
+                  key: auth0-client-id
+            - name: AUTH0_CLIENT_SECRET
               valueFrom:
                 secretKeyRef:
                   name: {{ template "fullname" . }}
-                  key: api-password
-            - name: API_URL
-              value: "{{ .Values.Frontend.Environment.API_URL }}"
+                  key: auth0-client-secret
+            - name: AUTH0_DOMAIN
+              value: "{{ .Values.Frontend.Environment.AUTH0_DOMAIN }}"
             - name: ENV
               value: "{{ .Values.Frontend.Environment.ENV }}"
+            - name: SENTRY_DSN
+              valueFrom:
+                secretKeyRef:
+                  name: {{ template "fullname" . }}
+                  key: sentry-dsn
           readinessProbe:
             httpGet:
               path: /
