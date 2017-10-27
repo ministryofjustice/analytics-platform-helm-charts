@@ -4,7 +4,7 @@ Frontend:
   Image:
     Repository: quay.io/mojanalytics/control-panel-frontend
     Tag: 0.1.0
-    PullPolicy: IfNotPresent
+    PullPolicy: Always
   Environment:
     API_URL: "http://cpanel-api-cpanel"
     AUTH0_CLIENT_ID: ""
