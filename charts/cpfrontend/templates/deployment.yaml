@@ -32,6 +32,8 @@ spec:
                   key: auth0-client-secret
             - name: AUTH0_DOMAIN
               value: "{{ .Values.Frontend.Environment.AUTH0_DOMAIN }}"
+            - name: AUTH0_CALLBACK_URL
+              value: "https://cpanel{{- if .Values.Frontend.Branch -}}-{{ .Values.Frontend.Branch }}{{- end -}}.{{ .Values.ServicesDomain }}/callback"
             - name: ENV
               value: "{{ .Values.Frontend.Environment.ENV }}"
             - name: SENTRY_DSN
