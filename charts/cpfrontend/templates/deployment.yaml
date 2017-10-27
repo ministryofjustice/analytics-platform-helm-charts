@@ -20,6 +20,8 @@ spec:
             - name: http
               containerPort: 3000
           env:
+            - name: API_URL
+              value: {{ .Values.Frontend.Environment.API_URL }}
             - name: AUTH0_CLIENT_ID
               valueFrom:
                 secretKeyRef:
