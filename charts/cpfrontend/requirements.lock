@@ -1,0 +1,10 @@
+dependencies:
+- condition: ""
+  enabled: false
+  import-values: null
+  name: redis
+  repository: https://kubernetes-charts.storage.googleapis.com/
+  tags: null
+  version: 1.0.2
+digest: sha256:2104fdc2f47c00ab2a9b899a10a5dccd697c15ff51d3120c9f9bda824da63774
+generated: 2017-11-14T16:34:38.393325Z
