@@ -1,7 +1,7 @@
 ServicesDomain: ""
 API:
   DeployOwnDatabase: false
-  Branch: "api"
+  Branch: "master"
   Image:
     Repository: quay.io/mojanalytics/control-panel
     Tag: 0.1.0
