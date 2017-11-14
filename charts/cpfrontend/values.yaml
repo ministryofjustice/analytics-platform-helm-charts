@@ -14,4 +14,5 @@ Frontend:
     SENTRY_DSN: ""
 
 redis:
-  persistence.enabled: false
+  persistence:
+    enabled: false
