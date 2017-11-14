@@ -43,6 +43,8 @@ spec:
                 secretKeyRef:
                   name: {{ template "fullname" . }}
                   key: sentry-dsn
+            - name: REDIS_HOST
+              value: "{{ printf "%s-%s" .Release.Name "redis" | trunc 63 | trimSuffix "-" }}"
             - name: REDIS_PASSWORD
               valueFrom:
                 secretKeyRef:
