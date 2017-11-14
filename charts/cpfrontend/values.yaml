@@ -12,3 +12,6 @@ Frontend:
     AUTH0_DOMAIN: ""
     ENV: ""
     SENTRY_DSN: ""
+
+redis:
+  persistence.enabled: false
