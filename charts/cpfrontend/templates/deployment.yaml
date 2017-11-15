@@ -13,7 +13,7 @@ spec:
         app: {{ template "fullname" . }}
     spec:
       containers:
-        - name: api
+        - name: cpfrontend
           image: "{{ .Values.Frontend.Image.Repository }}:{{ .Values.Frontend.Image.Tag }}"
           imagePullPolicy: {{ .Values.Frontend.Image.PullPolicy }}
           ports:
