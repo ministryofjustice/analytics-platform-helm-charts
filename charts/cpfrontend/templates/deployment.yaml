@@ -52,7 +52,7 @@ spec:
                   key: redis-password
           readinessProbe:
             httpGet:
-              path: /
+              path: /login?healthz
               port: http
             initialDelaySeconds: 5
             periodSeconds: 5
