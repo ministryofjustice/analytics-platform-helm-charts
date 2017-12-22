@@ -20,11 +20,11 @@ spec:
           ports:
             - containerPort: 80
           env:
-              - name: HUBOT_SLACK_TOKEN
-                valueFrom:
-                  secretKeyRef:
-                    name: {{ template "fullname" . }}
-                    key: slack_token
+            - name: HUBOT_SLACK_TOKEN
+              valueFrom:
+                secretKeyRef:
+                  name: {{ template "fullname" . }}
+                  key: slack_token
           livenessProbe:
             httpGet:
               path: /hubot/ready
