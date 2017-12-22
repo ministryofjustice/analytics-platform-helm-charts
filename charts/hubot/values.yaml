@@ -1,0 +1,8 @@
+Name: ""
+BaseHost: ""
+GithubRepo: ""
+Port: 80
+Image:
+  Repository: ""
+  Tag: ":latest"
+  PullPolicy: Always

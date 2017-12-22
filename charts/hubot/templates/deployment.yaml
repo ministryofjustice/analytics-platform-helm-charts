@@ -1,0 +1,44 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: {{ template "fullname" . }}
+  labels:
+    chart: "{{ .Chart.Name }}-{{ .Chart.Version | replace "+" "_" }}"
+    repo: "{{ .Values.GithubRepo }}"
+    app: {{ template "fullname" . }}
+spec:
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: {{ template "fullname" . }}
+    spec:
+      containers:
+        - name: hubot
+          image: "{{ .Values.Image.Repository }}:{{ .Values.Image.Tag | replace ":" "" }}"
+          imagePullPolicy: {{ .Values.Image.PullPolicy }}
+          ports:
+            - containerPort: 80
+          env:
+              - name: HUBOT_SLACK_TOKEN
+                valueFrom:
+                  secretKeyRef:
+                    name: {{ template "fullname" . }}
+                    key: slack_token
+          livenessProbe:
+            httpGet:
+              path: /hubot/ready
+              port: 80
+            initialDelaySeconds: 180
+            periodSeconds: 10
+            timeoutSeconds: 60
+          resources:
+            requests:
+              cpu: 10m
+          volumeMounts:
+            - name: varlognginx
+              mountPath: /var/log/nginx
+
+      volumes:
+        - name: varlognginx
+          emptyDir: {}
