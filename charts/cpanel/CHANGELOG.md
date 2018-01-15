@@ -5,6 +5,15 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
 
+## [0.10.0] - 2018-01-11
+### Added
+Added `ENABLE_K8S_RBAC` flag. Set to `True` when k8s RBAC is enabled,
+the k8s proxy endpoint will then use the user's JWT token to make requests
+to kubernetes instead of use the credentials read from the cluster.
+
+See [PR](https://github.com/ministryofjustice/analytics-platform-control-panel/pull/85)
+
+
 ## [0.9.0] - 2017-12-12
 ### Added
 Added environment variables needed to deploy RStudio

@@ -26,6 +26,7 @@ The instance will be available at https://cpanelapi-$BRANCH_NAME.<ServicesDomain
 | Parameter  | Description     | Default |
 | ---------- | --------------- | ------- |
 | `API.Environment.DEBUG` | Used to set Django DEBUG mode | `False` |
+| `API.Environment.ENABLE_K8S_RBAC` | Set to `True` if k8s RBAC is enabled | `False` |
 | `API.Environment.ENV` | The environment name (`dev` or `alpha`) | |
 | `API.Environment.IAM_ARN_BASE` | | |
 | `API.Environment.K8S_WORKER_ROLE_NAME` | | |

@@ -52,6 +52,8 @@ spec:
               value: "{{ .Values.API.Environment.DEBUG }}"
             - name: DJANGO_SETTINGS_MODULE
               value: "control_panel_api.settings"
+            - name: ENABLE_K8S_RBAC
+              value: "{{ .Values.API.Environment.ENABLE_K8S_RBAC }}"
             - name: ENV
               value: "{{ .Values.API.Environment.ENV }}"
             - name: IAM_ARN_BASE

@@ -8,6 +8,7 @@ API:
     PullPolicy: IfNotPresent
   Environment:
     DEBUG: "False"
+    ENABLE_K8S_RBAC: "False"
     ENV: ""
     IAM_ARN_BASE: ""
     K8S_WORKER_ROLE_NAME: ""
