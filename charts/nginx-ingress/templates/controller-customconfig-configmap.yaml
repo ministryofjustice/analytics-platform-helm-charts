@@ -1,14 +1,12 @@
-{{- if .Values.controller.serverConfigFile }}
 apiVersion: v1
 kind: ConfigMap
 metadata:
   labels:
-    app: {{ template "name" . }}
+    app: {{ template "nginx-ingress.name" . }}
     chart: {{ .Chart.Name }}-{{ .Chart.Version }}
     component: "{{ .Values.controller.name }}"
     heritage: {{ .Release.Service }}
     release: {{ .Release.Name }}
-  name: {{ template "fullname" . }}-nginxconf
+  name: nginx-ingress-customconfig
 data:
-{{ toYaml .Values.controller.serverConfigFile | indent 2 }}
-{{- end }}
+{{ toYaml .Values.controller.customTemplate | indent 2 }}
