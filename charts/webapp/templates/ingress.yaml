@@ -8,6 +8,7 @@ metadata:
     repo: {{ .Values.WebApp.GithubRepo }}
   annotations:
     kubernetes.io/ingress.class: "nginx"
+    nginx.ingress.kubernetes.io/affinity: "cookie"
 spec:
   rules:
   - host: {{ .Values.WebApp.Name }}.{{ .Values.WebApp.BaseHost }}
