@@ -25,13 +25,18 @@ spec:
                 secretKeyRef:
                   name: {{ template "fullname" . }}
                   key: slack_token
+          readinessProbe:
+            httpGet:
+              path: /hubot/ready
+              port: 80
+            initialDelaySeconds: 5
+            periodSeconds: 10
           livenessProbe:
             httpGet:
               path: /hubot/ready
               port: 80
-            initialDelaySeconds: 180
-            periodSeconds: 10
-            timeoutSeconds: 60
+            initialDelaySeconds: 15
+            periodSeconds: 20
           resources:
             requests:
               cpu: 10m
