@@ -13,6 +13,8 @@ Frontend:
     ENV: ""
     SENTRY_DSN: ""
     TOOLS_DOMAIN: ""
+  ServicePort: 80
+  Protocol: "https"
 
 redis:
   persistence:
