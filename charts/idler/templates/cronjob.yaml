@@ -13,6 +13,7 @@ spec:
     spec:
       template:
         spec:
+          serviceAccountName: {{ .Release.Name }}
           containers:
           - name: {{ .Release.Name }}
             image: "{{ .Values.image }}"
