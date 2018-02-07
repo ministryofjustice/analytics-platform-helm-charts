@@ -11,7 +11,9 @@ spec:
   concurrencyPolicy: {{ .Values.concurrencyPolicy }}
   jobTemplate:
     spec:
-      containers:
-      - name: {{ .Release.Name }}
-        image: "{{ .Values.image }}"
-      restartPolicy: Never
+      template:
+        spec:
+          containers:
+          - name: {{ .Release.Name }}
+            image: "{{ .Values.image }}"
+          restartPolicy: Never
