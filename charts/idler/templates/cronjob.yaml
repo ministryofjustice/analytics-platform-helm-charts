@@ -1,0 +1,17 @@
+apiVersion: batch/v2alpha1
+kind: CronJob
+metadata:
+  name: {{ .Release.Name }}
+  labels:
+    app: {{ .Release.Name }}
+    chart: "{{ .Chart.Name }}-{{ .Chart.Version }}"
+    type: cron
+spec:
+  schedule: "{{ .Values.schedule }}"
+  concurrencyPolicy: {{ .Values.concurrencyPolicy }}
+  jobTemplate:
+    spec:
+      containers:
+      - name: {{ .Release.Name }}
+        image: "{{ .Values.image }}"
+      restartPolicy: Never

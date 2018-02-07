@@ -1,0 +1,13 @@
+# Docker image version
+image: quay.io/mojanalytics/idler:latest
+
+# Schedule when to run
+#   min    hour   day    month (Sun-Sat)
+# "(0-59) (0-23) (1-31) (1-12) (0-6)"
+# See https://kubernetes.io/docs/user-guide/cron-jobs/#schedule
+schedule: "0 22 * * *"
+
+# Concurrency Policy
+# Allow|Forbid|Replace
+# See https://kubernetes.io/docs/user-guide/cron-jobs/#concurrency_policy
+concurrencyPolicy: Forbid
