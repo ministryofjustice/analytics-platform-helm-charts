@@ -17,4 +17,7 @@ spec:
           containers:
           - name: {{ .Release.Name }}
             image: "{{ .Values.image }}"
+            env:
+            - name: LABEL_SELECTOR
+              value: '{{ .Values.labelSelector }}'
           restartPolicy: Never
