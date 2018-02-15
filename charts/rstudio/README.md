@@ -3,10 +3,10 @@
 
 ## Installing the Chart
 
-To install an rstudio instance for the user specified in the Username variable (Github username):
+To install an rstudio instance for the user specified in the username variable (Github username):
 
 ```bash
-$ helm install charts/rstudio -f chart-env-config/ENV/rstudio.yml --set Username=USERNAME --namespace user-USERNAME --name=USERNAME-rstudio
+$ helm install charts/rstudio -f chart-env-config/ENV/rstudio.yml --set username=USERNAME --namespace user-USERNAME --name=USERNAME-rstudio
 ```
 
 The instance will be available in <https://USERNAME-rstudio.tools.ENV.mojanalytics.xyz>.
@@ -19,7 +19,7 @@ The instance will be available in <https://USERNAME-rstudio.tools.ENV.mojanalyti
 
 To upgrade a user rstudio chart:
 ```bash
-$ helm upgrade USERNAME-rstudio charts/rstudio -f chart-env-config/ENV/rstudio.yml --set Username=USERNAME
+$ helm upgrade USERNAME-rstudio charts/rstudio -f chart-env-config/ENV/rstudio.yml --set username=USERNAME
 ```
 
 
@@ -30,4 +30,4 @@ details.
 
 | Parameter  | Description     | Default |
 | ---------- | --------------- | ------- |
-| `Username` | Github username | ``      |
+| `username` | Github username | ``      |
