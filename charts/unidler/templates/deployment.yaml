@@ -18,7 +18,7 @@ spec:
         image: "{{ .Values.image.name }}:{{ .Values.image.tag }}"
         imagePullPolicy: {{ .Values.image.pullPolicy }}
         ports:
-        - name: {{ .Values.service.name }}
+        - name: http
           containerPort: {{ .Values.service.internalPort }}
         env:
           - name: LOG_LEVEL

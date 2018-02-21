@@ -12,6 +12,7 @@ rules:
     verbs:
       - "get"
       - "patch"
+      - "update"
   - apiGroups:
       - "extensions"
     resources:
