@@ -22,4 +22,4 @@ spec:
           containerPort: {{ .Values.service.internalPort }}
         env:
           - name: LOG_LEVEL
-            value: "INFO"
+            value: "{{ .Values.logLevel }}"

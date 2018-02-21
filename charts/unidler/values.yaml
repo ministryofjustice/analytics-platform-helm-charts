@@ -4,6 +4,8 @@ image:
   tag: v0.1.0
   pullPolicy: Always
 
+logLevel: INFO
+
 replicaCount: 1
 
 service:
