@@ -13,3 +13,7 @@ schedule: "0 22 * * *"
 concurrencyPolicy: Forbid
 
 labelSelector: 'app=rstudio'
+
+# percentage of a CPU in the last minute which marks an active instance
+# (which should not be idled)
+cpuActivityThreshold: 10

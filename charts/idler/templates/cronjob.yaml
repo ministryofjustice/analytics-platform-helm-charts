@@ -20,4 +20,6 @@ spec:
             env:
             - name: LABEL_SELECTOR
               value: '{{ .Values.labelSelector }}'
+            - name: RSTUDIO_ACTIVITY_CPU_THRESHOLD
+              value: '{{ .Values.cpuActivityThreshold }}'
           restartPolicy: Never
