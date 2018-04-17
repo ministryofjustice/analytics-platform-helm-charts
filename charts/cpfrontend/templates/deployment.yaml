@@ -41,6 +41,8 @@ spec:
               value: "{{ .Values.Frontend.Environment.AUTH0_DOMAIN }}"
             - name: AUTH0_CALLBACK_URL
               value: "https://cpanel{{- if .Values.Frontend.Branch -}}-{{ .Values.Frontend.Branch }}{{- end -}}.{{ .Values.ServicesDomain }}/callback"
+            - name: AWS_LOGIN_URL
+              value: "{{ .Values.Frontend.Environment.AWS_LOGIN_URL }}"
             - name: ENV
               value: "{{ .Values.Frontend.Environment.ENV }}"
             - name: SENTRY_DSN
