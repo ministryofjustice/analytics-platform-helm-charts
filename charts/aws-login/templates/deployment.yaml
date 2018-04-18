@@ -76,7 +76,10 @@ spec:
             - name: REDIS_HOST
               value: {{ .Release.Name }}-redis-master
             - name: REDIS_PASSWORD
-              value: "{{ .Values.redis.password }}"
+              valueFrom:
+                secretKeyRef:
+                  name: {{ .Release.Name }}-redis
+                  key: redis-password
           resources:
 {{ toYaml .Values.resources | indent 12 }}
     {{- with .Values.nodeSelector }}
