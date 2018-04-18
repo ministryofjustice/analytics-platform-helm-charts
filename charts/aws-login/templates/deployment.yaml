@@ -73,6 +73,10 @@ spec:
                   key: PLATFORM_ENV
             - name: PORT
               value: "3000"
+            - name: REDIS_HOST
+              value: {{ .Release.Name }}-redis-master
+            - name: REDIS_PASSWORD
+              value: "{{ .Values.redis.password }}"
           resources:
 {{ toYaml .Values.resources | indent 12 }}
     {{- with .Values.nodeSelector }}
