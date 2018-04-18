@@ -51,6 +51,11 @@ spec:
                 secretKeyRef:
                   name: {{ template "aws-login.fullname" . }}
                   key: AUTH0_CLIENT_SECRET
+            - name: AUTH0_CALLBACK_URL
+              valueFrom:
+                secretKeyRef:
+                  name: {{ template "aws-login.fullname" . }}
+                  key: AUTH0_CALLBACK_URL
             - name: COOKIE_SECRET
               valueFrom:
                 secretKeyRef:
