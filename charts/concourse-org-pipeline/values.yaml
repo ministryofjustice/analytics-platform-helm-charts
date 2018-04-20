@@ -1,0 +1,21 @@
+concourse:
+  externalURL: ""
+  password: ""
+  secretsName: ""
+  team: main
+  username: ""
+
+cookieSecret: ""
+
+github:
+  org: moj-analytical-services
+  accessToken: ""
+  webhookToken: ""
+
+githubOrgResource:
+  image: quay.io/mojanalytics/github-org-resource
+  tag: v0.3.3
+
+kubernetes:
+  caCert: ""
+  token: ""

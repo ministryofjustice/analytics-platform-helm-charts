@@ -1,0 +1,57 @@
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: org-pipeline-{{ .Values.github.org }}
+  labels:
+    chart: "{{ .Chart.Name }}-{{ .Chart.Version }}"
+spec:
+  template:
+    metadata:
+      name: set-pipeline
+    spec:
+      containers:
+      - name: set-pipeline
+        image: appropriate/curl:3.1
+        imagePullPolicy: IfNotPresent
+        env:
+          - name: CONCOURSE_TEAM
+            value: {{ .Values.concourse.team }}
+          - name: CONCOURSE_URL
+            value: {{ .Values.concourse.externalURL }}
+          - name: FLY_PASSWORD
+            valueFrom:
+              secretKeyRef:
+                name: org-pipeline-{{ .Values.github.org }}
+                key: fly-password
+          - name: FLY_USERNAME
+            valueFrom:
+              secretKeyRef:
+                name: org-pipeline-{{ .Values.github.org }}
+                key: fly-username
+          - name: GITHUB_ORG_RESOURCE_IMAGE
+            value: {{ .Values.githubOrgResource.image }}
+          - name: GITHUB_ORG_RESOURCE_TAG
+            value: {{ .Values.githubOrgResource.tag }}
+          - name: KUBERNETES_CA_CERT
+            valueFrom:
+              secretKeyRef:
+                name: org-pipeline-{{ .Values.github.org }}
+                key: kubernetes-ca-cert
+          - name: KUBERNETES_TOKEN
+            valueFrom:
+              secretKeyRef:
+                name: org-pipeline-{{ .Values.github.org }}
+                key: kubernetes-token
+        command: [ "/bin/sh" ]
+        args:
+          - /scripts/set-pipeline.sh
+          - {{ .Values.github.org }}
+        volumeMounts:
+          - name: scripts
+            mountPath: /scripts
+      restartPolicy: Never
+      volumes:
+      - name: scripts
+        configMap:
+          name: scripts
+          defaultMode: 500

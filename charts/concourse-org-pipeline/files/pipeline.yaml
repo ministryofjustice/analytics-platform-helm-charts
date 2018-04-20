@@ -1,0 +1,29 @@
+---
+jobs:
+- name: update-org-pipelines
+  plan:
+  - get: org
+    trigger: true
+  - put: org
+
+resources:
+- name: org
+  type: github-org
+  source:
+    name: ((github-org))
+    access_token: ((github-access-token))
+    concourse_url: ((concourse-url))
+    username: ((fly-username))
+    password: ((fly-password))
+    team_name: ((concourse-team))
+    cookie-secret: ((cookie-secret))
+    cluster-ca: ((kubernetes-ca-cert))
+    token: ((kubernetes-token))
+  webhook_token: ((github-webhook-token))
+
+resource_types:
+- name: github-org
+  type: docker-image
+  source:
+    repository: ((github-org-resource-image))
+    tag: ((github-org-resource-tag))
