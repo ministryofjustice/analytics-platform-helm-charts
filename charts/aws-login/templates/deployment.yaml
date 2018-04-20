@@ -66,11 +66,11 @@ spec:
                 secretKeyRef:
                   name: {{ template "aws-login.fullname" . }}
                   key: AWS_ACCOUNT_ID
-            - name: PLATFORM_ENV
+            - name: ENV
               valueFrom:
                 secretKeyRef:
                   name: {{ template "aws-login.fullname" . }}
-                  key: PLATFORM_ENV
+                  key: ENV
             - name: PORT
               value: "3000"
             - name: REDIS_HOST

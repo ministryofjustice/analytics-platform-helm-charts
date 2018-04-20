@@ -55,4 +55,4 @@ environment:
   AUTH0_CALLBACK_URL: ""
   COOKIE_SECRET: ""
   AWS_ACCOUNT_ID: ""
-  PLATFORM_ENV: ""
+  ENV: ""
