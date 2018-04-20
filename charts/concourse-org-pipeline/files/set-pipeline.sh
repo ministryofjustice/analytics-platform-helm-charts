@@ -18,8 +18,10 @@ fly -t default set-pipeline \
     -v concourse-url=$CONCOURSE_URL \
     -v fly-username=$FLY_USERNAME \
     -v fly-password=$FLY_PASSWORD \
+    -v github-access-token=$GITHUB_ACCESS_TOKEN \
     -v github-org=$1 \
     -v github-org-resource-image=$GITHUB_ORG_RESOURCE_IMAGE \
     -v github-org-resource-tag=$GITHUB_ORG_RESOURCE_TAG \
+    -v github-webhook-token=$GITHUB_WEBHOOK_TOKEN \
     -v kubernetes-ca-cert=$KUBERNETES_CA_CERT \
     -v kubernetes-token=$KUBERNETES_TOKEN

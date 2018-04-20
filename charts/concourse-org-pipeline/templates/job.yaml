@@ -28,10 +28,20 @@ spec:
               secretKeyRef:
                 name: org-pipeline-{{ .Values.github.org }}
                 key: fly-username
+          - name: GITHUB_ACCESS_TOKEN
+            valueFrom:
+              secretKeyRef:
+                name: org-pipeline-{{ .Values.github.org }}
+                key: github-access-token
           - name: GITHUB_ORG_RESOURCE_IMAGE
             value: {{ .Values.githubOrgResource.image }}
           - name: GITHUB_ORG_RESOURCE_TAG
             value: {{ .Values.githubOrgResource.tag }}
+          - name: GITHUB_WEBHOOK_TOKEN
+            valueFrom:
+              secretKeyRef:
+                name: org-pipeline-{{ .Values.github.org }}
+                key: github-webhook-token
           - name: KUBERNETES_CA_CERT
             valueFrom:
               secretKeyRef:
