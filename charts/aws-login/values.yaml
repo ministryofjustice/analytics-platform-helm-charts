@@ -10,7 +10,7 @@ replicaCount: 1
 
 image:
   repository: quay.io/mojanalytics/aws-federated-login
-  tag: latest
+  tag: "v1.1.2"
   pullPolicy: IfNotPresent
 
 service:
