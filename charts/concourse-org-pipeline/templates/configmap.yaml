@@ -2,7 +2,7 @@ apiVersion: v1
 kind: ConfigMap
 metadata:
   name: scripts
-  namespace: {{ .Release.Namespace }}
+  namespace: concourse-{{ .Values.concourse.team }}
   labels:
     chart: {{ .Chart.Name }}-{{ .Chart.Version }}
 data:

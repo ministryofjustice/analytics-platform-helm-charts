@@ -11,14 +11,11 @@ resources:
   type: github-org
   source:
     name: ((github-org))
+    team_name: ((team_name))
+    concourse_url: ((concourse_url))
+    username: ((fly.username))
+    password: ((fly.password))
     access_token: ((github-access-token))
-    concourse_url: ((concourse-url))
-    username: ((fly-username))
-    password: ((fly-password))
-    team_name: ((concourse-team))
-    cookie-secret: ((cookie-secret))
-    cluster-ca: ((kubernetes-ca-cert))
-    token: ((kubernetes-token))
   webhook_token: ((github-webhook-token))
 
 resource_types:
