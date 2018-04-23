@@ -1,6 +1,5 @@
 Username: ""
 EnvName: "test"
-ToolsDomain: "tools.EXAMPLE.COM"
 CookieSecret: ""
 WebApp:
   Name: ""
@@ -25,9 +24,6 @@ AuthProxy:
     PullPolicy: "IfNotPresent"
 AWS:
   IAMRole: ""
-  AccessKeyId: ""
-  SecretAccessKey: ""
-  DefaultRegion: "eu-west-1"
 Fluentd:
   Image:
     Repository: quay.io/mojanalytics/fluentd

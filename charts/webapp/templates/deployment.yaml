@@ -19,7 +19,7 @@ spec:
       containers:
         - name: auth-proxy
           image: "{{ .Values.AuthProxy.Image.Repository }}:{{ .Values.AuthProxy.Image.Tag }}"
-          imagePullPolicy: {{ .Values.AuthProxy.Image.imagePullPolicy }}
+          imagePullPolicy: {{ .Values.AuthProxy.Image.PullPolicy }}
           ports:
             - name: http
               containerPort: 3000
