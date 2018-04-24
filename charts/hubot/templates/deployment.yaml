@@ -21,6 +21,31 @@ spec:
             - name: http
               containerPort: 8080
           env:
+            - name: AUTH0_AUTHZ_AUDIENCE
+              valueFrom:
+                secretKeyRef:
+                  name: {{ template "fullname" . }}
+                  key: auth0-authz-audience
+            - name: AUTH0_AUTHZ_URL
+              valueFrom:
+                secretKeyRef:
+                  name: {{ template "fullname" . }}
+                  key: auth0-authz-url
+            - name: AUTH0_CLIENT_ID
+              valueFrom:
+                secretKeyRef:
+                  name: {{ template "fullname" . }}
+                  key: auth0-client-id
+            - name: AUTH0_CLIENT_SECRET
+              valueFrom:
+                secretKeyRef:
+                  name: {{ template "fullname" . }}
+                  key: auth0-client-secret
+            - name: AUTH0_DOMAIN
+              valueFrom:
+                secretKeyRef:
+                  name: {{ template "fullname" . }}
+                  key: auth0-domain
             - name: HUBOT_SLACK_TOKEN
               valueFrom:
                 secretKeyRef:
