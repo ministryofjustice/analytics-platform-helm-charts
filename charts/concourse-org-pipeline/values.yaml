@@ -33,7 +33,6 @@ githubOrgResource:
 
 ipRanges:
   wifi102pf: ""
-  wifiCliveHouse: ""
   dom1: ""
   quantum: ""
 
