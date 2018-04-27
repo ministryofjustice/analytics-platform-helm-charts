@@ -40,7 +40,6 @@ resource | "" |
 | githubOrgResource.image | [Github Org Resource](https://github.com/ministryofjustice/analytics-platform-concourse-github-org-resource) docker image | `quay.io/mojanalytics/github-org-resource` |
 | githubOrgResource.tag | `v0.3.4` |
 | ipRanges.wifi102pf | CIDR IP range for 102PF | "" |
-| ipRanges.wifiCliveHouse | CIDR IP range for Clive House | "" |
 | ipRanges.dom1 | CIDR IP range for DOM1 | "" |
 | ipRanges.quantum | CIDR IP range for QUANTUM | "" |
 | kubernetes.apiUrl | Kubernetes cluster API URL | "" |

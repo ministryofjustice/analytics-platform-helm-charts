@@ -7,7 +7,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [0.1.2] - 2018-04-26
 ### Added
-Added IP range secrets for DOM1, QUANTUM, 102PF and Clive House for use in webapp
+Added IP range secrets for DOM1, QUANTUM and 102PF for use in webapp
 deployment IP restriction parameters.
 
 ### Changed
