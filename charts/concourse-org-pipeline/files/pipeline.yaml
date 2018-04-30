@@ -9,6 +9,7 @@ jobs:
 resources:
 - name: org
   type: github-org
+  check_every: 24h
   source:
     name: ((github-org))
     team_name: ((team_name))
