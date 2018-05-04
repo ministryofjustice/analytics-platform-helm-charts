@@ -14,7 +14,6 @@ fly -t default set-pipeline \
     -n $CONCOURSE_TEAM \
     -p $1 \
     -c /scripts/pipeline.yaml \
-    -v env=$ENV \
     -v team_name=$CONCOURSE_TEAM \
     -v concourse_url=$CONCOURSE_URL \
     -v github-webhook-token=$GITHUB_WEBHOOK_TOKEN

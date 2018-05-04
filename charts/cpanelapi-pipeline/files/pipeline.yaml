@@ -12,36 +12,26 @@ jobs:
 
   - task: cpanel-source
     file: common-tasks/extract-release-tarball.yaml
-    output_mapping: {extracted: cpanel-source}
+
+  - task: deploy-params
+    file: common-tasks/parse-deploy-file.yaml
 
   - put: cpanel-docker-image
-    params:
-      build: cpanel-source
-      tag: release/commit_sha
-      additional_tags: release/tag
+    build: cpanel-source
 
   - put: cpanel-auth0-client
-
-  - get: cpanel-helm-config
-
-  - task: decrypt-config
-    file: common-tasks/decrypt-gitcrypt.yaml
-    input_mapping: {encrypted: cpanel-helm-config}
-    output_mapping: {decrypted: cpanel-helm-config}
-    params:
-      SYMMETRIC_KEY: ((secrets.gitcrypt-symmetric-key))
 
   - put: cpanel-helm-release
     params:
       chart: mojanalytics/cpanel
       values:
-      - cpanel-helm-config/chart-env-config/((env))/cpanel.yml
+      - deploy-params/overrides.yaml
       override_values:
-      - { key: API.Image.Tag, path: release/commit_sha }
-      - { key: API.Branch, value: master }
+      - { key: api.image.tag, value: release.commit_sha }
+      - { key: api.branch, value: master }
       - { key: tags.branch, value: false }
-      - { key: API.Environment.OIDC_CLIENT_ID, path: cpanel-auth0-client/client_id }
-      - { key: API.Environment.OIDC_CLIENT_SECRET, path: cpanel-auth0-client/client_secret }
+      - { key: auth0.clientId, path: cpanel-auth0-client/client_id }
+      - { key: auth0.clientSecret, path: cpanel-auth0-client/client_secret }
 
 resources:
 - name: common-tasks
@@ -60,7 +50,7 @@ resources:
   type: auth0-client
   source:
     app-name: cpanel-master
-    app-domain: ((secrets.services-domain))
+    app-domain: ((secrets.app-domain))
     client-id: ((secrets.auth0-client-id))
     client-secret: ((secrets.auth0-client-secret))
     domain: ((secrets.auth0-domain))
@@ -72,12 +62,7 @@ resources:
   source:
     repository: quay.io/mojanalytics/control-panel
     username: ((secrets.quay-username))
-    password: ((secrets.quay-password))
-
-- name: cpanel-helm-config
-  type: git
-  source:
-    uri: https://github.com/ministryofjustice/analytics-platform-config.git
+    password: ((secrets.quay-token))
 
 - name: cpanel-helm-release
   type: helm
@@ -102,5 +87,5 @@ resource_types:
 - name: helm
   type: docker-image
   source:
-    repository: linkyard/concourse-helm-resource
-    tag: 2.9.0
+    repository: quay.io/mojanalytics/concourse-helm-resource
+    tag: 0.1.9
