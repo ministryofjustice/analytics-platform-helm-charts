@@ -1,0 +1,91 @@
+---
+jobs:
+- name: deploy
+  plan:
+
+  - get: release
+    trigger: true
+    params:
+      include_source_tarball: true
+
+  - get: common-tasks
+
+  - task: cpanel-source
+    file: common-tasks/extract-release-tarball.yaml
+
+  - task: deploy-params
+    file: common-tasks/parse-deploy-file.yaml
+
+  - put: cpanel-docker-image
+    build: cpanel-source
+
+  - put: cpanel-auth0-client
+
+  - put: cpanel-helm-release
+    params:
+      chart: mojanalytics/cpanel
+      values:
+      - deploy-params/overrides.yaml
+      override_values:
+      - { key: api.image.tag, value: release.commit_sha }
+      - { key: api.branch, value: master }
+      - { key: tags.branch, value: false }
+      - { key: auth0.clientId, path: cpanel-auth0-client/client_id }
+      - { key: auth0.clientSecret, path: cpanel-auth0-client/client_secret }
+
+resources:
+- name: common-tasks
+  type: git
+  source:
+    uri: https://github.com/ministryofjustice/analytics-platform-common-concourse-tasks.git
+
+- name: release
+  type: github-release
+  source:
+    owner: ministryofjustice
+    repository: analytics-platform-control-panel
+    access_token: ((secrets.github-access-token))
+
+- name: cpanel-auth0-client
+  type: auth0-client
+  source:
+    app-name: cpanel-master
+    app-domain: ((secrets.app-domain))
+    client-id: ((secrets.auth0-client-id))
+    client-secret: ((secrets.auth0-client-secret))
+    domain: ((secrets.auth0-domain))
+    authz-url: ((secrets.auth0-authz-url))
+    authz-audience: ((secrets.auth0-authz-audience))
+
+- name: cpanel-docker-image
+  type: docker-image
+  source:
+    repository: quay.io/mojanalytics/control-panel
+    username: ((secrets.quay-username))
+    password: ((secrets.quay-token))
+
+- name: cpanel-helm-release
+  type: helm
+  source:
+    cluster_url: ((secrets.kubernetes-api-url))
+    cluster_ca: ((secrets.kubernetes-ca-cert))
+    helm_host: tiller-deploy.kube-system:44134
+    token: ((secrets.kubernetes-token))
+    namespace: default
+    release: cpanel-master
+    repos:
+    - name: mojanalytics
+      url: https://ministryofjustice.github.io/analytics-platform-helm-charts/charts
+
+resource_types:
+- name: auth0-client
+  type: docker-image
+  source:
+    repository: quay.io/mojanalytics/concourse-auth0-resource
+    tag: v0.1.1
+
+- name: helm
+  type: docker-image
+  source:
+    repository: quay.io/mojanalytics/concourse-helm-resource
+    tag: 0.1.9
