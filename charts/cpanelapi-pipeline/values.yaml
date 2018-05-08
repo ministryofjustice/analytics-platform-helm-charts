@@ -1,0 +1,29 @@
+appDomain: ""
+
+auth0:
+  authzAudience: ""
+  authzUrl: ""
+  clientId: ""
+  clientSecret: ""
+  domain: ""
+
+concourse:
+  externalURL: ""
+  password: ""
+  team: ""
+  username: ""
+
+env: "dev"
+
+github:
+  accessToken: ""
+  webhookToken: ""
+
+kubernetes:
+  apiUrl: ""
+  caCert: ""
+  token: ""
+
+quay:
+  password: ""
+  username: ""

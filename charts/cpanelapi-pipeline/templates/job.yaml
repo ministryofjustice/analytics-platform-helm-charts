@@ -1,7 +1,7 @@
 apiVersion: batch/v1
 kind: Job
 metadata:
-  name: cpanel-pipeline
+  name: cpanelapi-pipeline
   namespace: concourse-{{ .Values.concourse.team }}
   labels:
     chart: "{{ .Chart.Name }}-{{ .Chart.Version }}"
@@ -19,6 +19,8 @@ spec:
             value: {{ .Values.concourse.team }}
           - name: CONCOURSE_URL
             value: {{ .Values.concourse.externalURL }}
+          - name: ENV
+            value: {{ .Values.env }}
           - name: FLY_PASSWORD
             valueFrom:
               secretKeyRef:
@@ -37,6 +39,7 @@ spec:
         command: [ "/bin/sh" ]
         args:
           - /scripts/set-pipeline.sh
+          - cpanel-api
         volumeMounts:
           - name: scripts
             mountPath: /scripts
