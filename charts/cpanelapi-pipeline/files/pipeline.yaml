@@ -14,13 +14,11 @@ jobs:
     file: common-tasks/extract-release-tarball.yaml
     output_mapping: {extracted: cpanel-source}
 
-  - task: deploy-params
-    file: common-tasks/parse-deploy-file.yaml
-    input_mapping: {webapp-source: cpanel-source}
-
   - put: cpanel-docker-image
     params:
       build: cpanel-source
+      tag: release/commit_sha
+      additional_tags: release/tag
 
   - put: cpanel-auth0-client
 
@@ -38,7 +36,6 @@ jobs:
       chart: mojanalytics/cpanel
       values:
       - cpanel-helm-config/chart-env-config/((env))/cpanel.yml
-      - deploy-params/overrides.yaml
       override_values:
       - { key: API.Image.Tag, path: release/commit_sha }
       - { key: API.Branch, value: master }
@@ -105,5 +102,5 @@ resource_types:
 - name: helm
   type: docker-image
   source:
-    repository: quay.io/mojanalytics/concourse-helm-resource
-    tag: 0.1.9
+    repository: linkyard/concourse-helm-resource
+    tag: 2.9.0
