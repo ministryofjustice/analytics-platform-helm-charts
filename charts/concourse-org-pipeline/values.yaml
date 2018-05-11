@@ -22,6 +22,8 @@ concourse:
 
 cookieSecret: ""
 
+cpanelApiUrl: ""
+
 github:
   org: moj-analytical-services
   accessToken: ""
@@ -29,7 +31,7 @@ github:
 
 githubOrgResource:
   image: quay.io/mojanalytics/github-org-resource
-  tag: v0.3.5
+  tag: v0.3.9
 
 ipRanges:
   wifi102pf: ""
