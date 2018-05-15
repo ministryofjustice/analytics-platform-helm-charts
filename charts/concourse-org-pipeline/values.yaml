@@ -22,7 +22,10 @@ concourse:
 
 cookieSecret: ""
 
-cpanelApiUrl: ""
+cpanelApi:
+  password: ""
+  url: ""
+  user: ""
 
 github:
   org: moj-analytical-services
