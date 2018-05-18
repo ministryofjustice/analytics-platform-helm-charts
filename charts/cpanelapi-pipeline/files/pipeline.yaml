@@ -24,13 +24,6 @@ jobs:
 
   - get: cpanel-helm-config
 
-  - task: decrypt-config
-    file: common-tasks/decrypt-gitcrypt.yaml
-    input_mapping: {encrypted: cpanel-helm-config}
-    output_mapping: {decrypted: cpanel-helm-config}
-    params:
-      SYMMETRIC_KEY: ((secrets.gitcrypt-symmetric-key))
-
   - put: cpanel-helm-release
     params:
       chart: mojanalytics/cpanel
@@ -77,6 +70,7 @@ resources:
 - name: cpanel-helm-config
   type: git
   source:
+    git_crypt_key: ((secrets.gitcrypt-symmetric-key))
     uri: https://github.com/ministryofjustice/analytics-platform-config.git
 
 - name: cpanel-helm-release
@@ -103,4 +97,4 @@ resource_types:
   type: docker-image
   source:
     repository: linkyard/concourse-helm-resource
-    tag: 2.9.0
+    tag: 2.8.2
