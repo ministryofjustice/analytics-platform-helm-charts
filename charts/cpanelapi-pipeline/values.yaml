@@ -20,5 +20,3 @@ kubernetes:
 quay:
   password: ""
   username: ""
-
-servicesDomain: ""
