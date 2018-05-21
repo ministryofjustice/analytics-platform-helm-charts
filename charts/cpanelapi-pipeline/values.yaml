@@ -1,12 +1,3 @@
-appDomain: ""
-
-auth0:
-  authzAudience: ""
-  authzUrl: ""
-  clientId: ""
-  clientSecret: ""
-  domain: ""
-
 concourse:
   externalURL: ""
   password: ""
@@ -14,6 +5,8 @@ concourse:
   username: ""
 
 env: "dev"
+
+gitcryptSymmetricKey: ""
 
 github:
   accessToken: ""
@@ -27,3 +20,5 @@ kubernetes:
 quay:
   password: ""
   username: ""
+
+servicesDomain: ""

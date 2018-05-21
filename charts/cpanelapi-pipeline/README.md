@@ -18,17 +18,13 @@ helm install mojanalytics/cpanelapi-pipeline \
 
 | Parameter  | Description     | Default |
 | ---------- | --------------- | ------- |
-| appDomain | Base domain for deployed API | "" |
-| auth0.authzAudience | Auth0 Authorization API audience | "" |
-| auth0.authzUrl | Auth0 Authorization API URL | "" |
-| auth0.clientId | Auth0 client ID for API access | "" |
-| auth0.clientSecret | Auth0 client secret for API access | "" |
-| auth0.domain | Auth0 tenant domain | "" |
 | concourse.externalURL | The same value as for the Concourse Helm chart | "" |
 | concourse.password | Basic authentication password for Concourse | "" |
 | concourse.team | Concourse team name | `main` |
 | concourse.username | Basic authentication username for Concourse | "" |
 | env | The name of the environment to deploy to (eg: dev, alpha) | `dev` |
+| gitcryptSymmetricKey | The key used to unlock the gitcrypt encrypted config
+repo | "" |
 | github.accessToken | Github personal access token for API | "" |
 | github.webhookToken | Access token for Github webhook calling Concourse
 resource | "" |
