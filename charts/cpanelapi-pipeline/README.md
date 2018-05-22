@@ -18,7 +18,7 @@ helm install mojanalytics/cpanelapi-pipeline \
 
 | Parameter  | Description     | Default |
 | ---------- | --------------- | ------- |
-| concourse.externalURL | The same value as for the Concourse Helm chart | "" |
+| concourse.externalURL | Concourse URL (not the in-cluster address) | "" |
 | concourse.password | Basic authentication password for Concourse | "" |
 | concourse.team | Concourse team name | `main` |
 | concourse.username | Basic authentication username for Concourse | "" |
