@@ -1,4 +1,4 @@
 apiVersion: v1
 description: Concourse Pipeline to deploy Analytics Platform Control Panel API
 name: cpanelapi-pipeline
-version: 0.1.0
+version: 0.1.1
