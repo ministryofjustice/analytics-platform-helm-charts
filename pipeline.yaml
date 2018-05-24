@@ -1,0 +1,89 @@
+---
+jobs:
+- name: helm-repo
+  plan:
+
+  - get: helm-charts
+    trigger: true
+
+  - task: existing-index
+    output_mapping: {output: existing-index}
+    config:
+      platform: linux
+      image_resource:
+        type: docker-image
+        source:
+          repository: anigeo/awscli
+      outputs:
+      - name: output
+      params:
+        BUCKET: ((s3-bucket))
+      run:
+        path: sh
+        args:
+          - -ec
+          - |
+            aws s3 cp s3://${BUCKET}/index.yaml output/index.yaml
+
+  - task: package-charts
+    input_mapping:
+      input: helm-charts
+      existing: existing-index
+    output_mapping: {output: packaged-charts}
+    config:
+      platform: linux
+      image_resource:
+        type: docker-image
+        source:
+          repository: lachlanevenson/k8s-helm
+          tag: v2.9.1
+      inputs:
+      - name: input
+      - name: existing
+      outputs:
+      - name: output
+      params:
+        BUCKET: ((s3-bucket))
+        REGION: ((aws-region))
+      run:
+        path: sh
+        args:
+          - -c
+          - |
+            helm init --client-only
+            for chart in input/charts/*/Chart.yaml; do
+              helm package -d output $(dirname $chart)
+            done
+            URL=http://${BUCKET}.s3-website-${REGION}.amazonaws.com
+            MERGE=""
+            if [ -f existing/index.yaml ]; then
+              MERGE="--merge existing/index.yaml"
+            fi
+            helm repo index ${MERGE} --url ${URL} output
+            cat output/index.yaml
+
+  - task: update-repo
+    input_mapping: {input: packaged-charts}
+    config:
+      platform: linux
+      image_resource:
+        type: docker-image
+        source:
+          repository: anigeo/awscli
+      inputs:
+      - name: input
+      params:
+        BUCKET: ((s3-bucket))
+      run:
+        path: sh
+        args:
+          - -ec
+          - |
+            aws s3 cp input s3://${BUCKET}/ --recursive
+
+
+resources:
+- name: helm-charts
+  type: git
+  source:
+    uri: https://github.com/ministryofjustice/analytics-platform-helm-charts.git
