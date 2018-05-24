@@ -1,8 +1,0 @@
-Workaround to prevent repo re-index every 30s
-
-The `update-packages` script which updates the helm repo index was confused
-by the fact a file inside `charts/rstudio` changed but the last rstudio
-tarball was created before this change.
-
-We should make the logic a bit more robust or change approach but in the
-meantime this workaround would prevent the re-build of the repo index.
