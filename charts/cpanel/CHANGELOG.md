@@ -5,6 +5,10 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
 
+## [0.12.1] - 2018-05-29
+### Added
+Added `ELASTICSEARCH_CONN` env var to deployment. Only secret was added before.
+
 ## [0.12.0] - 2018-05-04
 ### Added
 Added `ELASTICSEARCH_CONN` env var. Connection string with read-only username and password.

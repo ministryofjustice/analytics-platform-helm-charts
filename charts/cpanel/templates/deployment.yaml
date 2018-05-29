@@ -53,6 +53,11 @@ spec:
               value: "{{ .Values.API.Environment.DEBUG }}"
             - name: DJANGO_SETTINGS_MODULE
               value: "control_panel_api.settings"
+            - name: ELASTICSEARCH_CONN
+              valueFrom:
+                secretKeyRef:
+                  name: "{{ template "fullname" . }}"
+                  key: ELASTICSEARCH_CONN
             - name: ENABLE_K8S_RBAC
               value: "{{ .Values.API.Environment.ENABLE_K8S_RBAC }}"
             - name: ENV
