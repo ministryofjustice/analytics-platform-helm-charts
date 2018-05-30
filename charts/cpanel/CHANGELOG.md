@@ -5,6 +5,12 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
 
+## [0.12.2] - 2018-05-30
+### Added
+Added `ELASTICSEARCH_HOST`, `ELASTICSEARCH_PORT`, `ELASTICSEARCH_USERNAME` and
+`ELASTICSEARCH_PASSWORD` env vars to deployment and secrets. This should avoid a
+parsing bug.
+
 ## [0.12.1] - 2018-05-29
 ### Added
 Added `ELASTICSEARCH_CONN` env var to deployment. Only secret was added before.

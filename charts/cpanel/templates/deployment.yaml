@@ -3,7 +3,7 @@ kind: Deployment
 metadata:
   name: {{ template "fullname" . }}
   labels:
-    chart: {{ .Chart.Name }}-{{ .Chart.Version | replace "+" "_" }}
+    chart: "{{ .Chart.Name }}-{{ .Chart.Version }}"
     app: {{ template "fullname" .}}
 spec:
   replicas: 3
@@ -25,16 +25,13 @@ spec:
           env:
             - name: ALLOWED_HOSTS
               value: "*"
-              #valueFrom:
-                #fieldRef:
-                  #fieldPath: status.podIP
             - name: BUCKET_REGION
-              value: "{{ .Values.AWS.DefaultRegion }}"
+              value: {{ .Values.AWS.DefaultRegion }}
             - name: DB_HOST
               value: {{ if .Values.tags.branch -}}
-                  "{{ printf "%s-%s" .Release.Name "postgresql" | trunc 63 | trimSuffix "-" }}"
+                  {{ printf "%s-%s" .Release.Name "postgresql" | trunc 63 | trimSuffix "-" }}
                 {{- else -}}
-                  "{{ .Values.postgresql.postgresHost }}"
+                  {{ .Values.postgresql.postgresHost }}
                 {{- end }}
             - name: DB_NAME
               value: "{{ .Values.postgresql.postgresDatabase }}"
@@ -46,22 +43,34 @@ spec:
                   {{ if .Values.tags.branch -}}
                   name: {{ printf "%s-%s" .Release.Name "postgresql" | trunc 63 | trimSuffix "-" }}
                   {{- else -}}
-                  name: "{{ template "fullname" . }}"
+                  name: {{ template "fullname" . }}
                   {{- end }}
                   key: postgres-password
             - name: DEBUG
-              value: "{{ .Values.API.Environment.DEBUG }}"
+              value: {{ .Values.API.Environment.DEBUG }}
             - name: DJANGO_SETTINGS_MODULE
               value: "control_panel_api.settings"
-            - name: ELASTICSEARCH_CONN
+            - name: ELASTICSEARCH_HOST
               valueFrom:
                 secretKeyRef:
-                  name: "{{ template "fullname" . }}"
-                  key: ELASTICSEARCH_CONN
+                  name: {{ template "fullname" . }}
+                  key: ELASTICSEARCH_HOST
+            - name: ELASTICSEARCH_PORT
+              value: {{ .Values.API.Environment.ELASTICSEARCH_PORT }}
+            - name: ELASTICSEARCH_USERNAME
+              valueFrom:
+                secretKeyRef:
+                  name: {{ template "fullname" . }}
+                  key: ELASTICSEARCH_USERNAME
+            - name: ELASTICSEARCH_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: {{ template "fullname" . }}
+                  key: ELASTICSEARCH_PASSWORD
             - name: ENABLE_K8S_RBAC
-              value: "{{ .Values.API.Environment.ENABLE_K8S_RBAC }}"
+              value: {{ .Values.API.Environment.ENABLE_K8S_RBAC }}
             - name: ENV
-              value: "{{ .Values.API.Environment.ENV }}"
+              value: {{ .Values.API.Environment.ENV }}
             - name: IAM_ARN_BASE
               value: "{{ .Values.API.Environment.IAM_ARN_BASE }}"
             - name: K8S_WORKER_ROLE_NAME
@@ -81,12 +90,12 @@ spec:
             - name: OIDC_DOMAIN
               valueFrom:
                 secretKeyRef:
-                  name: "{{ template "fullname" . }}"
+                  name: {{ template "fullname" . }}
                   key: OIDC_DOMAIN
             - name: OIDC_AUTH_EXTENSION_URL
               valueFrom:
                 secretKeyRef:
-                  name: "{{ template "fullname" . }}"
+                  name: {{ template "fullname" . }}
                   key: OIDC_AUTH_EXTENSION_URL
             - name: SAML_PROVIDER
               value: "{{ .Values.API.Environment.SAML_PROVIDER }}"
@@ -98,17 +107,17 @@ spec:
             - name: NFS_HOSTNAME
               valueFrom:
                 secretKeyRef:
-                  name: "{{ template "fullname" . }}"
+                  name: {{ template "fullname" . }}
                   key: NFS_HOSTNAME
             - name: TOOLS_DOMAIN
               valueFrom:
                 secretKeyRef:
-                  name: "{{ template "fullname" . }}"
+                  name: {{ template "fullname" . }}
                   key: TOOLS_DOMAIN
             - name: RSTUDIO_AUTH_CLIENT_DOMAIN
               valueFrom:
                 secretKeyRef:
-                  name: "{{ template "fullname" . }}"
+                  name: {{ template "fullname" . }}
                   key: RSTUDIO_AUTH_CLIENT_DOMAIN
             - name: RSTUDIO_AUTH_CLIENT_ID
               valueFrom:
