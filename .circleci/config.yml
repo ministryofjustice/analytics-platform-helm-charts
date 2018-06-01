@@ -1,0 +1,18 @@
+version: 2
+jobs:
+  build:
+    docker:
+        - image: quay.io/mojanalytics/helm-charts:0.1.4
+
+    working_directory: /helm
+
+    steps:
+      - add-ssh-keys:
+          fingerprints:
+              - "b1:07:df:9e:3a:be:e4:b0:22:9b:9b:90:9a:e2:3d:5e"
+
+      - checkout
+
+      - run:
+          name: update packages
+          command: ./update-packages
