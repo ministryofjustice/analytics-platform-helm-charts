@@ -1,0 +1,20 @@
+concourse:
+  url: ""
+  password: ""
+  team: "admin"
+  username: ""
+
+gitcryptKeys:
+  config: ""
+
+github:
+  accessToken: ""
+
+kubernetes:
+  apiUrl: ""
+  caCert: ""
+  token: ""
+
+quay:
+  password: ""
+  username: ""

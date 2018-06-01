@@ -1,0 +1,4 @@
+apiVersion: v1
+description: Concourse admin team secrets
+name: concourse-admin-team
+version: 0.1.0
