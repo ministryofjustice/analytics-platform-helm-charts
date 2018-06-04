@@ -26,7 +26,6 @@ helm install mojanalytics/concourse-admin-team \
 | github.accessToken | Personal access token for the Github API | "" |
 | kubernetes.apiUrl | Kubernetes cluster API URL | "" |
 | kubernetes.caCert | Kubernetes cluster CA certificate for API access | "" |
-| kubernetes.clusterName | The name of the Kubernetes cluster (eg `dev` or `alpha`) | `dev` |
 | kubernetes.token | Kubernetes token for API access | "" |
 | quay.password | Password / token for quay.io | "" |
 | quay.username | Username for quay.io | "" |
