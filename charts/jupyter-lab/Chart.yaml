@@ -1,4 +1,4 @@
 apiVersion: v1
 description: Jupyter Lab with Auth0 authentication proxy
 name: jupyter-lab
-version: 0.1.4
+version: 0.1.5
