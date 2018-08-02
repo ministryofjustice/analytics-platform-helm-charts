@@ -9,7 +9,7 @@ service:
 
 authProxy:
   image: quay.io/mojanalytics/auth-proxy
-  tag: v0.1.1
+  tag: v0.1.4
   imagePullPolicy: IfNotPresent
   containerPort: 3000
   resources:

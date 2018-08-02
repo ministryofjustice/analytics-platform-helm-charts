@@ -4,6 +4,12 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
+## [1.3.14] - 2018-08-02
+### Changed
+- Update auth-proxy to v0.1.4, which fixes the login loop problem which happens
+  when a user fails to login but is redirected back to the login page without an
+  error message.
+
 ## [1.3.13] - 2018-07-17
 ### Changed
 - Mismatched `FLUENT_ELASTICSEARCH_USERNAME` env var in configmap
