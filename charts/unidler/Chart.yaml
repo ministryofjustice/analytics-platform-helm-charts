@@ -1,4 +1,4 @@
 apiVersion: v1
 description: unidler proxy
 name: unidler
-version: 0.1.0
+version: 0.1.1
