@@ -7,7 +7,7 @@ metadata:
     chart: {{ .Chart.Name }}-{{ .Chart.Version }}
     app: {{ .Chart.Name }}
   annotations:
-    kubernetes.io/ingress.class: "nginx"
+    kubernetes.io/ingress.class:  traefik
 spec:
   rules:
     - host: {{ .Values.Username | lower }}-jupyter-lab.{{ .Values.toolsDomain }}
@@ -17,6 +17,3 @@ spec:
             backend:
               serviceName: {{ template "fullname" . }}
               servicePort: {{ .Values.service.port }}
-  tls:
-    - hosts:
-        - {{ .Values.Username | lower }}-jupyter-lab.{{ .Values.toolsDomain }}
