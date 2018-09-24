@@ -11,7 +11,7 @@ spec:
     email: {{ .Values.issuer.acme.email }}
     # Name of a secret used to store the ACME account private key
     privateKeySecretRef:
-      name: {{ .Release.Name }}
+      name: {{ .Release.Name }}-private-key
     # ACME DNS-01 provider configurations
     dns01:
       # Here we define a list of DNS-01 providers that can solve DNS challenges

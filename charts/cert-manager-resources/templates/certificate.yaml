@@ -7,7 +7,7 @@ metadata:
     app: cert-manager
 spec:
   # Name of a secret to store tls certificate
-  secretName: {{ .Release.Name }}-tls
+  secretName: {{ .Values.cert.outputSecret }}
   issuerRef:
     name: {{ .Release.Name }}
     kind: ClusterIssuer
