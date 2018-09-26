@@ -16,13 +16,13 @@ helm upgrade cert-manager stable/cert-manager --install
 ### Installing/Upgrading chart
 
 ```
-helm upgrade dev-prod-wildcard-cert mojanalytics/cert-manager-reources --namespace=kube-system -f ../analytics-platform-config/chart-env-config/dev/cert-manager-resources.yaml
+helm upgrade istio-ingress-certs mojanalytics/cert-manager-reources --namespace=istio-system -f ../analytics-platform-config/chart-env-config/dev/cert-manager-resources.yaml
 ```
 
 After deploying the chart, observe the progress of the [DNS01 validation](https://docs.certifytheweb.com/docs/dns-validation.html) and [Let's Encrypt](https://letsencrypt.org/) certificate request by monitoring the `certificate` events
 
 ```
-kubectl describe cert dev-prod-wildcard-cert --namespace=kube-system
+kubectl describe cert istio-ingress-certs --namespace=istio-system
 ```
 
 ### Configuration
@@ -35,6 +35,7 @@ kubectl describe cert dev-prod-wildcard-cert --namespace=kube-system
 | `issuer.dns01.provider.name` | Arbitrary name of the DNS01 challenge | `route53` |
 | `issuer.dns01.provider.route53.region` | Jury's out on this one? | `eu-west-1` |
 | `issuer.dns01.provider.route53.hostedzoneid` | ZoneID for DNS01 challenge | "" |
+| `cert.outputSecret` | Secret to store the requested certificate in (will be createad in the namespace this chart is installed into) | "" |
 | `cert.commonname` | CommonName for certificate i.e. `*.yourdomain.com` | "" |
 | `cert.dnsnames` | An array of dns records you want your tls certificate to provide tls for `*.yourdomain.com, *.sub.yourdomain.com` | "" |
 | `cert.acme.config.domains` | An array of domains your `dnsnames` reside in to be verified during DNS01 challenge. This requires a suitable issuer DNS01 provider. See [Issuer tutorial](https://cert-manager.readthedocs.io/en/latest/tutorials/acme/dns-validation.html) | "" |
