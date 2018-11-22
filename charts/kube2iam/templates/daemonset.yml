@@ -36,3 +36,8 @@ spec:
               name: http
           securityContext:
             privileged: true
+      tolerations:
+      - effect: NoSchedule
+        key: dedicated
+        operator: Equal
+        value: highmem
