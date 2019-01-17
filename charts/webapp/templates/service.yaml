@@ -6,6 +6,7 @@ metadata:
     chart: "{{ .Chart.Name }}-{{ .Chart.Version | replace "+" "_" }}"
     repo: "{{ .Values.WebApp.GithubRepo }}"
     app: {{ template "fullname" . }}
+    host: {{ template "hostname" . }}
 spec:
   sessionAffinity: ClientIP
   ports:

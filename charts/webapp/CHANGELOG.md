@@ -6,6 +6,11 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 
 
+## [1.3.17] - 2019-01-17
+### Changed
+- Added `host` label to deployment, ingress and service for use in
+  LabelSelectors (useful for idle/unidle)
+
 ## [1.3.16] - 2018-10-19
 ### Changed
 - Added `livenessProbe` to proxy container
