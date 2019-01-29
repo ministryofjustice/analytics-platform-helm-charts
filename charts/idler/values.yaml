@@ -12,7 +12,7 @@ schedule: "0 22 * * *"
 # See https://kubernetes.io/docs/user-guide/cron-jobs/#concurrency_policy
 concurrencyPolicy: Forbid
 
-labelSelector: 'app'
+labelSelector: 'app=rstudio'
 
 logLevel: 'INFO'
 
