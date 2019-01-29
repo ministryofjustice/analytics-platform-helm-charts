@@ -5,6 +5,12 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 
+## [v3.1.0] - 2019-01-29
+### Changed
+Unidling was achieved by re-enabling the app ingress and removing the app hostname from the unidler ingress.
+This could result in a race condition when multiple apps were unidled at the same time.
+This change does away with modifying ingresses and instead unidles an app by restoring the service to a load-balancer for the app pods.
+
 ## [v3.0.0] - 2018-10-10
 ### Changed
 - Changed Docker image to use [`go-unidler`](https://github.com/ministryofjustice/analytics-platform-go-unidler) instead of ["old" `unidler` (Python)](https://github.com/ministryofjustice/analytics-platform-unidler)

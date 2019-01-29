@@ -1,7 +1,7 @@
 # Docker image
 image:
   name: quay.io/mojanalytics/go-unidler
-  tag: v0.0.4
+  tag: v0.1.0
   pullPolicy: IfNotPresent
 
 replicaCount: 3

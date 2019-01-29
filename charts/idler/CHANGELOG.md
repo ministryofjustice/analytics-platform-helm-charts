@@ -4,6 +4,12 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
+## [1.2.0] - 2018-01-29
+### Changed
+Idling was achieved by disabling the app ingress and adding the app hostname to the unidler ingress.
+If multiple users unidled at the same time, there could be a race condition when removing the hostnames from the unidler ingress.
+This change does away with editing ingresses altogether and edits only the app service. By changing the service to what is essentially a CNAME forwarding to the unidler, requests to the app host are handled by the unidler.
+
 ## [1.1.0] - 2018-10-10
 ### Changed
 - Add support for idling Jupyter-lab
