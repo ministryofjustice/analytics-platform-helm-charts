@@ -6,6 +6,16 @@ metadata:
     app: {{ .Release.Name }}
 rules:
   - apiGroups:
+      - "core"
+    resources:
+      - "services"
+    verbs:
+      - "get"
+      - "list"
+      - "patch"
+      - "update"
+      - "watch"
+  - apiGroups:
       - "apps"
     resources:
       - "deployments"
