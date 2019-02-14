@@ -5,32 +5,14 @@ metadata:
   labels:
     app: {{ .Release.Name }}
 rules:
-  - apiGroups:
-      - ""
-    resources:
-      - "services"
-    verbs:
-      - "get"
-      - "list"
-      - "patch"
-      - "update"
-      - "watch"
-  - apiGroups:
-      - "apps"
-    resources:
-      - "deployments"
-    verbs:
-      - "get"
-      - "list"
-      - "patch"
-      - "update"
-      - "watch"
-  - apiGroups:
-      - "extensions"
-    resources:
-      - "ingresses"
-    verbs:
-      - "get"
-      - "list"
-      - "patch"
-      - "update"
+  - apiGroups: [""]
+    resources: ["services"]
+    verbs: ["list", "patch"]
+
+  - apiGroups: ["apps"]
+    resources: ["deployments"]
+    verbs: ["list", "patch", "watch"]
+
+  - apiGroups: ["extensions"]
+    resources: ["ingresses"]
+    verbs: ["list"]

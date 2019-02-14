@@ -4,11 +4,16 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
-## [1.2.1] - 2018-02-05
+## [1.2.2] - 2019-02-14
+### Changed
+Corrected verb for read services
+Remove unused permissions for ingresses
+
+## [1.2.1] - 2019-02-05
 ### Changed
 Added permission to read and patch services
 
-## [1.2.0] - 2018-01-29
+## [1.2.0] - 2019-01-29
 ### Changed
 Idling was achieved by disabling the app ingress and adding the app hostname to the unidler ingress.
 If multiple users unidled at the same time, there could be a race condition when removing the hostnames from the unidler ingress.

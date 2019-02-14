@@ -15,11 +15,7 @@ rules:
 
   - apiGroups: [""]
     resources: ["services"]
-    verbs: ["patch", "read"]
-
-  - apiGroups: ["extensions"]
-    resources: ["ingresses"]
-    verbs: ["list", "patch"]
+    verbs: ["get", "patch"]
 
   - apiGroups: ["metrics.k8s.io"]
     resources: ["pods"]
