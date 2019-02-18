@@ -1,5 +1,5 @@
 # Docker image version
-image: quay.io/mojanalytics/idler:v0.5.0
+image: quay.io/mojanalytics/idler:v0.5.1
 
 # Schedule when to run
 #   min    hour   day    month (Sun-Sat)

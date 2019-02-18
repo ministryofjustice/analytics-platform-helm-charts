@@ -4,6 +4,10 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
+## [1.2.3] - 2019-02-18
+### Changed
+Bump image version to 0.5.1 to pick up bugfix for incorrect service update
+
 ## [1.2.2] - 2019-02-14
 ### Changed
 Corrected verb for read services
