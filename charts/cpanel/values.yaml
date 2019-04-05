@@ -4,7 +4,7 @@ API:
   Branch: "master"
   Image:
     Repository: quay.io/mojanalytics/control-panel
-    Tag: 0.1.0
+    Tag: v0.13.6
     PullPolicy: IfNotPresent
   Environment:
     DEBUG: "False"
