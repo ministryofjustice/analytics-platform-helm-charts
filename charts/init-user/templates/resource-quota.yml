@@ -5,6 +5,6 @@ metadata:
   namespace: user-{{ .Values.Username }}
 spec:
   hard:
-    persistentvolumeclaims: "1"
-    requests.storage: "15Gi"
-# Allows only 1 volume claim of up to 15GB in user's namespace
+    persistentvolumeclaims: "2"
+    requests.storage: "20Gi"
+# Allows up to 2 volume claims that both equal up to 20GB in user's namespace

@@ -1,0 +1,19 @@
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: nfs-home-trident
+  namespace: user-{{ .Values.Username }}
+  labels:
+    chart: "{{ .Chart.Name }}-{{ .Chart.Version }}"
+    app: "trident.netapp.io"
+  annotations:
+    volume.beta.kubernetes.io/storage-class: netapp-file-redundant
+    trident.netapp.io/reclaimPolicy: "Retain"
+    trident.netapp.io/snapshotPolicy: "default" # default = Create and retain six hourly, two daily, and two weekly snapshots
+spec:
+  accessModes:
+    - ReadWriteMany
+  volumeMode: Filesystem
+  resources:
+    requests:
+      storage: 10Gi
