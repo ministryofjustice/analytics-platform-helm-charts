@@ -1,24 +1,16 @@
 apiVersion: rbac.authorization.k8s.io/v1
 kind: ClusterRole
 metadata:
-  name: {{ template "fullname" . }}
+  name: "{{ .Chart.Name }}"
 rules:
-  - apiGroups:
-      - ""
-    resources:
-      - "pods"
-    verbs:
-      - "list"
-  - apiGroups:
-      - ""
-    resources:
-      - "pods/portforward"
-    verbs:
-      - "create"
-  - apiGroups:
-      - "extensions"
-    resources:
-      - "ingresses"
-    verbs:
-      - "get"
-      - "list"
+  - apiGroups: [""]
+    verbs: ["list"]
+    resources: ["pods"]
+
+  - apiGroups: [""]
+    verbs: ["create"]
+    resources: ["pods/portforward"]
+
+  - apiGroups: ["extensions"]
+    verbs: ["get", "list"]
+    resources: ["ingresses"]

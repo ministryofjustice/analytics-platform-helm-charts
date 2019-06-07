@@ -4,6 +4,21 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
+## [2.0.0] - 2019-06-07
+### Added
+- Host labels on resources
+- Helper templates for hostnames and postgres password
+- New ingress for frontend
+- Environment variables for frontend
+
+### Changed
+- Renamed values per best practices
+- Split environment variables into secrets and non-secrets
+- Use range to make deployment and secrets environment variable lists DRY
+- Simplified resource names
+- Use pg_isready instead of python script to check for DB readiness
+- Point readinessProbe at django health check
+
 ## [1.1.5] - 2019-05-01
 ### Changed
 - Add airflow env vars to secrets

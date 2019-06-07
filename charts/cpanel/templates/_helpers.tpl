@@ -1,23 +1,38 @@
-{{/* vim: set filetype=mustache: */}}
 {{/*
-Expand the name of the chart.
+Control Panel hostname
 */}}
-{{- define "name" -}}
-{{- default .Chart.Name .Values.nameOverride | trunc 24 | trimSuffix "-" -}}
+{{- define "host" -}}
+"controlpanel.{{ .Values.servicesDomain }}"
 {{- end -}}
 
 {{/*
-Create a default fully qualified app name.
-We truncate at 24 chars because some Kubernetes name fields are limited to this (by the DNS naming spec).
+Old Control Panel API hostname
 */}}
-{{- define "fullname" -}}
-{{- $name := default .Chart.Name .Values.nameOverride -}}
-{{- printf "%s-%s" .Release.Name $name | trunc 24 | trimSuffix "-" -}}
+{{- define "old_host" -}}
+"cpanelapi{{- if .Values.branch -}}-{{ .Values.branch }}{{- end -}}.{{ .Values.servicesDomain }}"
 {{- end -}}
 
 {{/*
-CP API hostname
+Postgres release
 */}}
-{{- define "hostname" -}}
-"cpanelapi{{- if .Values.API.Branch -}}-{{ .Values.API.Branch }}{{- end -}}.{{ .Values.ServicesDomain }}"
+{{- define "postgresRelease" -}}
+"{{ printf "%s-%s" .Release.Name "postgresql" | trunc 63 | trimSuffix "-" }}"
+{{- end -}}
+
+{{/*
+Postgres hostname
+*/}}
+{{- define "postgresHost" -}}
+  {{- if .Values.tags.branch -}}
+    {{ template "postgresRelease" . }}
+  {{- else -}}
+    "{{ .Values.postgresql.postgresHost }}"
+  {{- end -}}
+{{- end -}}
+
+{{/*
+Postgres password
+*/}}
+{{- define "postgresPassword" -}}
+  {"secretKeyRef": {"name": {{ if .Values.tags.branch }}{{ template "postgresRelease" . }}{{ else }}"{{ .Chart.Name }}"{{ end }}, "key": "postgres-password"} }
 {{- end -}}

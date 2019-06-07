@@ -1,8 +1,8 @@
 # Control Panel API Helm Chart
 
-Installing this chart will deploy the Analytical Platform Control Panel API, a
-REST API with which the creation and maintenance of users, apps and data
-sources on the platform can be managed.
+Installing this chart will deploy the Analytical Platform Control Panel, a web
+application and REST API with which the creation and maintenance of users, apps
+and data sources on the platform can be managed.
 
 
 ## Installing the Chart

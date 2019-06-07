@@ -1,22 +1,28 @@
 apiVersion: extensions/v1beta1
 kind: Ingress
 metadata:
-  name: {{ template "fullname" . }}
+  name: "{{ .Chart.Name }}"
   labels:
-    chart: {{ .Chart.Name }}-{{ .Chart.Version | replace "+" "_" }}
-    app: {{ template "fullname" . }}
+    chart: "{{ .Chart.Name }}-{{ .Chart.Version }}"
+    app: "{{ .Chart.Name }}"
+    host: {{ template "host" . }}
   annotations:
     kubernetes.io/ingress.class: "nginx"
 spec:
   rules:
-  - host: {{ template "hostname" . }}
+  - host: {{ template "host" . }}
     http:
       paths:
       - backend:
-          serviceName: {{ template "fullname" . }}
+          serviceName: "{{ .Chart.Name }}"
           servicePort: 80
-{{ if .Values.ingress.addTlsBlock }}
+  - host: {{ template "old_host" . }}
+    http:
+      paths:
+      - backend:
+          serviceName: "{{ .Chart.Name }}"
+          servicePort: 80
   tls:
   - hosts:
-    - {{ template "hostname" . }}
-{{ end }}
+    - {{ template "host" . }}
+    - {{ template "old_host" . }}

@@ -1,45 +1,56 @@
-ServicesDomain: ""
-API:
-  DeployOwnDatabase: false
-  Branch: "master"
-  Image:
-    Repository: quay.io/mojanalytics/control-panel
-    Tag: v0.13.6
-    PullPolicy: IfNotPresent
-  Environment:
-    DEBUG: "False"
-    ENABLE_K8S_RBAC: "False"
-    ENV: ""
-    IAM_ARN_BASE: ""
-    K8S_WORKER_ROLE_NAME: ""
-    LOGS_BUCKET_NAME: ""
-    OIDC_CLIENT_ID: ""
-    OIDC_CLIENT_SECRET: ""
-    OIDC_DOMAIN: ""
-    OIDC_AUTH_EXTENSION_URL: ""
-    SAML_PROVIDER: ""
-    SENTRY_DSN: ""
-    NFS_HOSTNAME: ""
-    AIRFLOW_AUTH_CLIENT_DOMAIN: ""
-    AIRFLOW_AUTH_CLIENT_ID: ""
-    AIRFLOW_AUTH_CLIENT_SECRET: ""
-    AIRFLOW_SECRET_KEY: ""
-    AIRFLOW_FERNET_KEY: ""
-    RSTUDIO_AUTH_CLIENT_DOMAIN: ""
-    RSTUDIO_AUTH_CLIENT_ID: ""
-    RSTUDIO_AUTH_CLIENT_SECRET: ""
-    JUPYTER_LAB_AUTH_CLIENT_DOMAIN: ""
-    JUPYTER_LAB_AUTH_CLIENT_ID: ""
-    JUPYTER_LAB_AUTH_CLIENT_SECRET: ""
-    TOOLS_DOMAIN: ""
-    ELASTICSEARCH_HOST: ""
-    ELASTICSEARCH_PORT: ""
-    ELASTICSEARCH_USERNAME: ""
-    ELASTICSEARCH_PASSWORD: ""
-  RDSPassword: ""
-AWS:
-  DefaultRegion: "eu-west-1"
-  IAMRole: ""
+servicesDomain: ""
+branch: "master"
+
+image:
+  repository: quay.io/mojanalytics/control-panel
+  tag: v0.13.6
+  pullPolicy: IfNotPresent
+
+env:
+  DEBUG: "False"
+  ELASTICSEARCH_PORT: ""
+  ENABLE_K8S_RBAC: "False"
+  ENV: ""
+  K8S_WORKER_ROLE_NAME: ""
+  LOGS_BUCKET_NAME: ""
+  SAML_PROVIDER: ""
+
+secretEnv:
+  AIRFLOW_AUTH_CLIENT_DOMAIN: ""
+  AIRFLOW_AUTH_CLIENT_ID: ""
+  AIRFLOW_AUTH_CLIENT_SECRET: ""
+  AIRFLOW_FERNET_KEY: ""
+  AIRFLOW_SECRET_KEY: ""
+  AWS_ACCOUNT_ID: ""
+  ELASTICSEARCH_HOST: ""
+  ELASTICSEARCH_PASSWORD: ""
+  ELASTICSEARCH_USERNAME: ""
+  JUPYTER_LAB_AUTH_CLIENT_DOMAIN: ""
+  JUPYTER_LAB_AUTH_CLIENT_ID: ""
+  JUPYTER_LAB_AUTH_CLIENT_SECRET: ""
+  NFS_HOSTNAME: ""
+  OIDC_AUTH_EXTENSION_URL: ""
+  OIDC_CLIENT_ID: ""
+  OIDC_CLIENT_SECRET: ""
+  OIDC_DOMAIN: ""
+  OIDC_OP_AUTHORIZATION_ENDPOINT: ""
+  OIDC_OP_JWKS_ENDPOINT: ""
+  OIDC_OP_TOKEN_ENDPOINT: ""
+  OIDC_OP_USER_ENDPOINT: ""
+  RSTUDIO_AUTH_CLIENT_DOMAIN: ""
+  RSTUDIO_AUTH_CLIENT_ID: ""
+  RSTUDIO_AUTH_CLIENT_SECRET: ""
+  SENTRY_DSN: ""
+  TOOLS_DOMAIN: ""
+
+aws:
+  defaultRegion: "eu-west-1"
+  iamRole: ""
+
+django:
+  port: 8000
+  settingsModule: "controlpanel.settings"
+
 tags:
   branch: false
 
@@ -47,7 +58,7 @@ ingress:
   addTlsBlock: true
 
 postgresql:
-    postgresHost: ""
-    postgresUser: ""
-    postgresPassword: ""
-    postgresDatabase: ""
+  postgresHost: ""
+  postgresUser: ""
+  postgresPassword: ""
+  postgresDatabase: ""
