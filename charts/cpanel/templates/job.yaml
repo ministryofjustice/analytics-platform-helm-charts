@@ -2,6 +2,10 @@ apiVersion: batch/v1
 kind: Job
 metadata:
   name: "{{ .Chart.Name }}-migration"
+  labels:
+    chart: "{{ .Chart.Name }}-{{ .Chart.Version }}"
+    app: "{{ .Chart.Name }}"
+    host: {{ template "host" . }}
   annotations:
     "helm.sh/hook": post-install, post-upgrade
     "helm.sh/hook-weight": "-5"

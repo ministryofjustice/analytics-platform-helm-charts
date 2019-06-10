@@ -3,6 +3,10 @@ kind: RoleBinding
 metadata:
   name: "{{ .Chart.Name }}"
   namespace: kube-system
+  labels:
+    chart: "{{ .Chart.Name }}-{{ .Chart.Version }}"
+    app: "{{ .Chart.Name }}"
+    host: {{ template "host" . }}
 roleRef:
   apiGroup: rbac.authorization.k8s.io
   name: "{{ .Chart.Name }}"
