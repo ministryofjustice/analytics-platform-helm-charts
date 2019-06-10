@@ -28,6 +28,6 @@ spec:
             - name: DB_USER
               value: "{{ .Values.postgresql.postgresUser }}"
             - name: DB_PASSWORD
-              valueFrom: {{ template "postgresPassword" }}
+              valueFrom: {{ template "postgresPassword" . }}
       restartPolicy: OnFailure
   backoffLimit: 5
