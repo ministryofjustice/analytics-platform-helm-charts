@@ -1,0 +1,15 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: env-configmap
+  labels:
+    chart: "{{ .Chart.Name }}-{{ .Chart.Version }}"
+    app: "{{ .Chart.Name }}"
+    host: {{ template "host" . }}
+data:
+  {{ range $key, $value := .Values.env -}}
+  {{ $key }}: {{ $value | quote }}
+  {{ end -}}
+  ALLOWED_HOSTS: "*"
+  BUCKET_REGION: "{{ .Values.aws.defaultRegion }}"
+  DJANGO_SETTINGS_MODULE: "{{ .Values.django.settingsModule }}"

@@ -17,7 +17,18 @@ spec:
     spec:
       serviceAccountName: "{{ .Chart.Name }}"
       containers:
-        - name: "{{ .Chart.Name }}"
+        - name: reverse-proxy
+          image: "nginx:1.16.0-alpine"
+          imagePullPolicy: IfNotPresent
+          ports:
+            - name: http
+              containerPort: 80
+          volumeMounts:
+            - name: nginxconf
+              mountPath: /etc/nginx/conf.d
+            - name: staticfiles
+              mountPath: /usr/share/nginx/html
+        - name: django
           image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
           imagePullPolicy: "{{ .Values.image.pullPolicy }}"
           ports:

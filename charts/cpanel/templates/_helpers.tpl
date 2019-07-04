@@ -16,7 +16,7 @@ Old Control Panel API hostname
 Postgres release
 */}}
 {{- define "postgresRelease" -}}
-"{{ printf "%s-%s" .Release.Name "postgresql" | trunc 63 | trimSuffix "-" }}"
+{{ printf "%s-%s" .Release.Name "postgresql" | trunc 63 | trimSuffix "-" }}
 {{- end -}}
 
 {{/*
@@ -24,9 +24,9 @@ Postgres hostname
 */}}
 {{- define "postgresHost" -}}
   {{- if .Values.tags.branch -}}
-    {{ template "postgresRelease" . }}
+    {{ include "postgresRelease" . }}
   {{- else -}}
-    "{{ .Values.postgresql.postgresHost }}"
+    {{ .Values.postgresql.postgresHost }}
   {{- end -}}
 {{- end -}}
 
@@ -34,5 +34,10 @@ Postgres hostname
 Postgres password
 */}}
 {{- define "postgresPassword" -}}
-  {"secretKeyRef": {"name": {{ if .Values.tags.branch }}{{ template "postgresRelease" . }}{{ else }}"{{ .Chart.Name }}"{{ end }}, "key": "postgres-password"} }
+  {"secretKeyRef": {"name":
+  {{- if .Values.tags.branch -}}
+    {{ include "postgresRelease" . | quote }}
+  {{- else -}}
+    "{{ .Chart.Name }}"
+  {{- end -}}, "key": "postgres-password"} }
 {{- end -}}
