@@ -8,6 +8,9 @@ metadata:
     host: {{ template "host" . }}
 spec:
   replicas: 3
+  selector:
+    matchLabels:
+      app: "{{ .Chart.Name }}"
   template:
     metadata:
       labels:
@@ -16,50 +19,51 @@ spec:
         iam.amazonaws.com/role: "{{ .Values.aws.iamRole }}"
     spec:
       serviceAccountName: "{{ .Chart.Name }}"
+      volumes:
+      - emptyDir: {}
+        name: nginxconf
+      - emptyDir: {}
+        name: staticfiles
+      initContainers:
+      - name: init-nginx
+        image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
+        imagePullPolicy: "{{ .Values.image.pullPolicy }}"
+        volumeMounts:
+        - mountPath: /nginxconf
+          name: nginxconf
+        - mountPath: /staticfiles
+          name: staticfiles
+        command:
+        - sh
+        - -c
+        - |
+          cp -R /home/controlpanel/static /staticfiles && \
+          cp /home/controlpanel/docker/nginx.conf /nginxconf/default.conf
       containers:
         - name: reverse-proxy
-          image: "nginx:1.16.0-alpine"
+          image: "{{ .Values.reverseProxy.image.repository}}:{{ .Values.reverseProxy.image.tag }}"
           imagePullPolicy: IfNotPresent
           ports:
             - name: http
-              containerPort: 80
+              containerPort: {{ .Values.reverseProxy.port }}
           volumeMounts:
             - name: nginxconf
               mountPath: /etc/nginx/conf.d
             - name: staticfiles
               mountPath: /usr/share/nginx/html
-        - name: django
+        - name: backend
           image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
           imagePullPolicy: "{{ .Values.image.pullPolicy }}"
           ports:
             - name: http
               containerPort: {{ .Values.django.port }}
-          env:
-          {{- range $key, $value := .Values.env }}
-            - name: {{ $key }}
-              value: "{{ $value }}"
-          {{- end }}
-          {{- range $key, $value := .Values.secretEnv }}
-            - name: {{ $key }}
-              valueFrom:
-                secretKeyRef:
-                  name: "{{ $.Chart.Name }}"
-                  key: {{ $key }}
-          {{- end }}
-            - name: ALLOWED_HOSTS
-              value: "*"
-            - name: BUCKET_REGION
-              value: "{{ .Values.aws.defaultRegion }}"
-            - name: DB_HOST
-              value: {{ template "postgresHost" . }}
-            - name: DB_NAME
-              value: "{{ .Values.postgresql.postgresDatabase }}"
-            - name: DB_USER
-              value: "{{ .Values.postgresql.postgresUser }}"
-            - name: DB_PASSWORD
-              valueFrom: {{ template "postgresPassword" . }}
-            - name: DJANGO_SETTINGS_MODULE
-              value: "{{ .Values.django.settingsModule }}"
+          envFrom:
+          - configMapRef:
+              name: "{{ .Chart.Name }}-env-configmap"
+          - secretRef:
+              name: "{{ .Chart.Name }}-env-secrets"
+          - secretRef:
+              name: "{{ .Chart.Name }}-db-env"
           readinessProbe:
             httpGet:
               path: /health

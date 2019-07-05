@@ -1,7 +1,7 @@
 apiVersion: v1
 kind: ConfigMap
 metadata:
-  name: env-configmap
+  name: "{{ .Chart.Name }}-env-configmap"
   labels:
     chart: "{{ .Chart.Name }}-{{ .Chart.Version }}"
     app: "{{ .Chart.Name }}"

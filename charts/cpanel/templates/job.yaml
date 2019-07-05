@@ -24,14 +24,8 @@ spec:
                 sleep 2
               done
               python3 manage.py migrate
-          env:
-            - name: DB_HOST
-              value: "{{ template "postgresHost" . }}"
-            - name: DB_NAME
-              value: "{{ .Values.postgresql.postgresDatabase }}"
-            - name: DB_USER
-              value: "{{ .Values.postgresql.postgresUser }}"
-            - name: DB_PASSWORD
-              valueFrom: {{ template "postgresPassword" . }}
+          envFrom:
+            - secretRef:
+                name: "{{ .Chart.Name }}-db-env"
       restartPolicy: OnFailure
   backoffLimit: 5

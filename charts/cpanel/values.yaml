@@ -51,6 +51,12 @@ django:
   port: 8000
   settingsModule: "controlpanel.settings"
 
+reverseProxy:
+  image:
+    repository: nginxinc/nginx-unprivileged
+    tag: 1.16.0-alpine
+  port: 8080
+
 tags:
   branch: false
 

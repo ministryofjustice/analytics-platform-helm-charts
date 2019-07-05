@@ -9,7 +9,7 @@ metadata:
 spec:
   ports:
   - port: 80
-    targetPort: 80
+    targetPort: {{ .Values.reverseProxy.port }}
     protocol: TCP
   selector:
     app: "{{ .Chart.Name }}"
