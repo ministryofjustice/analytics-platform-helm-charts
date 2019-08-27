@@ -51,6 +51,10 @@ django:
   port: 8000
   settingsModule: "controlpanel.settings"
 
+redis:
+  persistence:
+    enabled: false
+
 reverseProxy:
   image:
     repository: nginxinc/nginx-unprivileged
