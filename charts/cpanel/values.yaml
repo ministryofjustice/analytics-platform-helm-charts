@@ -52,8 +52,15 @@ django:
   settingsModule: "controlpanel.settings"
 
 redis:
-  persistence:
+  cluster:
     enabled: false
+  master:
+    persistence:
+      enabled: false
+  networkPolicy:
+    allowExternal: false
+    enabled: true
+  password: "controlpanel"
 
 reverseProxy:
   image:

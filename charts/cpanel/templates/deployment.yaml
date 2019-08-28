@@ -15,6 +15,7 @@ spec:
     metadata:
       labels:
         app: "{{ .Chart.Name }}"
+        {{ .Release.Name }}-redis-client: true
       annotations:
         iam.amazonaws.com/role: "{{ .Values.aws.iamRole }}"
     spec:
@@ -51,6 +52,10 @@ spec:
               mountPath: /etc/nginx/conf.d
             - name: staticfiles
               mountPath: /usr/share/nginx/html
+        - name: worker
+          image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
+          imagePullPolicy: "{{ .Values.image.pullPolicy }}"
+          command: ["python3", "manage.py", "runworker", "background_tasks"]
         - name: backend
           image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
           imagePullPolicy: "{{ .Values.image.pullPolicy }}"
