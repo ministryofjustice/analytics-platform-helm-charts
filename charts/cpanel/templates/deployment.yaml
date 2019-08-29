@@ -56,6 +56,13 @@ spec:
           image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
           imagePullPolicy: "{{ .Values.image.pullPolicy }}"
           command: ["python3", "manage.py", "runworker", "background_tasks"]
+          envFrom:
+          - configMapRef:
+              name: "{{ .Chart.Name }}-env-configmap"
+          - secretRef:
+              name: "{{ .Chart.Name }}-env-secrets"
+          - secretRef:
+              name: "{{ .Chart.Name }}-db-env"
         - name: backend
           image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
           imagePullPolicy: "{{ .Values.image.pullPolicy }}"
