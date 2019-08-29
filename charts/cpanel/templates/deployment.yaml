@@ -15,7 +15,7 @@ spec:
     metadata:
       labels:
         app: "{{ .Chart.Name }}"
-        {{ .Release.Name }}-redis-client: true
+        {{ .Release.Name }}-redis-client: "true"
       annotations:
         iam.amazonaws.com/role: "{{ .Values.aws.iamRole }}"
     spec:
