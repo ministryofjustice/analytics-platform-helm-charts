@@ -102,4 +102,3 @@ spec:
       - name: libsystemddir
         hostPath:
           path: /usr/lib64
-

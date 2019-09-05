@@ -2,6 +2,9 @@ image:
   repository: gcr.io/google-containers/fluentd-elasticsearch
   tag: v2.0.4
   pullPolicy: Always
+aws:
+  defaultRegion: "eu-west-1"
+  iamRole: ""
 elasticsearch:
   host: elasticsearch-logging
   port: "9200"
@@ -48,6 +51,28 @@ fluentdconffiles:
     </match>
 
   system.input.conf: |-
+
+    <source>
+      @id auth.log
+      @type tail
+      path /var/log/auth.log
+      pos_file /var/log/auth.log.pos
+      <parse>
+        @type syslog
+      </parse>
+      tag auth
+    </source>
+
+    <source>
+      @id syslog.log
+      @type tail
+      path /var/log/syslog.log
+      pos_file /var/log/syslog.log.pos
+      <parse>
+        @type syslog
+      </parse>
+      tag syslog
+    </source>
 
     <source>
       @id docker.log
