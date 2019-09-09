@@ -22,6 +22,12 @@ spec:
       - backend:
           serviceName: "{{ .Chart.Name }}"
           servicePort: 80
+  - host: {{ template "old_cpfrontend_host" . }}
+    http:
+      paths:
+      - backend:
+          serviceName: "{{ .Chart.Name }}"
+          servicePort: 80
   tls:
   - hosts:
     - {{ template "host" . }}
