@@ -15,7 +15,7 @@ Old Control Panel API hostname
 {{/*
 Old Control Panel Frontend hostname
 */}}
-{{- define "hostname" -}}
+{{- define "old_cpfrontend_host" -}}
 "cpanel{{- if .Values.branch -}}-{{ .Values.branch }}{{- end -}}.{{ .Values.servicesDomain }}"
 {{- end -}}
 
