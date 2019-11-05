@@ -1,0 +1,7 @@
+apiVersion: v1
+appVersion: "0.1.0"
+description: Query Auth0's API and export data in csv format to either local file system or an S3 bucket
+name: auth0-user-exports
+version: 0.1.0
+sources:
+  - https://github.com/ministryofjustice/analytical-platform-auth0-user-exports

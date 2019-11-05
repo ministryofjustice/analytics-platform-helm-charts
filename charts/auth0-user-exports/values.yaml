@@ -1,0 +1,14 @@
+image:
+  repository: quay.io/mojanalytics/auth0-user-exports
+  tag: 0.1.0
+  pullPolicy: IfNotPresent
+
+schedule: "0 23 * * 1-5" # Monday to Friday at 23:00
+
+env:
+  auth0_domain: ""
+  auth0_client_id: ""
+  auth0_client_secret: ""
+  env: aws
+  role_arn: ""
+  bucket: "auth0-userdata"
