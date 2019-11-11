@@ -14,6 +14,7 @@ env:
   K8S_WORKER_ROLE_NAME: ""
   LOGS_BUCKET_NAME: ""
   SAML_PROVIDER: ""
+  SLACK_CHANNEL: ""
 
 secretEnv:
   AIRFLOW_AUTH_CLIENT_DOMAIN: ""
@@ -40,9 +41,10 @@ secretEnv:
   RSTUDIO_AUTH_CLIENT_DOMAIN: ""
   RSTUDIO_AUTH_CLIENT_ID: ""
   RSTUDIO_AUTH_CLIENT_SECRET: ""
-  SENTRY_DSN: ""
-  TOOLS_DOMAIN: ""
   SECRET_KEY: ""
+  SENTRY_DSN: ""
+  SLACK_API_TOKEN: ""
+  TOOLS_DOMAIN: ""
 
 aws:
   defaultRegion: "eu-west-1"
