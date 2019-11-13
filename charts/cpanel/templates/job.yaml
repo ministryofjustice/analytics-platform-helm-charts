@@ -26,5 +26,7 @@ spec:
           envFrom:
             - secretRef:
                 name: "{{ .Chart.Name }}-db-env"
+            - secretRef:
+                name: "{{ .Chart.Name }}-env-secrets"
       restartPolicy: OnFailure
   backoffLimit: 5
