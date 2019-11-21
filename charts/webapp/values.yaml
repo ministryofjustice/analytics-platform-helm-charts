@@ -21,7 +21,7 @@ AuthProxy:
     Domain: "AUTH0_USER.eu.auth0.com"
   Image:
     Repository: quay.io/mojanalytics/auth-proxy
-    Tag: "v5.2.1"
+    Tag: "v5.2.2"
     PullPolicy: "IfNotPresent"
 AWS:
   IAMRole: ""
