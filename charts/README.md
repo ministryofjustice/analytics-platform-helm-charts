@@ -80,16 +80,6 @@ Exports metrics about the kubernetes nodes.
 $ helm install charts/node-exporter --namespace kube-system --name node-metrics
 ```
 
-
-## heapster
-
-Exports metrics about the kubernetes nodes (used by k8s when describing pods, etc...)
-
-```bash
-$ helm install charts/heapster --namespace kube-system --name heapster
-```
-
-
 ## kube-dashboard
 
 Kubernetes dashboard.
