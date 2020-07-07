@@ -13,7 +13,7 @@ airflow:
       accessTokenUrl: ""
   image:
     repository: "quay.io/mojanalytics/airflow"
-    tag: "1.10.6-1"
+    tag: "1.10.10"
     pullPolicy: "IfNotPresent"
     port: "8080"
   volumes:
