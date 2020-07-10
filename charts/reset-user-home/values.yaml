@@ -1,0 +1,23 @@
+# Default values for reset-user-home.
+# This is a YAML-formatted file.
+# Declare variables to be passed into your templates.
+
+username: ""
+
+replicaCount: 1
+
+image:
+  repository: "quay.io/mojanalytics/airflow"
+  tag: "1.10.6-1"
+  pullPolicy: "IfNotPresent"
+  
+nameOverride: ""
+fullnameOverride: ""
+  
+resources: {}
+  
+nodeSelector: {}
+
+tolerations: []
+
+affinity: {}

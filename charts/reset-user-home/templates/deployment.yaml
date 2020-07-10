@@ -1,0 +1,36 @@
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: "{{ .Chart.Name }}-reset-user-home"
+  labels:
+    chart: "{{ .Chart.Name }}-{{ .Chart.Version }}"
+    app: "{{ .Chart.Name }}"
+  annotations:
+    "helm.sh/hook": post-install, post-upgrade
+    "helm.sh/hook-weight": "-5"
+    "helm.sh/hook-delete-policy": hook-succeeded
+spec:
+  template:
+    spec:
+      containers:
+        - name: reset-user-home
+          image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
+          volumeMounts:
+            - name : home
+              mountPath: "/home/{{ .Values.Username }}"
+          command:
+            - /bin/sh
+            - -c
+            - |
+              if test -d /home/{{ .Values.Username }}/.rstudio.bak; then rm -fr /home/{{ .Values.Username }}/.rstudio.bak; fi &&
+              if test -d /home/{{ .Values.Username }}/.conda/envs/rstudio; then rm -rf /home/{{ .Values.Username }}/.conda/envs/rstudio; fi &&
+              if test -d /home/{{ .Values.Username }}/.rstudio; then cp -pRf /home/{{ .Values.Username }}/.rstudio /home/{{ .Values.Username }}/.rstudio.bak; fi &&
+              if test -d /home/{{ .Values.Username }}/.rstudio; then rm -fr /home/{{ .Values.Username }}/.rstudio; fi &&
+              if test -d /home/{{ .Values.Username }}/R/library; then rm -fr /home/{{ .Values.Username }}/R/library/*; fi
+      volumes:
+        - name: home
+          persistentVolumeClaim:
+            claimName: nfs-home
+  
+      restartPolicy: OnFailure
+  backoffLimit: 5
