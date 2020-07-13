@@ -25,6 +25,7 @@ spec:
       nodeSelector:
 {{ toYaml . | indent 8 }}
     {{- end }}
+      priorityClassName: {{ .Values.worker.priorityClassName }}
       serviceAccountName: {{ if .Values.rbac.create }}{{ template "concourse.worker.fullname" . }}{{ else }}{{ .Values.rbac.workerServiceAccountName }}{{ end }}
       tolerations:
 {{ toYaml .Values.worker.tolerations | indent 8 }}
@@ -39,6 +40,7 @@ spec:
             - -c
             - |-
               cp /dev/null /tmp/.liveness_probe
+              losetup -D
               rm -rf /concourse-work-dir/*
               while ! concourse retire-worker --name=${HOSTNAME} | grep -q worker-not-found; do
                 touch /tmp/.pre_start_cleanup
