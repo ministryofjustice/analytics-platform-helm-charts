@@ -2,5 +2,5 @@ apiVersion: v1
 description: Airflow with sqlite. Tasks are run as pods
 name: airflow-sqlite
 icon: https://airflow.incubator.apache.org/_images/pin_large.png
-version: 0.3.2
-appVersion: 1.10.6-1
+version: 0.4.0
+appVersion: "Airflow: 1.10.10, Python: 3.7"
