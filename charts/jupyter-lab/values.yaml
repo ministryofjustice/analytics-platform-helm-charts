@@ -22,17 +22,15 @@ authProxy:
       memory: 128Mi
   auth0_domain: ""
   auth0_client_id: ""
-  auth0_client_secret: "" # put dummy value here to stop helm lint complaining
-  cookie_maxage: 36000 #10 hours
+  auth0_client_secret: ""
+  cookie_maxage: 36000
   tunnel:
     enabled: "true"
     port_range: "8050,4040-4050"
 
 jupyter:
   image: quay.io/mojanalytics/datascience-notebook
-  # image: quay.io/mojanalytics/all-spark
   tag: v0.6.9
-  # tag: add-nbstripout
   imagePullPolicy: IfNotPresent
   containerPort: 8888
   resources:
