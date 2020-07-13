@@ -432,6 +432,8 @@ worker:
   ## in parallel.
   podManagementPolicy: Parallel
 
+  priorityClassName: concourse
+
 ## Persistent Volume Storage configuration.
 ## ref: https://kubernetes.io/docs/user-guide/persistent-volumes
 ##
