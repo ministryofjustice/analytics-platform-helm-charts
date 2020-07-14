@@ -1,7 +1,7 @@
 apiVersion: batch/v1
 kind: Job
 metadata:
-  name: "{{ .Chart.Name }}-reset-user-home"
+  name: {{ template "fullname" . }}-{{ randAlphaNum 5 | lower }}
   labels:
     chart: "{{ .Chart.Name }}-{{ .Chart.Version }}"
     app: "{{ .Chart.Name }}"
