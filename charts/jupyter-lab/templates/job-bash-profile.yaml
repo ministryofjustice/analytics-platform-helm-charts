@@ -22,8 +22,6 @@ spec:
         - name: {{ template "fullname" . }}-bash-profile-config
           image: busybox
           command: [ "/bin/sh" ]
-          args:
-            - /{{ template "fullname" . }}/pip-user-home.sh
           volumeMounts:
             - name: nfs-home
               mountPath: /root
