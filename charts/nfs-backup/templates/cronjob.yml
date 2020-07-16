@@ -23,11 +23,33 @@ spec:
             imagePullPolicy: {{ .Values.Image.PullPolicy }}
             name: s3cmd
             args:
+              - s3
               - sync
-              - --rexclude-from=/tmp/s3cmd/exclude_patterns
+              - --recursive
               - --storage-class=STANDARD_IA
-              - --server-side-encryption
-              - --delete-removed
+              - --sse
+              - --delete
+              - --dry-run
+              - --exclude ".rstudio/*"
+              - --exclude "R/library/*"
+              - --exclude ".git/*"
+              - --exclude ".cache/*"
+              - --exclude "Rproj.user/*"              
+              - --exclude ".RData"
+              - --exclude ".Rhistory"
+              - --exclude "id_rsa"
+              - --exclude ".bash_history"
+              - --exclude "core"
+              - --exclude ".conda/*"
+              - --exclude "miniconda3-r/*"
+              - --exclude ".local/*"
+              - --exclude "Git_Repos/*"
+              - --exclude "SAT+Shapes/*"
+              - --exclude "py-safety/*"
+              - --exclude ".virtualenvs/*"
+              - --exclude "comparisons/*"
+              - --exclude "Python/*"
+              - --exclude "node_modules/*"
               - -v
               - /homes/
               - s3://$(S3_BACKUP_BUCKET_NAME)/

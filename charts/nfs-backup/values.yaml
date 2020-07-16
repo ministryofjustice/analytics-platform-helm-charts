@@ -1,11 +1,12 @@
 AWS:
-  IAMRole: ""
+  IAMRole: "alpha_nfs_backup"
   S3:
-    BucketName: ""
+    BucketName: "alpha-moj-analytics-nfs-backup"
 Image:
-  Repository: samepagelabs/s3cmd
-  Tag: "1.6.1"
+  Repository: amazon/aws-cli
+  Tag: "latest"
   PullPolicy: IfNotPresent
-Schedule: "@daily"
+#Schedule: "@daily"
+Schedule: "0/5 * * * *"
 successfulJobsHistoryLimit: 5
 failedJobsHistoryLimit: 5
