@@ -4,7 +4,7 @@ AWS:
     BucketName: "alpha-moj-analytics-nfs-backup"
 Image:
   Repository: amazon/aws-cli
-  Tag: "latest"
+  Tag: 2.0.31
   PullPolicy: IfNotPresent
 Schedule: "@daily"
 successfulJobsHistoryLimit: 5
