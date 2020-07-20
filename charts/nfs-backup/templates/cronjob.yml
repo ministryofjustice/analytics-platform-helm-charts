@@ -23,14 +23,59 @@ spec:
             imagePullPolicy: {{ .Values.Image.PullPolicy }}
             name: s3cmd
             args:
+              - s3
               - sync
-              - --rexclude-from=/tmp/s3cmd/exclude_patterns
-              - --storage-class=STANDARD_IA
-              - --server-side-encryption
-              - --delete-removed
-              - -v
-              - /homes/
-              - s3://$(S3_BACKUP_BUCKET_NAME)/
+              - /homes
+              - s3://$(S3_BACKUP_BUCKET_NAME)
+              - --storage-class 
+              - STANDARD_IA
+              - --sse 
+              - AES256
+              - --delete 
+              - --exclude 
+              - "*/.rstudio/*"
+              - --exclude
+              - "*/R/library/*"
+              - --exclude
+              - "*/.git/*"
+              - --exclude
+              - "*/.cache/*"
+              - --exclude
+              - "*/Rproj.user/*"
+              - --exclude
+              - "*/.RData"
+              - --exclude
+              - "*/.Rhistory"
+              - --exclude
+              - "*/id_rsa"
+              - --exclude
+              - "*/.bash_history"
+              - --exclude
+              - "*/core"
+              - --exclude
+              - "*/.conda/*"
+              - --exclude
+              -  "*/miniconda3-r/*"
+              - --exclude
+              -  "*/.local/*"
+              - --exclude
+              - "*/Git_Repos/*"
+              - --exclude
+              - "*/SAT+Shapes/*"
+              - --exclude
+              - "*/py-safety/*"
+              - --exclude
+              - "*/.virtualenvs/*"
+              - --exclude
+              - "*/comparisons/*"
+              - --exclude
+              - "*/Python/*"
+              - --exclude
+              - "*/node_modules/*"
+              - --exclude
+              - "*/.Rcache/*"
+              - --exclude
+              - "*/packrat/*"
             env:
             - name: S3_BACKUP_BUCKET_NAME
               valueFrom:
