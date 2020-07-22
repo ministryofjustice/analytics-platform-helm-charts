@@ -53,7 +53,7 @@ prometheusRules:
         labels:
           severity: warning
 
-      - alert: PreditciveHostDiskSpace
+      - alert: PredictiveHostDiskSpace
         annotations:
           message: 'Based on recent sampling, the disk is likely to will fill on volume
              {{ $labels.mountpoint }} within the next 5 hours for instace: {{ $labels.instance_id
@@ -72,6 +72,15 @@ prometheusRules:
         for: 1m
         label:
           severity: warning
+
+      - alert: KubeDNSErrors
+        annotations:
+          message: 'KubeDNS: {{ $labels.pod }} has returned {{ $value }} errors in the last 10 minutes'
+          summary: KubeDNS pod errors
+        expr: increase(kubedns_dnsmasq_errors[10m]) > 0
+        for: 1m
+        label:
+          severity: critical
 
 # custom kubernetes rules
     - name: kubernetes-system
