@@ -5,6 +5,21 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
 
+## [2.1.1] - 2020-07-22
+### Changed
+- Maintainance release of the `idler` with updated tests dependencies
+  and `kubernetes` dependency (client upgraded from `v9` to `v11`).
+- The above newer version had some breaking changes but these shouldn't
+  have any impact on the external API or behaviour of the `idler` (hence
+  the patch release here), see PR: https://github.com/ministryofjustice/analytics-platform-idler/pull/194
+
+
+See:
+- Ticket: https://trello.com/c/dYDMOvny
+- Ticket: https://trello.com/c/cQCHuIDP
+- Kubernetes bump PR: https://github.com/ministryofjustice/analytics-platform-idler/pull/194
+
+
 ## [2.1.0] - 2019-11-13
 ### Changed
 - Updated default schedule to run idler every Tuesday at 22:00 instead
