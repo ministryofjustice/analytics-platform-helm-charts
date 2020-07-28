@@ -1,0 +1,4 @@
+apiVersion: v1
+description: Run a cronjob to prune stalled concourse workers
+name: concourse-workers-cleaner
+version: 0.0.1

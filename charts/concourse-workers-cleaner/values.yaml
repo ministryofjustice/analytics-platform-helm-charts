@@ -1,0 +1,15 @@
+image:
+  repository: 593291632749.dkr.ecr.eu-west-1.amazonaws.com/concourse-worker-cleaner
+  tag: 0.0.1
+  pullPolicy: IfNotPresent
+
+schedule: "*/10 * * * *"
+successfulJobsHistoryLimit: 5
+failedJobsHistoryLimit: 5
+
+concourse:
+  adminUsername: username
+  adminPassword: password
+  target: target
+  team: team
+  url: http://concourse:8080
