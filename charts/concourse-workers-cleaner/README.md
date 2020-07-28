@@ -17,10 +17,10 @@ The job's status can be viewed with `kubectl get cronjobs`
 
 Listing only the required params here.
 
-| Parameter             | Description                   | Default |
-| --------------------- | ----------------------------- | ------- |
-| `concourse.adminUsername`   | Concourse Admin user      | ``    |
-| `concourse.adminPassword`   | Concourse Admin password  | ``    |
-| `concourse.target`          | Concourse target          | ``    |
-| `concourse.team`            | Concourse team            | ``    |
-| `concourse.url`             | Concourse URL             | ``    |
+| Parameter                   | Description               | Default |
+| --------------------------- | ------------------------- | ------- |
+| `concourse.adminUsername`   | Concourse Admin user      | ``      |
+| `concourse.adminPassword`   | Concourse Admin password  | ``      |
+| `concourse.target`          | Concourse target          | ``      |
+| `concourse.team`            | Concourse team            | ``      |
+| `concourse.url`             | Concourse URL             | ``      |
