@@ -1,0 +1,35 @@
+apiVersion: batch/v2alpha1
+kind: CronJob
+metadata:
+  name: {{ template "fullname" . }}
+  labels:
+    chart: "{{ .Chart.Name }}-{{ .Chart.Version }}"
+    app: "{{ .Chart.Name }}"
+spec:
+  schedule: "{{ .Values.schedule }}"
+  concurrencyPolicy: Forbid
+  successfulJobsHistoryLimit: {{ .Values.successfulJobsHistoryLimit }}
+  failedJobsHistoryLimit: {{ .Values.failedJobsHistoryLimit }}
+  jobTemplate:
+    spec:
+      template:
+        metadata:
+          name: {{ template "fullname" . }}
+        spec:
+          containers:
+          - image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
+            imagePullPolicy: {{ .Values.image.pullPolicy }}
+            name: cleanup-workers
+            env:
+            env:
+            - name: CONCOURSE_ADMIN_USERNAME
+              value: {{ .Values.concourse.adminUsername }}
+            - name: CONCOURSE_ADMIN_PASSWORD
+              value: {{ .Values.concourse.adminPassword }}
+            - name: CONCOURSE_TARGET
+              value: {{ .Values.concourse.target }}
+            - name: CONCOURSE_TEAM
+              value: {{ .Values.concourse.team }}
+            - name: CONCOURSE_URL
+              value: {{ .Values.concourse.url }}
+          restartPolicy: OnFailure
