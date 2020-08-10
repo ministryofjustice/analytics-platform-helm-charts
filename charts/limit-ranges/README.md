@@ -30,4 +30,11 @@ limit_ranges:
     requests:
       cpu: 100m
       memory: 100Mi
+  - namespace: default
+    limits:
+      cpu: 1
+      memory: 4Gi
+    requests:
+      cpu: 100m
+      memory: 100Mi  
 ```
