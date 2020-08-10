@@ -1,0 +1,8 @@
+limit_ranges:
+  - namespace: apps-prod
+    limits:
+      cpu: 2
+      memory: 8Gi
+    requests:
+      cpu: 100m
+      memory: 100Mi

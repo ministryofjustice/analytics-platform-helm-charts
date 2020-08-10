@@ -1,0 +1,7 @@
+apiVersion: v1
+description: Deploy Limit Ranges for Kubernetes namespaces
+name: limit-ranges
+version: 0.0.1
+sources:
+  - https://github.com/ministryofjustice/analytics-platform-helm-charts
+  - https://kubernetes.io/docs/concepts/policy/limit-range
