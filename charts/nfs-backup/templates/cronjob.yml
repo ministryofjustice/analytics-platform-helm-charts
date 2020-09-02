@@ -27,6 +27,7 @@ spec:
               - sync
               - /homes
               - s3://$(S3_BACKUP_BUCKET_NAME)
+              - --only-show-errors
               - --storage-class 
               - STANDARD_IA
               - --sse 
