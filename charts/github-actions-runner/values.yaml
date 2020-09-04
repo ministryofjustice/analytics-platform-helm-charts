@@ -1,0 +1,22 @@
+---
+image:
+  repository: myoung34/github-runner
+  pullPolicy: Always
+  tag: "2.273.0"
+
+env:
+  org:
+    runner: "true"
+    name: ""
+    secret:
+      access_token:
+        name: github-token
+  labels: "kubernetes"
+
+autoscaling:
+  enabled: true
+  minReplicas: 1
+  maxReplicas: 50
+  targetCPUUtilizationPercentage: 80
+
+GitHubToken: ""
