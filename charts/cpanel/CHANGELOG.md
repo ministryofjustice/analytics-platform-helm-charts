@@ -5,6 +5,11 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
 
+## [2.4.4] - 2020-09-11
+### Added
+- Added liveliness probe to `worker` (Django Channels) container
+
+
 ## [2.4.3] - 2020-09-04
 ### Added
 - Added readiness probe to `reverse-proxy` (nginx) container

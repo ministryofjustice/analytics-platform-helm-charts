@@ -68,6 +68,18 @@ spec:
               name: "{{ .Chart.Name }}-env-secrets"
           - secretRef:
               name: "{{ .Chart.Name }}-db-env"
+          livenessProbe:
+              exec:
+                command:
+                  - python3
+                  - manage.py
+                  - worker_health
+                  - "--stale-after-secs=120"
+              initialDelaySeconds: 10
+              periodSeconds: 30
+              failureThreshold: 6
+              successThreshold: 1
+              timeoutSeconds: 30
         - name: backend
           image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
           imagePullPolicy: "{{ .Values.image.pullPolicy }}"
