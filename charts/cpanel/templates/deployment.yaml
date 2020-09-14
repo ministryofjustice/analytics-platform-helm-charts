@@ -51,6 +51,12 @@ spec:
               mountPath: /etc/nginx/conf.d
             - name: staticfiles
               mountPath: /usr/share/nginx/html
+          readinessProbe:
+            httpGet:
+              path: /nginx-health
+              port: http
+            initialDelaySeconds: 5
+            periodSeconds: 5
         - name: worker
           image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
           imagePullPolicy: "{{ .Values.image.pullPolicy }}"
