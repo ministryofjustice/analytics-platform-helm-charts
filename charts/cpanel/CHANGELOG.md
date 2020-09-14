@@ -5,6 +5,26 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
 
+## [2.4.5] - 2020-09-14
+### Changed
+Further tweaking liveliness probe for `worker` (Django Channels) container
+to account for potentially very slow background tasks blocking a specific
+worker.
+
+Specifically new Deploy/Initialisation of RStudio can be VERY slow
+and CP is doing a `helm upgrade --wait` so it is blocking the worker:
+
+https://github.com/ministryofjustice/analytics-platform-control-panel/blob/main/controlpanel/frontend/consumers.py#L109-L132
+
+The default `--timeout` for `helm` is 300s/5 minutes:
+
+https://helm.sh/docs/helm/helm_upgrade/#options
+
+So I'm tweaking the worker liveliness probe to consider a worker stalled when
+it didn't run something for 5 minutes and reduce the chance that a worker
+container is restarted just because someone installed a tool.
+
+
 ## [2.4.4] - 2020-09-11
 ### Added
 - Added liveliness probe to `worker` (Django Channels) container
