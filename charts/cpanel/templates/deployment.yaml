@@ -74,7 +74,7 @@ spec:
                   - python3
                   - manage.py
                   - worker_health
-                  - "--stale-after-secs=120"
+                  - "--stale-after-secs=300"
               initialDelaySeconds: 10
               periodSeconds: 30
               failureThreshold: 6
