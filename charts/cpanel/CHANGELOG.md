@@ -5,6 +5,17 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
 
+## [2.4.6] - 2020-09-14
+### Changed
+Move `worker` containers in separate pod from nginx/django "frontend" containers.
+These are decoupled from the frontend and there are good arguments to scaling
+these up independently from the django instances.
+
+Also increased the number of `worker` replicas to `10` now that this is in
+a separate pod. Both this value and the existing `3` replicas of the frontend
+have been now moved into the `frontend.replicas` and `worker.replicas` value.
+
+
 ## [2.4.5] - 2020-09-14
 ### Changed
 Further tweaking liveliness probe for `worker` (Django Channels) container

@@ -1,19 +1,22 @@
 apiVersion: extensions/v1beta1
 kind: Deployment
 metadata:
-  name: "{{ .Chart.Name }}"
+  name: "{{ .Chart.Name }}-frontend"
   labels:
     chart: "{{ .Chart.Name }}-{{ .Chart.Version }}"
     app: "{{ .Chart.Name }}"
+    component: "frontend"
 spec:
-  replicas: 3
+  replicas: {{ .Values.frontend.replicas }}
   selector:
     matchLabels:
       app: "{{ .Chart.Name }}"
+      component: "frontend"
   template:
     metadata:
       labels:
         app: "{{ .Chart.Name }}"
+        component: "frontend"
         {{ .Release.Name }}-redis-client: "true"
       annotations:
         iam.amazonaws.com/role: "{{ .Values.aws.iamRole }}"
@@ -57,29 +60,6 @@ spec:
               port: http
             initialDelaySeconds: 5
             periodSeconds: 5
-        - name: worker
-          image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
-          imagePullPolicy: "{{ .Values.image.pullPolicy }}"
-          command: ["python3", "manage.py", "runworker", "background_tasks"]
-          envFrom:
-          - configMapRef:
-              name: "{{ .Chart.Name }}-env-configmap"
-          - secretRef:
-              name: "{{ .Chart.Name }}-env-secrets"
-          - secretRef:
-              name: "{{ .Chart.Name }}-db-env"
-          livenessProbe:
-              exec:
-                command:
-                  - python3
-                  - manage.py
-                  - worker_health
-                  - "--stale-after-secs=300"
-              initialDelaySeconds: 10
-              periodSeconds: 30
-              failureThreshold: 6
-              successThreshold: 1
-              timeoutSeconds: 30
         - name: backend
           image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
           imagePullPolicy: "{{ .Values.image.pullPolicy }}"

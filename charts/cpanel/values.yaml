@@ -56,6 +56,12 @@ django:
   port: 8000
   settingsModule: "controlpanel.settings"
 
+frontend:
+  replicas: 3
+
+worker:
+  replicas: 10
+
 redis:
   cluster:
     enabled: false
