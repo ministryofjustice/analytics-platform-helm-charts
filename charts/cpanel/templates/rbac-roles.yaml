@@ -1,7 +1,7 @@
 apiVersion: rbac.authorization.k8s.io/v1
 kind: ClusterRole
 metadata:
-  name: "{{ .Chart.Name }}"
+  name: "{{ .Chart.Name }}-helm-client"
   labels:
     chart: "{{ .Chart.Name }}-{{ .Chart.Version }}"
     app: "{{ .Chart.Name }}"
@@ -14,6 +14,21 @@ rules:
     verbs: ["create"]
     resources: ["pods/portforward"]
 
+  - apiGroups: ["extensions"]
+    verbs: ["get", "list"]
+    resources: ["ingresses"]
+
+---
+
+apiVersion: rbac.authorization.k8s.io/v1
+kind: Role
+metadata:
+  name: "{{ .Chart.Name }}-read-apps-ingresses"
+  namespace: {{ .Values.appsNamespace }}
+  labels:
+    chart: "{{ .Chart.Name }}-{{ .Chart.Version }}"
+    app: "{{ .Chart.Name }}"
+rules:
   - apiGroups: ["extensions"]
     verbs: ["get", "list"]
     resources: ["ingresses"]

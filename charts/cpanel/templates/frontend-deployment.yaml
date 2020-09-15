@@ -21,7 +21,7 @@ spec:
       annotations:
         iam.amazonaws.com/role: "{{ .Values.aws.iamRole }}"
     spec:
-      serviceAccountName: "{{ .Chart.Name }}"
+      serviceAccountName: "{{ .Chart.Name }}-frontend"
       volumes:
       - emptyDir: {}
         name: nginxconf

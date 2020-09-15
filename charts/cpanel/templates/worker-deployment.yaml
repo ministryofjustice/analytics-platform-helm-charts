@@ -27,7 +27,7 @@ spec:
     #   annotations:
     #     iam.amazonaws.com/role: "{{ .Values.aws.iamRole }}"
     spec:
-      serviceAccountName: "{{ .Chart.Name }}"
+      serviceAccountName: "{{ .Chart.Name }}-worker"
       containers:
         - name: worker
           image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"

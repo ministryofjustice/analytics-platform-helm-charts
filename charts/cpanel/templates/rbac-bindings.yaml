@@ -1,0 +1,43 @@
+# This allows a service account in the Release's namespace (i.e. default) to
+# manage resources in the kube-system namespace
+apiVersion: rbac.authorization.k8s.io/v1
+kind: RoleBinding
+metadata:
+  name: "{{ .Chart.Name }}-helm-client"
+  namespace: kube-system
+  labels:
+    chart: "{{ .Chart.Name }}-{{ .Chart.Version }}"
+    app: "{{ .Chart.Name }}"
+roleRef:
+  apiGroup: rbac.authorization.k8s.io
+  name: "{{ .Chart.Name }}-helm-client"
+  kind: ClusterRole
+subjects:
+  - apiGroup: ""
+    name: "{{ .Chart.Name }}-frontend"
+    kind: ServiceAccount
+    namespace: "{{ .Release.Namespace }}"
+  - apiGroup: ""
+    name: "{{ .Chart.Name }}-worker"
+    kind: ServiceAccount
+    namespace: "{{ .Release.Namespace }}"
+
+---
+
+apiVersion: rbac.authorization.k8s.io/v1
+kind: RoleBinding
+metadata:
+  name: "{{ .Chart.Name }}-read-apps-ingresses"
+  namespace: {{ .Values.appsNamespace }}
+  labels:
+    chart: "{{ .Chart.Name }}-{{ .Chart.Version }}"
+    app: "{{ .Chart.Name }}"
+roleRef:
+  apiGroup: rbac.authorization.k8s.io
+  kind: Role
+  name: "{{ .Chart.Name }}-read-ingresses"
+subjects:
+  - apiGroup: ""
+    name: "{{ .Chart.Name }}-frontend"
+    kind: ServiceAccount
+    namespace: "{{ .Release.Namespace }}"
