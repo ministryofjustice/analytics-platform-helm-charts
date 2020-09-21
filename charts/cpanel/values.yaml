@@ -79,9 +79,6 @@ reverseProxy:
     tag: 1.16.0-alpine
   port: 8080
 
-tags:
-  branch: false
-
 ingress:
   addTlsBlock: true
 

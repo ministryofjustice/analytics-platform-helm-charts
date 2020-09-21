@@ -5,6 +5,24 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
 
+## [2.4.8] - 2020-09-22
+### Changed
+- removed unused postgres helm chart dependency (we use the Postgres running
+  on AWS RDS)
+- added NOTES.txt to display correct URL (`controlpanel.` insteaf of legacy
+  `cpanel-BRANCH`), also updated README with this URL which is the one we
+  should use instead of legacy one.
+- removed confusing and unused `tags.branch` feature and related value
+- removed unused/confusing template helpers related to branch-Postgres:
+  - removed `postgresHost()` helper, `tags.branch` is always `false` so we can
+    simply use `.Values.postgresql.postgresHost` as expected
+  - removed `postgresPassword()`, not used, `.Values.postgresql.postgresPassword`
+    used everywhere as expected
+  - removed `postgresRelease()`, this was the hostname of the branch-Postgres
+    which was only used when `.Values.tags.branch=true`. As this is always
+    false in our case, this can now go as result of `postgresHost()` going
+
+
 ## [2.4.7] - 2020-09-22
 ### Fixed
 Fixed `cpanel-read-apps-ingresses`' `roleRef` to use new
