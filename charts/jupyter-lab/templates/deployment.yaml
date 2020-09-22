@@ -93,10 +93,12 @@ spec:
             - name: jupyter
               containerPort: {{ .Values.jupyter.containerPort }}
           command:
-            - "start.sh"
+            - "start-notebook.sh"
           args:
-            - "jupyter lab"
             - "--NotebookApp.token=''"
+          env:
+            - name: "JUPYTER_ENABLE_LAB"
+              value: "yes"
           readinessProbe:
             httpGet:
               path: /
