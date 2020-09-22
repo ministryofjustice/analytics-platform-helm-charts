@@ -5,6 +5,15 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
 
+## [2.4.7] - 2020-09-22
+### Fixed
+Fixed `cpanel-read-apps-ingresses`' `roleRef` to use new
+`cpanel-read-apps-ingresses` name. The `Role` and `RoleBinding` were renamed
+for consistency/readability as part of previous release but this wasn't
+changed and caused CP's "Manage app" page to throw an error because of
+missing permissions.
+
+
 ## [2.4.6] - 2020-09-14
 ### Changed
 Move `worker` containers in separate pod from nginx/django "frontend" containers.
