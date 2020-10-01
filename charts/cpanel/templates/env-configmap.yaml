@@ -12,5 +12,6 @@ data:
   ALLOWED_HOSTS: "*"
   AWS_DEFAULT_REGION: "{{ .Values.aws.defaultRegion }}"
   DJANGO_SETTINGS_MODULE: "{{ .Values.django.settingsModule }}"
-  REDIS_HOST: "{{ printf "%s-%s-%s.%s" .Release.Name "redis" "master" .Release.Namespace | trunc 63 | trimSuffix "-" }}"
-  REDIS_PORT: "{{ .Values.redis.redisPort }}"
+  REDIS_SCHEME: "{{ .Values.redis.scheme }}"
+  REDIS_HOST: "{{ .Values.redis.host }}"
+  REDIS_PORT: "{{ .Values.redis.port }}"

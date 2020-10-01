@@ -5,6 +5,23 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
 
+## [3.0.0] - 2020-10-01
+### Changed - BREAKING CHANGES
+- Removed `redis` chart dependency, the Redis cluster will **not** be
+  deployed/managed by this chart anymore
+- CP will use Redis cluster on AWS EC instead (via `redis.scheme`/`redis.host`
+  value)
+- added `redis.host` and `redis.scheme` (can be `redis` or `rediss` for
+  secure connection to redis)
+- renamed `redis.redisPort` to just `redis.port` for consistency.
+  This defaults to `"6379"` and we don't override it so it shouldn't cause
+  much trouble in our deployment. But it is another breaking change.
+- removed now unnecessary `redis-client` label. This was used by redis helm
+  chart to limit access to server. Something doesn't make sense for Redis
+  on AWS EC (because it's outside k8s cluster and k8s network policies only
+  work within k8s cluster).
+
+
 ## [2.4.8] - 2020-09-22
 ### Changed
 - removed unused postgres helm chart dependency (we use the Postgres running

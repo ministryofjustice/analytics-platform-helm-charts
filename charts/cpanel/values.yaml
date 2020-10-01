@@ -63,14 +63,9 @@ worker:
   replicas: 10
 
 redis:
-  cluster:
-    enabled: false
-  master:
-    persistence:
-      enabled: false
-  networkPolicy:
-    allowExternal: false
-    enabled: true
+  scheme: "rediss" # use SSL/TLS by default
+  host: ""
+  port: "6379"
   password: "controlpanel"
 
 reverseProxy:
