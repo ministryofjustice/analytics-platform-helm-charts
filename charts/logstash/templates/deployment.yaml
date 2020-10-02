@@ -29,11 +29,11 @@ spec:
               containerPort: {{ .Values.image.port }}
               protocol: TCP
           env:
-            - name: ELASTICSEARCH_URL
+            - name: ELASTICSEARCH_HOST
               valueFrom:
                 secretKeyRef:
                   name: {{ .Release.Name }}
-                  key: elasticsearch_url
+                  key: elasticsearch_host
             - name: ELASTICSEARCH_USER
               valueFrom:
                 secretKeyRef:
