@@ -63,14 +63,9 @@ worker:
   replicas: 10
 
 redis:
-  cluster:
-    enabled: false
-  master:
-    persistence:
-      enabled: false
-  networkPolicy:
-    allowExternal: false
-    enabled: true
+  scheme: "rediss" # use SSL/TLS by default
+  host: ""
+  port: "6379"
   password: "controlpanel"
 
 reverseProxy:
@@ -78,9 +73,6 @@ reverseProxy:
     repository: nginxinc/nginx-unprivileged
     tag: 1.16.0-alpine
   port: 8080
-
-tags:
-  branch: false
 
 ingress:
   addTlsBlock: true

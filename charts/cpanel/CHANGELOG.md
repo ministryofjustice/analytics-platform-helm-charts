@@ -5,6 +5,41 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
 
+## [3.0.0] - 2020-10-01
+### Changed - BREAKING CHANGES
+- Removed `redis` chart dependency, the Redis cluster will **not** be
+  deployed/managed by this chart anymore
+- CP will use Redis cluster on AWS EC instead (via `redis.scheme`/`redis.host`
+  value)
+- added `redis.host` and `redis.scheme` (can be `redis` or `rediss` for
+  secure connection to redis)
+- renamed `redis.redisPort` to just `redis.port` for consistency.
+  This defaults to `"6379"` and we don't override it so it shouldn't cause
+  much trouble in our deployment. But it is another breaking change.
+- removed now unnecessary `redis-client` label. This was used by redis helm
+  chart to limit access to server. Something doesn't make sense for Redis
+  on AWS EC (because it's outside k8s cluster and k8s network policies only
+  work within k8s cluster).
+
+
+## [2.4.8] - 2020-09-22
+### Changed
+- removed unused postgres helm chart dependency (we use the Postgres running
+  on AWS RDS)
+- added NOTES.txt to display correct URL (`controlpanel.` insteaf of legacy
+  `cpanel-BRANCH`), also updated README with this URL which is the one we
+  should use instead of legacy one.
+- removed confusing and unused `tags.branch` feature and related value
+- removed unused/confusing template helpers related to branch-Postgres:
+  - removed `postgresHost()` helper, `tags.branch` is always `false` so we can
+    simply use `.Values.postgresql.postgresHost` as expected
+  - removed `postgresPassword()`, not used, `.Values.postgresql.postgresPassword`
+    used everywhere as expected
+  - removed `postgresRelease()`, this was the hostname of the branch-Postgres
+    which was only used when `.Values.tags.branch=true`. As this is always
+    false in our case, this can now go as result of `postgresHost()` going
+
+
 ## [2.4.7] - 2020-09-22
 ### Fixed
 Fixed `cpanel-read-apps-ingresses`' `roleRef` to use new

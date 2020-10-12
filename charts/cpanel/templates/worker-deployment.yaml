@@ -17,7 +17,6 @@ spec:
       labels:
         app: "{{ .Chart.Name }}"
         component: "worker"
-        {{ .Release.Name }}-redis-client: "true"
     ## Do workers need AWS permissions? I don't think so. So no reason to
     ## give them unnecessary AWS permissions:
     ##

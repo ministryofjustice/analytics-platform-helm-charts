@@ -14,11 +14,11 @@ helm install mojanalytics/cpanel \
   --name cpanel-$BRANCH_NAME \
   --set env.DEBUG=True \
   --set image.tag=$DOCKER_IMAGE_TAG \
-  --set branch=$BRANCH_NAME \
-  --set tags.branch=true
+  --set branch=$BRANCH_NAME
 ```
 
-The instance will be available at https://cpanel-$BRANCH_NAME.<ServicesDomain>.
+The instance will be available at https://controlpanel.<ServicesDomain> (
+the exact URL will be shown in the helm output).
 
 
 ## Configuration
@@ -49,9 +49,12 @@ In Auth0 you need to install Extension 'Auth0 Authorization':
 | `env.SAML_PROVIDER` | Name of SAML provider. Concatenated with `IAM_ARN_BASE:saml-provider/` to make an ARN | |
 | `ingress.addTlsBlock` | Adds tls block to ingress resource. This needs to be `true` if you're using `nginx` as ingress-controller but it may need to be `false` for others (e.g. `traefik`) | `true` |
 | `postgresql.postgresDatabase` | The database name where API data will be stored | |
-| `postgresql.postgresHost` | The hostname of the database (this will be ignored if `tags.branch` is `true`). Get it from terraform platform output `control_panel_api_db_host` | |
+| `postgresql.postgresHost` | The hostname of the database. Get it from terraform platform output `control_panel_api_db_host` | |
 | `postgresql.postgresPassword` | The password to connect to the database with. Get it from the environment's terraform.tfvars | |
 | `postgresql.postgresUser` | The username to connect to the database with | |
+| `redis.scheme` | Scheme to connect to Redis cluster, can be `redis` for insecure connection or `rediss` to use SSL/TLS and encryption in-transit | `rediss` |
+| `redis.host` | host for the Redis cluster, see "Primary endpoint" value in AWS EC | `""` |
+| `redis.port` | Redis port | `"6379"` |
 | `secretEnv.AWS_ACCOUNT_ID` | AWS account ID e.g. `123456789012`. Find this with e.g. `aws sts get-caller-identity --query Account --output text` (**DEPRECATED**) | `""` |
 | `secretEnv.AWS_COMPUTE_ACCOUNT_ID` | AWS account ID where apps and tools run. | `""` |
 | `secretEnv.AWS_DATA_ACCOUNT_ID` | AWS account ID where data sits. | `""` |
@@ -69,4 +72,3 @@ In Auth0 you need to install Extension 'Auth0 Authorization':
 | `secretEnv.SENTRY_DSN` | Sentry credentials | |
 | `secretEnv.TOOLS_DOMAIN` | Tools domain, e.g. `tools.dev.mojanalytics.xyz` | `""` |
 | `servicesDomain` | DNS Domain where the app will be hosted | |
-| `tags.branch` | If true, a PostgreSQL instance will be deployed alongside the API, instead of using RDS | `false` |

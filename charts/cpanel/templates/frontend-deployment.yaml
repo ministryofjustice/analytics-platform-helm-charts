@@ -17,7 +17,6 @@ spec:
       labels:
         app: "{{ .Chart.Name }}"
         component: "frontend"
-        {{ .Release.Name }}-redis-client: "true"
       annotations:
         iam.amazonaws.com/role: "{{ .Values.aws.iamRole }}"
     spec:
