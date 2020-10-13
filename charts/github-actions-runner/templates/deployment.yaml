@@ -29,26 +29,27 @@ spec:
         image: {{ printf "%s:%s"  .Values.image.repository .Values.image.tag | quote }}
         imagePullPolicy: {{ .Values.image.pullPolicy | quote }}
         env:
-        {{- if .Values.env.org.runner }}
+        {{- if eq .Values.orgRunner "true" }}
         - name: ORG_RUNNER
           value: "true"
+        - name: ORG_NAME
+          value: {{ .Values.orgName | quote }}
+        {{- else }}
+        - name: ORG_RUNNER
+          value: "false"
+        - name: REPO_URL
+          value: {{ .Values.repoUrl | quote }}
+        {{- end -}}
         - name: ACCESS_TOKEN
           valueFrom:
             secretKeyRef:
-              name: {{ .Values.env.org.secret.access_token.name | quote }}
+              name: {{ .Values.secretAccessTokenName | quote }}
               key: "token"
-        - name: ORG_NAME
-          value: {{ .Values.env.org.name | quote }}{{ else }}
-        - name: REPO_URL
-          value: {{ .Values.env.repo_url | quote }}
-        - name: ORG_RUNNER
-          value: "false"
-        {{- end }}
         - name: LABELS
           value: {{ .Values.env.labels | quote }}
-        {{- if .Values.env.name_prefix }}
+        {{- if .Values.runnerNamePrefix }}
         - name: RUNNER_NAME_PREFIX
-          value: {{ .Values.env.name_prefix | quote }}
+          value: {{ .Values.runnerNamePrefix | quote }}
         {{- else }}
         - name: RUNNER_NAME
           valueFrom:

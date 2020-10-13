@@ -2,16 +2,14 @@
 image:
   repository: myoung34/github-runner
   pullPolicy: Always
-  tag: "2.273.0"
+  tag: "2.273.5"
 
-env:
-  org:
-    runner: "true"
-    name: ""
-    secret:
-      access_token:
-        name: github-token
-  labels: "kubernetes"
+orgRunner: "true"
+orgName: ""
+secretAccessTokenName: github-token
+labels: "kubernetes"
+
+runnerNamePrefix: "github-actions-runner"
 
 autoscaling:
   enabled: true
