@@ -46,7 +46,7 @@ spec:
               name: {{ .Values.secretAccessTokenName | quote }}
               key: "token"
         - name: LABELS
-          value: {{ .Values.env.labels | quote }}
+          value: {{ .Values.labels | quote }}
         {{- if .Values.runnerNamePrefix }}
         - name: RUNNER_NAME_PREFIX
           value: {{ .Values.runnerNamePrefix | quote }}

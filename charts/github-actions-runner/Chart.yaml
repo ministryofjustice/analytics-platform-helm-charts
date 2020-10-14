@@ -1,8 +1,8 @@
 apiVersion: v1
-appVersion: 2.267.1
+appVersion: 2.273.5
 description: Self-hosted GitHub Actions Runner
 name: github-actions-runner
-version: 0.3.0
+version: 0.3.1
 type: application
 keywords:
   - github
