@@ -39,7 +39,7 @@ spec:
           value: "false"
         - name: REPO_URL
           value: {{ .Values.repoUrl | quote }}
-        {{- end -}}
+        {{- end }}
         - name: ACCESS_TOKEN
           valueFrom:
             secretKeyRef:
