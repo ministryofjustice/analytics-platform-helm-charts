@@ -26,10 +26,6 @@ spec:
         {{- end }}
       {{- end }}
     spec:
-      volumes:
-      - name: dockersocket
-        hostPath:
-          path: "/var/run/docker.sock"
       containers:
       - name: runner
         image: {{ printf "%s:%s"  .Values.image.repository .Values.image.tag | quote }}
@@ -53,6 +49,8 @@ spec:
               key: "token"
         - name: LABELS
           value: {{ .Values.labels | quote }}
+        - name: DOCKER_HOST
+          value: tcp://localhost:2376
         {{- if .Values.runnerNamePrefix }}
         - name: RUNNER_NAME_PREFIX
           value: {{ .Values.runnerNamePrefix | quote }}
@@ -62,6 +60,17 @@ spec:
             fieldRef:
               fieldPath: "metadata.name"
         {{- end }}
-        volumeMounts:
-        - name: dockersocket
-          mountPath: "/var/run/docker.sock"
+      - name: dind
+        command:
+        - dockerd
+        - --host=unix:///var/run/docker.sock
+        - --host=tcp://0.0.0.0:2376
+        env:
+        - name: DOCKER_TLS_CERTDIR
+        image: docker:19.03.12-dind
+        imagePullPolicy: IfNotPresent
+        securityContext:
+          privileged: true
+          readOnlyRootFilesystem: false
+        stdin: true
+        tty: true
