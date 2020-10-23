@@ -16,5 +16,3 @@ autoscaling:
   minReplicas: 1
   maxReplicas: 50
   targetCPUUtilizationPercentage: 80
-
-GitHubToken: ""
