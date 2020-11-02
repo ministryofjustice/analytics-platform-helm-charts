@@ -19,41 +19,43 @@ spec:
       labels:
         app.kubernetes.io/instance: {{ .Release.Name | quote }}
         app.kubernetes.io/managed-by: {{ .Release.Service | quote }}
-      {{- if .Values.podAnnotations }}
+      {{- if .Values.runner.podAnnotations }}
       annotations:
-        {{- range $key, $value := .Values.podAnnotations }}
+        {{- range $key, $value := .Values.runner.podAnnotations }}
         {{ $key }}: {{ $value | quote }}
         {{- end }}
       {{- end }}
     spec:
       containers:
       - name: runner
-        image: {{ printf "%s:%s"  .Values.image.repository .Values.image.tag | quote }}
-        imagePullPolicy: {{ .Values.image.pullPolicy | quote }}
+        image: {{ printf "%s:%s"  .Values.runner.image.repository .Values.runner.image.tag | quote }}
+        imagePullPolicy: {{ .Values.runner.image.pullPolicy | quote }}
         env:
-        {{- if eq .Values.orgRunner "true" }}
+        {{- if .Values.runner.orgName }}
         - name: ORG_RUNNER
           value: "true"
         - name: ORG_NAME
-          value: {{ .Values.orgName | quote }}
+          value: {{ .Values.runner.orgName | quote }}
         {{- else }}
         - name: ORG_RUNNER
           value: "false"
         - name: REPO_URL
-          value: {{ .Values.repoUrl | quote }}
+          value: {{ .Values.runner.repoUrl | quote }}
         {{- end }}
         - name: ACCESS_TOKEN
           valueFrom:
             secretKeyRef:
-              name: {{ .Values.secretAccessTokenName | quote }}
+              name: {{ .Values.runner.secretAccessTokenName | quote }}
               key: "token"
         - name: LABELS
-          value: {{ .Values.labels | quote }}
+          value: {{ .Values.runner.labels | quote }}
         - name: DOCKER_HOST
-          value: tcp://localhost:2376
-        {{- if .Values.runnerNamePrefix }}
+          value: {{ .Values.dockerHost }}
+        - name: RUNNER_GROUP
+          value: {{ .Values.runner.runnerGroup }}
+        {{- if .Values.runner.runnerNamePrefix }}
         - name: RUNNER_NAME_PREFIX
-          value: {{ .Values.runnerNamePrefix | quote }}
+          value: {{ .Values.runner.runnerNamePrefix | quote }}
         {{- else }}
         - name: RUNNER_NAME
           valueFrom:
@@ -64,10 +66,10 @@ spec:
         command:
         - dockerd
         - --host=unix:///var/run/docker.sock
-        - --host=tcp://0.0.0.0:2376
+        - --host={{ .Values.dockerHost | quote }}
         env:
         - name: DOCKER_TLS_CERTDIR
-        image: docker:19.03.12-dind
+        image: {{ printf "%s:%s" .Values.dind.image.repository .Values.dind.image.tag | quote }}
         imagePullPolicy: IfNotPresent
         securityContext:
           privileged: true
