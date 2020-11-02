@@ -21,7 +21,7 @@ spec:
               if test -d /home/{{ .Values.Username }}/.rstudio.bak; then rm -fr /home/{{ .Values.Username }}/.rstudio.bak; fi &&
               if test -d /home/{{ .Values.Username }}/.rstudio; then rm -rf /home/{{ .Values.Username }}/.rstudio /home/{{ .Values.Username }}/.rstudio.bak; fi &&
               if test -d /home/{{ .Values.Username }}/.conda.bak/; then rm -fr /home/{{ .Values.Username }}/.conda.bak/; fi &&
-              if test -d /home/{{ .Values.Username }}/.conda/; then mv -f /home/{{ .Values.Username }}/.conda/ /home/{{ .Values.Username }}/.conda.bak/; fi &&
+              if test -d /home/{{ .Values.Username }}/.conda/; then rm -rf /home/{{ .Values.Username }}/.conda/ /home/{{ .Values.Username }}/.conda.bak/; fi &&
               if test -e /home/{{ .Values.Username }}/.condarc.bak; then rm -fr /home/{{ .Values.Username }}/.condarc.bak; fi &&
               if test -e /home/{{ .Values.Username }}/.condarc; then mv -f /home/{{ .Values.Username }}/.condarc /home/{{ .Values.Username }}/.condarc.bak; fi &&
               if test -d /home/{{ .Values.Username }}/R/library; then rm -fr /home/{{ .Values.Username }}/R/library/*; fi
