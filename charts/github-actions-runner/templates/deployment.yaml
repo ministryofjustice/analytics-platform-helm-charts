@@ -66,7 +66,7 @@ spec:
         command:
         - dockerd
         - --host=unix:///var/run/docker.sock
-        - --host={{ .Values.dockerHost | quote }}
+        - --host={{ .Values.dockerHost }}
         env:
         - name: DOCKER_TLS_CERTDIR
         image: {{ printf "%s:%s" .Values.dind.image.repository .Values.dind.image.tag | quote }}
