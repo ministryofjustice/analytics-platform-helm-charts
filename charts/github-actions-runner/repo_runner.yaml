@@ -1,0 +1,4 @@
+---
+runner:
+  repoUrl: "https://github.com/ministryofjustice/analytics-platform-helm-charts"
+  labels: "kubernetes,foo,bar,baz"
