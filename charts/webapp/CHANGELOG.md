@@ -5,6 +5,12 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
 
+## [2.3.11] - 2020-11-10
+### Changed
+Use same `fluent-bit` image/version but pull from our AWS ECR repository
+to avoid the rate limiting problem with DockerHub.
+
+
 ## [2.3.10] - 2020-06-15
 ### Changed
 Bumped auth-proxy from `v5.2.5` to `v5.2.6`.
