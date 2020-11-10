@@ -29,7 +29,7 @@ FluentBit:
   LogLevel: "info"
   # https://hub.docker.com/r/fluent/fluent-bit
   Image:
-    Repository: fluent/fluent-bit
+    Repository: 593291632749.dkr.ecr.eu-west-1.amazonaws.com/fluent-bit
     Tag: 1.1.1 # Add `-debug` for debugging image
     PullPolicy: "IfNotPresent"
   Resources:
