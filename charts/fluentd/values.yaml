@@ -226,6 +226,18 @@ fluentdconffiles:
     </source>
 
   output.conf: |-
+    # remove probes
+    <filter kubernetes.**>
+      @type grep
+      <exclude>
+        key log
+        pattern /kube-probe/
+      </exclude>
+      <exclude>
+        key agent
+        pattern /kube-probe/
+    </filter>
+
     # Enriches records with Kubernetes metadata
     <filter kubernetes.**>
       @type kubernetes_metadata
@@ -253,6 +265,6 @@ fluentdconffiles:
        slow_flush_log_threshold 120s
        max_retry_wait 30
        #disable_retry_limit
-       retry_limit 5
+       retry_limit 10
        num_threads 8
     </match>
