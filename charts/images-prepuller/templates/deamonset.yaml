@@ -29,7 +29,7 @@ spec:
     spec:
       initContainers:
         - name: prepull
-          image: "docker:18.09.1"
+          image: "593291632749.dkr.ecr.eu-west-1.amazonaws.com/docker:18.09.1"
           env:
             - name: NODE_NAME
               valueFrom:
