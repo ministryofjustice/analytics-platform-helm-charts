@@ -1,4 +1,4 @@
 apiVersion: v1
 description: Pre-pull/cache docker images on k8s nodes
 name: images-prepuller
-version: 0.1.0
+version: 0.1.1
