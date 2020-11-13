@@ -17,6 +17,12 @@ spec:
       labels:
         app: cluster-autoscaler
     spec:
+      {{- with .Values.image.pullSecrets }}
+      imagePullSecrets:
+      {{- range . }}
+        - name: {{ . }}
+      {{- end }}
+      {{- end }}
       serviceAccountName: {{ .Release.Name }}
       containers:
         - image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"

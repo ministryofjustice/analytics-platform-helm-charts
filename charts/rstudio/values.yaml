@@ -1,5 +1,7 @@
 username: ""
 toolsDomain: "tools.EXAMPLE.COM"
+image:
+  pullSecrets: []
 aws:
   iamRole: ""
   defaultRegion: "eu-west-1"
