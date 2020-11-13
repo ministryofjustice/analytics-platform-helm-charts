@@ -17,7 +17,12 @@ spec:
       labels:
         app: {{ .Release.Name }}-git-sync
     spec:
-
+      {{- with .Values.imagePullSecrets }}
+      imagePullSecrets:
+      {{- range . }}
+        - name: {{ . }}
+      {{- end }}
+      {{- end }}
       initContainers:
         - name: "delete-files"
           image: alpine:3.8
@@ -29,7 +34,6 @@ spec:
             - "sh"
             - "-cx"
             - "rm -rf /git/*"
-
       containers:
         - name: git-sync
           image: {{ .Values.gitSync.image.repository }}:{{ .Values.gitSync.image.tag }}

@@ -78,3 +78,5 @@ redis:
 kube2iam:
   allowedRoles: ".*"
   serviceAccountName: ""
+
+imagePullSecrets: []
