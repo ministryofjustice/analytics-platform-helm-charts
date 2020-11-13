@@ -4,3 +4,5 @@ Email: ""
 Fullname: ""
 Env: ""
 OidcDomain: ""
+image:
+  pullSecrets: []
