@@ -30,6 +30,12 @@ spec:
       tolerations:
 {{ toYaml .Values.worker.tolerations | indent 8 }}
       terminationGracePeriodSeconds: {{ .Values.worker.terminationGracePeriodSeconds }}
+      {{- with .Values.imagePullSecrets }}
+      imagePullSecrets:
+      {{- range . }}
+        - name: {{ . }}
+      {{- end }}
+      {{- end }}
       containers:
         - name: {{ template "concourse.worker.fullname" . }}
           image: "{{ .Values.image }}:{{ .Values.imageTag }}"

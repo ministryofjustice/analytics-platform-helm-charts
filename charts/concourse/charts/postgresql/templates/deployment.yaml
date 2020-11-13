@@ -25,6 +25,12 @@ spec:
       tolerations:
 {{ toYaml .Values.tolerations | indent 8 }}
       {{- end }}
+      {{- with .Values.imagePullSecrets }}
+      imagePullSecrets:
+      {{- range . }}
+        - name: {{ . }}
+      {{- end }}
+      {{- end }}
       containers:
       - name: {{ template "postgresql.fullname" . }}
         image: "{{ .Values.image }}:{{ .Values.imageTag }}"
