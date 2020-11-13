@@ -34,7 +34,8 @@ serviceMonitors:
  #   targetPort: 8443
  #   scrapeInterval: 20s
 
-
+image:
+  pullSecrets: []
 
 prometheusOperator:
   crdApiGroup: monitoring.coreos.com

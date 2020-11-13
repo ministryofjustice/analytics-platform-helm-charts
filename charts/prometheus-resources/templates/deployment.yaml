@@ -27,6 +27,12 @@ spec:
         target: {{ .name }}
     spec:
       serviceAccountName: {{ $.Release.Name }}-{{ .name }}
+      {{- with .Values.image.pullSecrets }}
+      imagePullSecrets:
+      {{- range . }}
+        - name: {{ . }}
+      {{- end }}
+      {{- end }}
       containers:
         - name: {{ $name }}
           image: {{ $.Values.authProxy.image }}:{{ $.Values.authProxy.tag }}
