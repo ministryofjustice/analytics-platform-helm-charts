@@ -23,6 +23,12 @@ spec:
       annotations:
         iam.amazonaws.com/role: {{ .Values.aws.iamRole }}
     spec:
+      {{- with .Values.image.pullSecrets }}
+      imagePullSecrets:
+      {{- range . }}
+        - name: {{ . }}
+      {{- end }}
+      {{- end }}
       priorityClassName: {{ .Chart.Name }}
       serviceAccountName: {{ .Values.username }}-rstudio
       {{ if and .Values.rstudio.image.init }}
@@ -46,7 +52,6 @@ spec:
               mountPath: "/home/{{ .Values.username }}"
       {{ end }}
       containers:
-
         - name: rstudio-auth-proxy
           image: "{{ .Values.authProxy.image.repository }}:{{ .Values.authProxy.image.tag }}"
           imagePullPolicy: {{ .Values.authProxy.image.pullPolicy }}
