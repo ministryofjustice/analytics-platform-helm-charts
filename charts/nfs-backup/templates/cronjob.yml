@@ -18,6 +18,12 @@ spec:
           annotations:
             iam.amazonaws.com/role: {{ .Values.AWS.IAMRole }}
         spec:
+          {{- with .Values.image.pullSecrets }}
+          imagePullSecrets:
+          {{- range . }}
+            - name: {{ . }}
+          {{- end }}
+          {{- end }}
           containers:
           - image: "{{ .Values.Image.Repository }}:{{ .Values.Image.Tag }}"
             imagePullPolicy: {{ .Values.Image.PullPolicy }}
@@ -28,12 +34,12 @@ spec:
               - /homes
               - s3://$(S3_BACKUP_BUCKET_NAME)
               - --only-show-errors
-              - --storage-class 
+              - --storage-class
               - STANDARD_IA
-              - --sse 
+              - --sse
               - AES256
-              - --delete 
-              - --exclude 
+              - --delete
+              - --exclude
               - "*/.rstudio/*"
               - --exclude
               - "*/R/library/*"

@@ -9,3 +9,6 @@ Image:
 Schedule: "@daily"
 successfulJobsHistoryLimit: 5
 failedJobsHistoryLimit: 5
+
+image:
+  pullSecrets: []
