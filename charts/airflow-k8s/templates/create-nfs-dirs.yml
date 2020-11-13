@@ -11,6 +11,12 @@ spec:
     metadata:
       name: {{ .Release.Name }}-create-nfs-dirs
     spec:
+      {{- with .Values.image.pullSecrets }}
+      imagePullSecrets:
+      {{- range . }}
+        - name: {{ . }}
+      {{- end }}
+      {{- end }}
       containers:
       - name: "create-nfs-dirs"
         restart: Never

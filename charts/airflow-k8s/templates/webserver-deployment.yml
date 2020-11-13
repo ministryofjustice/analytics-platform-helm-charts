@@ -22,6 +22,12 @@ spec:
         component: webserver
         airflow-redis-client: "true"
     spec:
+      {{- with .Values.image.pullSecrets }}
+      imagePullSecrets:
+      {{- range . }}
+        - name: {{ . }}
+      {{- end }}
+      {{- end }}
       serviceAccountName: {{ .Release.Name }}
       containers:
         - name: webserver
