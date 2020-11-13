@@ -29,6 +29,12 @@ spec:
     spec:
       priorityClassName: {{ .Chart.Name }}
       serviceAccountName: {{ .Values.Username }}-jupyter
+      {{- with .Values.image.pullSecrets }}
+      imagePullSecrets:
+      {{- range . }}
+        - name: {{ . }}
+      {{- end }}
+      {{- end }}
       containers:
         - name: {{ .Chart.Name }}-auth-proxy
           image: {{ .Values.authProxy.image }}:{{ .Values.authProxy.tag }}

@@ -16,6 +16,12 @@ spec:
         #       to direct traffic to the jupyter pod and we don't want the
         #       Job's pod to receive that traffic.
     spec:
+      {{- with .Values.image.pullSecrets }}
+      imagePullSecrets:
+      {{- range . }}
+        - name: {{ . }}
+      {{- end }}
+      {{- end }}
       serviceAccountName: {{ .Values.Username }}-jupyter
       restartPolicy: Never
       containers:

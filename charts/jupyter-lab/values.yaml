@@ -5,6 +5,9 @@ aws:
   iamRole: ""
   defaultRegion: "eu-west-1"
 
+image:
+  pullSecrets: []
+
 service:
   port: 80
 
