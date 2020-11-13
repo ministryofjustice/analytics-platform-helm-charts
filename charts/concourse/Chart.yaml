@@ -20,4 +20,4 @@ name: concourse
 sources:
 - https://github.com/concourse/bin
 - https://github.com/kubernetes/charts
-version: 1.9.1
+version: 1.10.0
