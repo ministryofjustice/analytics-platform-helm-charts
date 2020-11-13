@@ -6,6 +6,7 @@ image:
   tag: 6.3.1
   pullPolicy: IfNotPresent
   port: 8080
+  pullSecrets: []
 
 resources:
   limits:

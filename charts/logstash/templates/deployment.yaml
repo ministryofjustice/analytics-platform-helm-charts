@@ -20,6 +20,12 @@ spec:
         release: {{ .Release.Name }}
     spec:
       serviceAccountName: {{ .Release.Name }}
+      {{- with .Values.image.pullSecrets }}
+      imagePullSecrets:
+      {{- range . }}
+        - name: {{ . }}
+      {{- end }}
+      {{- end }}
       containers:
         - name: {{ .Chart.Name }}
           image: {{ .Values.image.repository }}:{{ .Values.image.tag }}
