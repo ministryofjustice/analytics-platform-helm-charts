@@ -12,6 +12,7 @@ image:
   repository: quay.io/mojanalytics/aws-federated-login
   tag: "v1.1.3"
   pullPolicy: IfNotPresent
+  pullSecrets: []
 
 service:
   type: ClusterIP
