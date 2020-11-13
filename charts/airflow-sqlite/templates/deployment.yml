@@ -24,6 +24,12 @@ spec:
         component: all
         airflow-redis-client: "false"
     spec:
+      {{- with .Values.image.pullSecrets }}
+      imagePullSecrets:
+      {{- range . }}
+        - name: {{ . }}
+      {{- end }}
+      {{- end }}
       serviceAccountName: {{ .Release.Name }}
       initContainers:
         - name: "init"
