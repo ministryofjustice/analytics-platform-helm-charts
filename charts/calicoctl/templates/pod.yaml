@@ -9,6 +9,12 @@ metadata:
   name: calicoctl
   namespace: kube-system
 spec:
+  {{- with .Values.image.pullSecrets }}
+  imagePullSecrets:
+  {{- range . }}
+    - name: {{ . }}
+  {{- end }}
+  {{- end }}
   hostNetwork: true
   containers:
   - name: calicoctl

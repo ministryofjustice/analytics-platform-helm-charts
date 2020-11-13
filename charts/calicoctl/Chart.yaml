@@ -1,4 +1,4 @@
 appVersion: v1
 description: calicoctl command line tool for configuring calico network provider
 name: calicoctl
-version: 0.1.0
+version: 0.2.0
