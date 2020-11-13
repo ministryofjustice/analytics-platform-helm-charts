@@ -8,7 +8,10 @@ archiveBucket: ""
 iamRole: ""
 
 # Docker image version
-image: quay.io/mojanalytics/buckets-archiver:v0.0.1
+image:
+  repository: quay.io/mojanalytics/buckets-archiver
+  tag: v0.0.1
+  pullSecrets: []
 
 # Schedule when to run
 #   min    hour   day    month (Sun-Sat)

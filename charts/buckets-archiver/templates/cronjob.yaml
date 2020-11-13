@@ -19,10 +19,16 @@ spec:
           labels:
             app: {{ .Release.Name }}
         spec:
+          {{- with .Values.image.pullSecrets }}
+          imagePullSecrets:
+          {{- range . }}
+            - name: {{ . }}
+          {{- end }}
+          {{- end }}
           serviceAccountName: {{ .Release.Name }}
           containers:
             - name: {{ .Release.Name }}
-              image: "{{ .Values.image }}"
+              image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
               args:
                 - "archive"
               env:
