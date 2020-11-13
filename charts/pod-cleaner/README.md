@@ -13,18 +13,16 @@ See kubernetes documentation on [pods phases](https://kubernetes.io/docs/concept
 **NOTE**: A pod with status `ErrImagePull` or `ImagePullBackOff` is in
 `Pending` phase.
 
-
 ## Installing the chart
 
 ```bash
-$ helm upgrade --dry-run --debug --install pod-cleaner charts/pod-cleaner --namespace airflow
+helm upgrade --dry-run --debug --install pod-cleaner charts/pod-cleaner --namespace airflow
 ```
 
 Install the helm chart in the namespace where you want the cron job
 to delete old pods.
 
 **NOTE**: Remove `--dry-run` and adjust the values file path.
-
 
 ## Configuration
 
@@ -35,14 +33,14 @@ to delete old pods.
 | `deleteSucceededAfter` | Number of days after which a pod in `Succeeded` phase should be deleted | `3` |
 | `schedule` | When to run the job that delete the old pods | `"0 5 * * *"` - every day at 5am, see https://kubernetes.io/docs/user-guide/cron-jobs/#schedule |
 
-
 ## Caveats
+
 Pods which are failing but that have `RestartPolicy=Always` will not be
 deleted because from kubernetes perspective these are still in `Running`
 phase.
 
-
 ## Technical details
+
 The cron job will start a container for each of the phases, they'll run
 the `pod_cleaner.sh` script with the right arguments.
 

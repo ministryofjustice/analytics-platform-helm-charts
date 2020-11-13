@@ -17,10 +17,16 @@ spec:
             app: {{ .Release.Name }}
             chart: "{{ .Chart.Name }}-{{ .Chart.Version }}"
         spec:
+          {{- with .Values.image.pullSecrets }}
+          imagePullSecrets:
+          {{- range . }}
+            - name: {{ . }}
+          {{- end }}
+          {{- end }}
           serviceAccountName: {{ .Release.Name }}
           containers:
           - name: failed-pods-cleaner
-            image: "{{ .Values.image }}"
+            image: "{{ .Values.image.value }}"
             command:
             - "scripts/pod_cleaner.sh"
             env:
@@ -32,7 +38,7 @@ spec:
               - name: {{ .Release.Name }}
                 mountPath: "/scripts"
           - name: pending-pods-cleaner
-            image: "{{ .Values.image }}"
+            image: "{{ .Values.image.value }}"
             command:
             - "scripts/pod_cleaner.sh"
             env:
@@ -44,7 +50,7 @@ spec:
               - name: {{ .Release.Name }}
                 mountPath: "/scripts"
           - name: succeeded-pods-cleaner
-            image: "{{ .Values.image }}"
+            image: "{{ .Values.image.value }}"
             command:
             - "scripts/pod_cleaner.sh"
             env:

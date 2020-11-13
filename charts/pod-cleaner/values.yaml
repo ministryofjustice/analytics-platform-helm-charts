@@ -1,13 +1,11 @@
-# Delete pods after...
-deleteFailedAfter: 10 # days
-deletePendingAfter: 10 # days
-deleteSucceededAfter: 3 # days
+# Delete pods after x days
+deleteFailedAfter: 10
+deletePendingAfter: 10
+deleteSucceededAfter: 3
 
-# Docker image
-image: "bitnami/kubectl:1.14.1"
+image:
+  value: "bitnami/kubectl:1.14.1"
+  pullSecrets: []
 
-# Schedule when to run
-#   min    hour   day    month (Sun-Sat)
-# "(0-59) (0-23) (1-31) (1-12) (0-6)"
 # See https://kubernetes.io/docs/user-guide/cron-jobs/#schedule
 schedule: "0 5 * * *"
