@@ -36,6 +36,15 @@ fluentdconffiles:
       read_from_head true
     </source>
 
+    # filter out some of the junk
+    <filter raw.kubernetes.**>
+      @type grep
+      <exclude>
+        key log
+        pattern /GET|kube-probe|healthz.*200|level=info|INFO|Feature 27|hosts update|updating hosts|not leader|starting controller iteration|skipping update of unchanged|not refreshing commands|heartbeat\.done|guardian\.list-containers\.starting|OpenAPI AggregationController|tsa\.connection\.keepalive|DEBUG/
+      </exclude>
+    </filter>
+
     <match raw.kubernetes.**>
       @id raw.kubernetes
       @type detect_exceptions
@@ -226,25 +235,12 @@ fluentdconffiles:
     </source>
 
   output.conf: |-
-    # remove probes
-    <filter kubernetes.**>
-      @type grep
-      <exclude>
-        key log
-        pattern /kube-probe/
-      </exclude>
-      <exclude>
-        key agent
-        pattern /kube-probe/
-    </filter>
-
     # Enriches records with Kubernetes metadata
     <filter kubernetes.**>
       @type kubernetes_metadata
     </filter>
 
     # Everything to Elasticsearch
-
     <match **>
        @id elasticsearch
        @type elasticsearch
