@@ -18,16 +18,13 @@ spec:
             - /bin/sh
             - -c
             - |
-              if test -d /home/{{ .Values.Username }}/.rstudio.bak; then rm -fr /home/{{ .Values.Username }}/.rstudio.bak; fi &&
-              if test -d /home/{{ .Values.Username }}/.rstudio; then cp -pRf /home/{{ .Values.Username }}/.rstudio /home/{{ .Values.Username }}/.rstudio.bak; fi &&
-              if test -d /home/{{ .Values.Username }}/.rstudio; then rm -fr /home/{{ .Values.Username }}/.rstudio; fi &&
-              if test -d /home/{{ .Values.Username }}/.conda.bak/; then rm -fr /home/{{ .Values.Username }}/.conda.bak/; fi &&
-              if test -d /home/{{ .Values.Username }}/.conda/; then cp -pRf /home/{{ .Values.Username }}/.conda/ /home/{{ .Values.Username }}/.conda.bak/; fi &&
-              if test -d /home/{{ .Values.Username }}/.conda/; then rm -fr /home/{{ .Values.Username }}/.conda/; fi &&
-              if test -e /home/{{ .Values.Username }}/.condarc.bak; then rm -fr /home/{{ .Values.Username }}/.condarc.bak; fi &&
-              if test -e /home/{{ .Values.Username }}/.condarc; then cp -pRf /home/{{ .Values.Username }}/.condarc /home/{{ .Values.Username }}/.condarc.bak; fi &&
-              if test -e /home/{{ .Values.Username }}/.condarc; then rm -fr /home/{{ .Values.Username }}/.condarc; fi &&
-              if test -d /home/{{ .Values.Username }}/R/library; then rm -fr /home/{{ .Values.Username }}/R/library/*; fi
+              rm -rf /home/{{ .Values.Username }}/.rstudio.bak; &&
+              rm -rf /home/{{ .Values.Username }}/.rstudio; &&
+              rm -rf /home/{{ .Values.Username }}/.conda.bak/; &&
+              rm -rf /home/{{ .Values.Username }}/.conda/; &&
+              rm -rf /home/{{ .Values.Username }}/.condarc.bak; &&
+              rm -rf /home/{{ .Values.Username }}/.condarc;  &&
+              rm -rf /home/{{ .Values.Username }}/R/library/*;
       volumes:
         - name: home
           persistentVolumeClaim:
