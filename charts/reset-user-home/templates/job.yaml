@@ -18,13 +18,13 @@ spec:
             - /bin/sh
             - -c
             - |
-              rm -rf /home/{{ .Values.Username }}/.rstudio.bak; &&
-              rm -rf /home/{{ .Values.Username }}/.rstudio; &&
-              rm -rf /home/{{ .Values.Username }}/.conda.bak/; &&
-              rm -rf /home/{{ .Values.Username }}/.conda/; &&
-              rm -rf /home/{{ .Values.Username }}/.condarc.bak; &&
-              rm -rf /home/{{ .Values.Username }}/.condarc;  &&
-              rm -rf /home/{{ .Values.Username }}/R/library/*;
+              rm -rf /home/{{ .Values.Username }}/.rstudio.bak &&
+              rm -rf /home/{{ .Values.Username }}/.rstudio &&
+              rm -rf /home/{{ .Values.Username }}/.conda.bak/ &&
+              rm -rf /home/{{ .Values.Username }}/.conda/ &&
+              rm -rf /home/{{ .Values.Username }}/.condarc.bak &&
+              rm -rf /home/{{ .Values.Username }}/.condarc &&
+              rm -rf /home/{{ .Values.Username }}/R/library/*
       volumes:
         - name: home
           persistentVolumeClaim:
