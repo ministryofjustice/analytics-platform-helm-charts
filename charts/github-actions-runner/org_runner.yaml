@@ -1,5 +1,0 @@
----
-runner:
-  orgName: "foo"
-  labels: "kubernetes,foo,bar"
-  runnerGroup: "specialGroup"
