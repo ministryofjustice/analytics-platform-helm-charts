@@ -60,3 +60,5 @@ kubernetes:
   apiUrl: ""
   caCert: ""
   token: ""
+
+imagePullSecrets: []
