@@ -3,7 +3,7 @@ AWS:
   S3:
     BucketName: "alpha-moj-analytics-nfs-backup"
 Image:
-  Repository: amazon/aws-cli
+  Repository: 593291632749.dkr.ecr.eu-west-1.amazonaws.com/awscli
   Tag: 2.0.31
   PullPolicy: IfNotPresent
 Schedule: "@daily"
