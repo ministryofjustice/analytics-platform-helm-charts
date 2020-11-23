@@ -4,7 +4,7 @@ deletePendingAfter: 10 # days
 deleteSucceededAfter: 3 # days
 
 # Docker image
-image: "bitnami/kubectl:1.14.1"
+image: "593291632749.dkr.ecr.eu-west-1.amazonaws.com/kubectl:1.14.1"
 
 # Schedule when to run
 #   min    hour   day    month (Sun-Sat)
