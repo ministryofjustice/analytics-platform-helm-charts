@@ -12,6 +12,12 @@ metadata:
 spec:
   template:
     spec:
+      {{- with .Values.imagePullSecrets }}
+      imagePullSecrets:
+      {{- range . }}
+        - name: {{ . }}
+      {{- end }}
+      {{- end }}
       containers:
         - name: django-migrate
           image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"

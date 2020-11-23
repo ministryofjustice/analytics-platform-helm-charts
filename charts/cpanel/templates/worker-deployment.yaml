@@ -27,6 +27,12 @@ spec:
     #     iam.amazonaws.com/role: "{{ .Values.aws.iamRole }}"
     spec:
       serviceAccountName: "{{ .Chart.Name }}-worker"
+      {{- with .Values.imagePullSecrets }}
+      imagePullSecrets:
+      {{- range . }}
+        - name: {{ . }}
+      {{- end }}
+      {{- end }}
       containers:
         - name: worker
           image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"

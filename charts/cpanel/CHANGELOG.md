@@ -5,6 +5,14 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
 
+## [3.1.0] - 2020-11-23
+### Added
+- Support for `imagePullSecrets` to allow pulling of docker images using
+  credentials in given secret files. This is an empty list by default (so
+  not used). Also, at the moment the only image used by this helm chart which
+  is in DockerHub is the reverse proxy one (`nginxinc/nginx-unprivileged:1.16.0-alpine`).
+
+
 ## [3.0.0] - 2020-10-01
 ### Changed - BREAKING CHANGES
 - Removed `redis` chart dependency, the Redis cluster will **not** be

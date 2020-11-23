@@ -47,6 +47,7 @@ In Auth0 you need to install Extension 'Auth0 Authorization':
 | `env.K8S_WORKER_ROLE_NAME` | | |
 | `env.LOGS_BUCKET_NAME` | | |
 | `env.SAML_PROVIDER` | Name of SAML provider. Concatenated with `IAM_ARN_BASE:saml-provider/` to make an ARN | |
+| `imagePullSecrets` | List of secret names containing the credentials to authenticate/pull from a docker container registry. | `[]` |
 | `ingress.addTlsBlock` | Adds tls block to ingress resource. This needs to be `true` if you're using `nginx` as ingress-controller but it may need to be `false` for others (e.g. `traefik`) | `true` |
 | `postgresql.postgresDatabase` | The database name where API data will be stored | |
 | `postgresql.postgresHost` | The hostname of the database. Get it from terraform platform output `control_panel_api_db_host` | |
