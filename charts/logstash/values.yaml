@@ -3,7 +3,7 @@ replicaCount: 1
 
 image:
   repository: docker.elastic.co/logstash/logstash
-  tag: 6.3.1
+  tag: 7.9.1
   pullPolicy: IfNotPresent
   port: 8080
 
@@ -27,6 +27,8 @@ config:
   logstash.yml: |-
     http.host: "0.0.0.0"
     path.config: /usr/share/logstash/pipeline
-    xpack.monitoring.elasticsearch.url: '${ELASTICSEARCH_URL}'
+    xpack.monitoring.enabled: true
+    xpack.monitoring.elasticsearch.hosts: ["${ELASTICSEARCH_URL}"]
     xpack.monitoring.elasticsearch.username: '${ELASTICSEARCH_USER}'
     xpack.monitoring.elasticsearch.password: '${ELASTICSEARCH_PASSWORD}'
+    log.level: debug

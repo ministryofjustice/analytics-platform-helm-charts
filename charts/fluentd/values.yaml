@@ -41,7 +41,7 @@ fluentdconffiles:
       @type grep
       <exclude>
         key log
-        pattern /GET|kube-probe|healthz.*200|level=info|INFO|Feature 27|hosts update|updating hosts|not leader|starting controller iteration|skipping update of unchanged|not refreshing commands|heartbeat\.done|guardian\.list-containers\.starting|OpenAPI AggregationController|tsa\.connection\.keepalive|DEBUG/
+        pattern /kube-probe|healthz.*200|level=info|INFO|Feature 27|hosts update|updating hosts|not leader|starting controller iteration|skipping update of unchanged|not refreshing commands|heartbeat\.done|guardian\.list-containers\.starting|OpenAPI AggregationController|tsa\.connection\.keepalive|DEBUG/
       </exclude>
     </filter>
 
@@ -101,6 +101,14 @@ fluentdconffiles:
       pos_file /var/log/etcd.log.pos
       tag etcd
     </source>
+
+    <filter etcd**>
+      @type grep
+      <exclude>
+        key message
+        pattern /controller loop complete|TTL not hit|hosts update|updating hosts|sending map to all peers|starting controller iteration|I am leader with token|we are not leader|retaining backup/
+      </exclude>
+    </filter>
 
     <source>
       @id kube-proxy.log
@@ -179,6 +187,14 @@ fluentdconffiles:
       read_from_head true
       tag kubelet
     </source>
+
+    <filter syslog>
+      @type grep
+      <exclude>
+        key message
+        pattern /replacing cloudprovider-reported hostname/
+      </exclude>
+    </filter>
 
     <source>
       @id journald-node-problem-detector
