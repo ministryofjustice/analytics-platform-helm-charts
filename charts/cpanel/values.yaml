@@ -2,6 +2,9 @@ servicesDomain: ""
 branch: "master"
 appsNamespace: "apps-prod"
 
+# Secrets contains credentials for pulling images from container registry
+imagePullSecrets: []
+
 image:
   repository: quay.io/mojanalytics/control-panel
   tag: v0.13.6

@@ -26,6 +26,12 @@ spec:
         name: nginxconf
       - emptyDir: {}
         name: staticfiles
+      {{- with .Values.imagePullSecrets }}
+      imagePullSecrets:
+      {{- range . }}
+        - name: {{ . }}
+      {{- end }}
+      {{- end }}
       initContainers:
       - name: init-nginx
         image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"

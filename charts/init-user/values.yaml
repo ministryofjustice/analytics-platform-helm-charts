@@ -4,3 +4,6 @@ Email: ""
 Fullname: ""
 Env: ""
 OidcDomain: ""
+
+ubuntu:
+  image: 593291632749.dkr.ecr.eu-west-1.amazonaws.com/ubuntu:16.04

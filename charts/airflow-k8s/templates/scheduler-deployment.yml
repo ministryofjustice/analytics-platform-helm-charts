@@ -22,6 +22,12 @@ spec:
         app: {{ .Release.Name }}
         component: scheduler
     spec:
+      {{- with .Values.imagePullSecrets }}
+      imagePullSecrets:
+      {{- range . }}
+        - name: {{ . }}
+      {{- end }}
+      {{- end }}
       serviceAccountName: {{ .Release.Name }}
       initContainers:
       - name: "init"

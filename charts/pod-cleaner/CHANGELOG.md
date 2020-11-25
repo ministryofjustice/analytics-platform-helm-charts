@@ -5,6 +5,15 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
 
+## [1.0.0] - 2020-11-23
+### Changed
+Pull `kubectl` image from our private AWS ECR registry.
+This is technical a breaking change - in case anyone outside our team uses
+this helm chart (unlikely) - and that's why the major version number bump.
+This image value can be overridden if necessary to point to the same image
+in a public container registry.
+
+
 ## [0.1.1] - 2019-07-02
 ### Fixed
 Fixed Docker permission error while executing `pod_cleaner.sh` script.

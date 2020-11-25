@@ -19,6 +19,12 @@ metadata:
 spec:
   template:
     spec:
+      {{- with .Values.imagePullSecrets }}
+      imagePullSecrets:
+      {{- range . }}
+        - name: {{ . }}
+      {{- end }}
+      {{- end }}
       containers:
       - name: annotator
         image: gcr.io/google_containers/hyperkube:v1.11.7

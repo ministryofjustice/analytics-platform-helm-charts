@@ -20,6 +20,9 @@ imageTag: "3.14.1"
 ##
 imagePullPolicy: IfNotPresent
 
+# Secret names with credentials for container registry authentication
+imagePullSecrets: []
+
 ## Configuration values for Concourse.
 ## ref: https://concourse-ci.org/setting-up.html
 ##
@@ -466,6 +469,9 @@ persistence:
 ## ref: https://github.com/kubernetes/charts/blob/master/stable/postgresql/README.md
 ##
 postgresql:
+
+  # Secret names with credentials for container registry authentication
+  imagePullSecrets: []
 
   ## Use the PostgreSQL chart dependency.
   ## Set to false if bringing your own PostgreSQL, and set secret value postgresql-uri.
