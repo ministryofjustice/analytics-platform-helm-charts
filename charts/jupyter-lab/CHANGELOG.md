@@ -5,6 +5,19 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
 
+## [0.5.3] - 2020-11-25
+### Changed
+- Removed unused `Job` to tweak bash profile (container started bash but
+  wasn't doing anything anymore (see commit below)
+- Removed unused `ConfigMap` which was containing content of `files/*`
+  files now removed as well (see commit below)
+
+This should be a non-breaking change but we can save 1 docker image pull
+for this container which doesn't do anything anymore
+
+Commit removing script execution in job: https://github.com/ministryofjustice/analytics-platform-helm-charts/commit/e01562d5904cdcb12f1aa2ec9e22f13ccda90542#diff-38edf99fd46462465404fefea8ac5bd0372e0963c7884c2b9ebfe0a88912c2f7
+
+
 ## [0.5.2] - 2020-06-15
 ### Changed
 Bumped auth-proxy from `v5.2.5` to `v5.2.6`.
