@@ -4,9 +4,19 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
+
+## [1.0.0] - 2020-12-10
+### Changed
+- use `allspark` Docker image by default (`v1.1.1`)
+- this *may* break things in new and exciting ways hence
+  the major version bump
+- use image hosted in AWS ECR registry
+
+
 ## [0.5.4] - 2020-12-11
 ### Changed
 - Running jupyter deployment with arg ` --ContentsManager.allow_hidden=True` to allow users to see hidden files in the file browser side panel.
+
 
 ## [0.5.3] - 2020-11-25
 ### Changed

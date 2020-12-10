@@ -29,8 +29,8 @@ authProxy:
     port_range: "8050,4040-4050"
 
 jupyter:
-  image: quay.io/mojanalytics/datascience-notebook
-  tag: v0.6.9
+  image: 593291632749.dkr.ecr.eu-west-1.amazonaws.com/allspark-notebook
+  tag: v1.1.1
   imagePullPolicy: IfNotPresent
   containerPort: 8888
   resources:
