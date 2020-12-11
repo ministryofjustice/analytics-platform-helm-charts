@@ -97,6 +97,7 @@ spec:
           args:
             - "jupyter lab"
             - "--NotebookApp.token=''"
+            - --ContentsManager.allow_hidden=True
           readinessProbe:
             httpGet:
               path: /
