@@ -110,9 +110,6 @@ spec:
         - name: r-studio-server
           image: "{{ .Values.rstudio.image.repository }}:{{ .Values.rstudio.image.tag }}"
           imagePullPolicy: {{ .Values.rstudio.image.pullPolicy }}
-          command:
-            - /usr/local/bin/start.sh
-            - start
           ports:
             - name: rstudio
               containerPort: {{ .Values.rstudio.port }}

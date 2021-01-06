@@ -29,14 +29,14 @@ rstudio:
   secureCookieKey: ""
   port: "8787"
   image:
-    repository: quay.io/mojanalytics/rstudio
-    tag: "1.2.1335-r3.5.1-python3.7.1-conda-10"
+    repository: 593291632749.dkr.ecr.eu-west-1.amazonaws.com/rstudio
+    tag: "4.0.3"
     pullPolicy: "IfNotPresent"
     # init option allows you to run an init container that does the setup of the conda environment
     # this is quite slow and if it was run as part of the main container then it would cause problems.
     # This exists here because you might want to downgrade to an older image, which doesn't take the arg
     # to the ./start.sh script
-    init: true
+    init: false
   resources:
     limits:
       cpu: 1.5
