@@ -130,14 +130,14 @@ spec:
             httpGet:
               path: /
               port: rstudio
-            initialDelaySeconds: 5
-            periodSeconds: 2
+            initialDelaySeconds: 30
+            periodSeconds: 5
           livenessProbe:
             httpGet:
               path: /
               port: rstudio
-            initialDelaySeconds: 10
-            periodSeconds: 2
+            initialDelaySeconds: 30
+            periodSeconds: 5
           volumeMounts:
             - name: home
               mountPath: "/home/{{ .Values.username }}"
