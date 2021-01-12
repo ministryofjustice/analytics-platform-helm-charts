@@ -58,6 +58,7 @@ This version updates some of the dependencies, [including
 which fixes a security vulnerability.
 
 See:
+
 - <https://github.com/ministryofjustice/analytics-platform-auth-proxy/releases/tag/v5.2.4>
 - <https://github.com/ministryofjustice/analytics-platform-auth-proxy/releases/tag/v5.2.3>
 
