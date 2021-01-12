@@ -6,6 +6,7 @@ name: "Charts: Lint and test"
     paths:
       - "charts/**"
       - "!charts/**/README.md"
+      - .github/workflows/charts-lint-test.yaml
 
 jobs:
   lint:
