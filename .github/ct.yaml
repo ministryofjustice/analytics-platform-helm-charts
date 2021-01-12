@@ -9,4 +9,4 @@ excluded-charts:
   # - common-test
 chart-repos:
   # - bitnami=https://charts.bitnami.com/bitnami
-  - analytics-platform-helm-charts=https://analytical-platform-charts.github.io/charts
+  - analytics-platform-helm-charts=http://moj-analytics-helm-repo.s3-website-eu-west-1.amazonaws.com/
