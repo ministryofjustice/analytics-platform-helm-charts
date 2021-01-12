@@ -50,6 +50,7 @@ jobs:
 
       - name: Output
         id: chart-testing-output
+        uses: actions/github-script@v3
         if: steps.list-changed.outputs.changed == 'true' || steps.list-changed.outputs.common == 'true'
         with:
           github-token: ${{ secrets.GITHUB_TOKEN }}
