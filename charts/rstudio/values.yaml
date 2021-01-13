@@ -1,7 +1,7 @@
 username: "test"
 toolsDomain: "tools.EXAMPLE.COM"
 aws:
-  iamRole: ""
+  iamRole: "test-role"
   defaultRegion: "eu-west-1"
 authProxy:
   appProtocol: "https"
