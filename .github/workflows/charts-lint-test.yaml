@@ -98,8 +98,3 @@ jobs:
       - name: Run chart-testing (install)
         run: ct install --config .github/ct.yaml
         if: needs.lint.outputs.changed == 'true'
-
-      - name: Run chart-testing (common-test)
-        run: |
-          ct install --config .github/ct.yaml --charts 'charts/common-test'
-        if: needs.lint.outputs.common == 'true'
