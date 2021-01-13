@@ -57,7 +57,9 @@ jobs:
           github-token: ${{ secrets.GITHUB_TOKEN }}
           script: |
             const output = `
-            #### Chart Testing Output 🖌\`${{ steps.lint.outcome }}\`
+            ## Testing Output
+
+            **Linting**: 🖌 \`${{ steps.lint.outcome }}\`
 
             **Pusher**: @${{ github.actor }}
             **Action**: ${{ github.event_name }}
