@@ -1,0 +1,9 @@
+---
+remote: origin
+target-branch: main
+helm-extra-args: --timeout 600s
+chart-dirs:
+  - charts
+excluded-charts:
+chart-repos:
+  - analytics-platform-helm-charts=http://moj-analytics-helm-repo.s3-website-eu-west-1.amazonaws.com/

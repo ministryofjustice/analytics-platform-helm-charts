@@ -1,7 +1,7 @@
-username: ""
+username: "test"
 toolsDomain: "tools.EXAMPLE.COM"
 aws:
-  iamRole: ""
+  iamRole: "test-role"
   defaultRegion: "eu-west-1"
 authProxy:
   appProtocol: "https"
@@ -9,7 +9,7 @@ authProxy:
     clientSecret: ""
     clientId: ""
     domain: "AUTH0_USER.eu.auth0.com"
-  cookieMaxAge: "28800" # 8 hours in seconds
+  cookieMaxAge: "28800"
   cookieSecret: ""
   express:
     host: "0.0.0.0"
