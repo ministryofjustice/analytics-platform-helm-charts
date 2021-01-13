@@ -48,29 +48,6 @@ jobs:
         run: ct lint --config .github/ct.yaml --excluded-charts ""
         if: steps.list-changed.outputs.changed == 'true' || steps.list-changed.outputs.common == 'true'
 
-      - name: Output
-        id: chart-testing-output
-        uses: actions/github-script@v3
-        # if: steps.list-changed.outputs.changed == 'true' || steps.list-changed.outputs.common == 'true'
-        if: ${{ always() }}
-        with:
-          github-token: ${{ secrets.GITHUB_TOKEN }}
-          script: |
-            const output = `
-            ## Testing Output
-
-            **Linting**: 🖌 \`${{ steps.lint.outcome }}\`
-
-            **Pusher**: @${{ github.actor }}
-            **Action**: ${{ github.event_name }}
-            `;
-
-            github.issues.createComment({
-              issue_number: context.issue.number,
-              owner: context.repo.owner,
-              repo: context.repo.repo,
-              body: output
-            })
   # Don't install into KIND right now
   # Our charts or not currently compatible with newer version of Kubernetes
   # install:
