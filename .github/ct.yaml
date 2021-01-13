@@ -5,8 +5,5 @@ helm-extra-args: --timeout 600s
 chart-dirs:
   - charts
 excluded-charts:
-  # - common
-  # - common-test
 chart-repos:
-  # - bitnami=https://charts.bitnami.com/bitnami
   - analytics-platform-helm-charts=http://moj-analytics-helm-repo.s3-website-eu-west-1.amazonaws.com/
