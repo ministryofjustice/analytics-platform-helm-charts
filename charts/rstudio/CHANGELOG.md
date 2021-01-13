@@ -5,6 +5,10 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
+## [3.0.3] - 2021-01-13
+
+- Update the Docker image to [4.0.3-2](https://github.com/ministryofjustice/analytics-platform-rstudio/releases/tag/4.0.3-2)
+
 ## [3.0.2] - 2021-01-07
 
 - Increase the initial delay on both the livenessProbe and readinessProbe to stop the container restarting before it's has a chance to initialize
@@ -12,6 +16,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 ## [3.0.1] - 2021-01-07
 
 - Adds the secure-cookie-key to the server so that auth-proxy can talk to RStudio
+- Update the Docker container to [4.0.3-1](https://github.com/ministryofjustice/analytics-platform-rstudio/releases/tag/4.0.3-1)
 
 ## [3.0.0] - 2021-01-06
 
