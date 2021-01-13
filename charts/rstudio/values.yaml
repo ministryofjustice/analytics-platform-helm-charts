@@ -1,4 +1,4 @@
-username: ""
+username: "test"
 toolsDomain: "tools.EXAMPLE.COM"
 aws:
   iamRole: ""
@@ -9,7 +9,7 @@ authProxy:
     clientSecret: ""
     clientId: ""
     domain: "AUTH0_USER.eu.auth0.com"
-  cookieMaxAge: "28800" # 8 hours in seconds
+  cookieMaxAge: "28800"
   cookieSecret: ""
   express:
     host: "0.0.0.0"
