@@ -25,28 +25,7 @@ spec:
     spec:
       priorityClassName: {{ .Chart.Name }}
       serviceAccountName: {{ .Values.username }}-rstudio
-      {{ if and .Values.rstudio.image.init }}
-      initContainers:
-        - name: r-studio-server-init
-          image: "{{ .Values.rstudio.image.repository }}:{{ .Values.rstudio.image.tag }}"
-          imagePullPolicy: {{ .Values.rstudio.image.pullPolicy }}
-          command:
-            - /usr/local/bin/start.sh
-            - init
-          env:
-            - name: USER
-              value: {{ .Values.username }}
-            - name: AWS_DEFAULT_REGION
-              valueFrom:
-                secretKeyRef:
-                  name: {{ template "fullname" . }}
-                  key: aws_default_region
-          volumeMounts:
-            - name: home
-              mountPath: "/home/{{ .Values.username }}"
-      {{ end }}
       containers:
-
         - name: rstudio-auth-proxy
           image: "{{ .Values.authProxy.image.repository }}:{{ .Values.authProxy.image.tag }}"
           imagePullPolicy: {{ .Values.authProxy.image.pullPolicy }}
@@ -82,7 +61,7 @@ spec:
                   name: {{ template "fullname" . }}
                   key: cookie_secret
             - name: USER
-              value: "{{ .Values.username }}"
+              value: "rstudio"
             - name: RSTUDIO_ADD_SECURE_COOKIE
               value: "true"
             - name: RSTUDIO_SECURE_COOKIE_KEY
@@ -115,7 +94,7 @@ spec:
               containerPort: {{ .Values.rstudio.port }}
           env:
             - name: USER
-              value: {{ .Values.username }}
+              value: "rstudio"
             - name: AWS_DEFAULT_REGION
               valueFrom:
                 secretKeyRef:
@@ -140,7 +119,7 @@ spec:
             periodSeconds: 5
           volumeMounts:
             - name: home
-              mountPath: "/home/{{ .Values.username }}"
+              mountPath: "/home/rstudio"
           resources:
 {{ toYaml .Values.rstudio.resources | indent 12 }}
 
