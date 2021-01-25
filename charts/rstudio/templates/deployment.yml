@@ -61,7 +61,7 @@ spec:
                   name: {{ template "fullname" . }}
                   key: cookie_secret
             - name: USER
-              value: "rstudio"
+              value: {{ .Values.username }}
             - name: RSTUDIO_ADD_SECURE_COOKIE
               value: "true"
             - name: RSTUDIO_SECURE_COOKIE_KEY
