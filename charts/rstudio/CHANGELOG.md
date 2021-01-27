@@ -5,7 +5,11 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
-## [3.0.6] - 2021-01-25
+## [3.0.7] - 2021-01-27
+
+- Update the Docker image to [4.0.3-4](https://github.com/ministryofjustice/analytics-platform-rstudio/releases/tag/4.0.3-4)
+
+## [3.0.6] - 2021-01-27
 
 - Update the Docker image to [4.0.3-4](https://github.com/ministryofjustice/analytics-platform-rstudio/releases/tag/4.0.3-4)
 - Revert the USERNAME change, as SoftNAS mounts don't seem to like the rstudio user
