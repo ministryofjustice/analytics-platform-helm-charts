@@ -94,7 +94,7 @@ spec:
               containerPort: {{ .Values.rstudio.port }}
           env:
             - name: USER
-              value: "rstudio"
+              value: "{{ .Values.username }}"
             - name: AWS_DEFAULT_REGION
               valueFrom:
                 secretKeyRef:
@@ -119,7 +119,7 @@ spec:
             periodSeconds: 5
           volumeMounts:
             - name: home
-              mountPath: "/home/rstudio"
+              mountPath: "/home/{{ .Values.username }}"
           resources:
 {{ toYaml .Values.rstudio.resources | indent 12 }}
 
