@@ -1,4 +1,4 @@
-Username: ""
+Username: "Test"
 toolsDomain: "tools.example.com"
 
 aws:
@@ -30,7 +30,7 @@ authProxy:
 
 jupyter:
   image: 593291632749.dkr.ecr.eu-west-1.amazonaws.com/allspark-notebook
-  tag: v1.1.1
+  tag: v2.0.0
   imagePullPolicy: IfNotPresent
   containerPort: 8888
   resources:
