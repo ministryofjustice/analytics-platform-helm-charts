@@ -10,6 +10,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 - Update to use the AllSpark image
 - Change the UID for Joyvan from 1001 to 1000
 - For a full list of changes [see this PR](https://github.com/ministryofjustice/analytics-platform-jupyter-notebook/pull/54)
+- Add labels to the Service account
 
 ## [1.0.0] - 2020-12-10
 
