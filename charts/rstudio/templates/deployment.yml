@@ -139,7 +139,7 @@ spec:
       volumes:
         - name: configmap
           configMap:
-            name: {{ .Release.Name }}
+            name: "chown-home"
             defaultMode: 0500
         - name: home
           persistentVolumeClaim:
