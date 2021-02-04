@@ -5,11 +5,18 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
-## [3.0.8] - 2021-02-03
+## [3.0.9] - 2021-02-03
 
 - Update the Docker image to [4.0.3.5](https://github.com/ministryofjustice/analytics-platform-rstudio/releases/tag/4.0.3-5)
   - Adds libdunits2, libgeos and lib proj for R libraries
   - Adds OpenSSH client for git clones
+
+## [3.0.8] - 2021-02-04
+
+- Add an init container to change the user home on boot.
+  We are using an init container as it will always finish no matter how long it takes.
+  Some user homes take a long time to chown as they contain a lot of conda packages.
+  We don't mind which group the home files are in as they can be both `users` and `staff` depending on which tool created it.
 
 ## [3.0.7] - 2021-01-27
 
