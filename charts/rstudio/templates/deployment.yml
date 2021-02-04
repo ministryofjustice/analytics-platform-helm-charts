@@ -31,9 +31,11 @@ spec:
         - name: init
           image: "bash:5.1"
           imagePullPolicy: {{ .Values.rstudio.image.pullPolicy }}
-          command:
-            - if [[ $( stat -c %u /home/{{ .Values.username }} ) -ne 1000 ]]; then chown -R {{ .Values.username }}; fi
+          command: [/chown_home.sh]
           volumeMounts:
+            - name: configmap
+              mountPath: /chown_home.sh
+              subPath: chown_home.sh
             - name: home
               mountPath: "/home/{{ .Values.username }}"
       containers:
@@ -135,6 +137,10 @@ spec:
 {{ toYaml .Values.rstudio.resources | indent 12 }}
 
       volumes:
+        - name: configmap
+          configMap:
+            name: {{ .Release.Name }}
+            defaultMode: 0500
         - name: home
           persistentVolumeClaim:
             claimName: nfs-home
