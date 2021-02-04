@@ -25,6 +25,17 @@ spec:
     spec:
       priorityClassName: {{ .Chart.Name }}
       serviceAccountName: {{ .Values.username }}-rstudio
+      initContainers:
+        # Use the init contianer to check if the home directory has the correct user permissions of 1000
+        # We don't mind which group the home has as it can be both staff and
+        - name: init
+          image: "bash:5.1"
+          imagePullPolicy: {{ .Values.rstudio.image.pullPolicy }}
+          command:
+            - if [[ $( stat -c %u /home/{{ .Values.username }} ) -ne 1000 ]]; then chown -R {{ .Values.username }}; fi
+          volumeMounts:
+            - name: home
+              mountPath: "/home/{{ .Values.username }}"
       containers:
         - name: rstudio-auth-proxy
           image: "{{ .Values.authProxy.image.repository }}:{{ .Values.authProxy.image.tag }}"
