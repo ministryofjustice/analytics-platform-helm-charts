@@ -3,17 +3,13 @@ toolsDomain: "tools.EXAMPLE.COM"
 aws:
   iamRole: "test-role"
   defaultRegion: "eu-west-1"
-authProxy:
-  appProtocol: "https"
+proxy:
+  port: 3000
   auth0:
     clientSecret: ""
     clientId: ""
     domain: "AUTH0_USER.eu.auth0.com"
-  cookieMaxAge: "28800"
-  cookieSecret: ""
-  express:
-    host: "0.0.0.0"
-    port: 3000
+    logoutUrl: "https://controlpanel.services.alpha.mojanalytics.xyz/"
   image:
     repository: 593291632749.dkr.ecr.eu-west-1.amazonaws.com/nginx-proxy
     tag: "0.0.1"
@@ -26,11 +22,10 @@ authProxy:
       cpu: 0.5
       memory: 128Mi
 rstudio:
-  secureCookieKey: ""
   port: "8787"
   image:
     repository: 593291632749.dkr.ecr.eu-west-1.amazonaws.com/rstudio
-    tag: "4.0.3-6"
+    tag: "4.0.4"
     pullPolicy: "IfNotPresent"
     # init option allows you to run an init container that does the setup of the conda environment
     # this is quite slow and if it was run as part of the main container then it would cause problems.

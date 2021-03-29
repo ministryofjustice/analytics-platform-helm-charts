@@ -13,4 +13,4 @@ spec:
     app: "{{ .Chart.Name }}"
   ports:
   - port: 80
-    targetPort: {{ .Values.authProxy.express.port }}
+    targetPort: {{ .Values.proxy.port }}

@@ -40,15 +40,13 @@ spec:
               mountPath: "/home/{{ .Values.username }}"
       containers:
         - name: rstudio-auth-proxy
-          image: "{{ .Values.authProxy.image.repository }}:{{ .Values.authProxy.image.tag }}"
-          imagePullPolicy: {{ .Values.authProxy.image.pullPolicy }}
+          image: "{{ .Values.proxy.image.repository }}:{{ .Values.proxy.image.tag }}"
+          imagePullPolicy: {{ .Values.proxy.image.pullPolicy }}
           ports:
             - name: proxy
-              containerPort: {{ .Values.authProxy.express.port }}
+              containerPort: {{ .Values.proxy.port }}
           env:
-            - name: TARGET_URL
-              value: http://localhost:{{ .Values.rstudio.port }}
-            - name: AUTH0_DOMAIN
+            - name: AUTH0_TENANT_DOMAIN
               valueFrom:
                 secretKeyRef:
                   name: {{ template "fullname" . }}
@@ -58,46 +56,33 @@ spec:
                 secretKeyRef:
                   name: {{ template "fullname" . }}
                   key: client_id
-            - name: AUTH0_CALLBACK_URL
-              valueFrom:
-                secretKeyRef:
-                  name: {{ template "fullname" . }}
-                  key: callback_url
             - name: AUTH0_CLIENT_SECRET
               valueFrom:
                 secretKeyRef:
                   name: {{ template "fullname" . }}
                   key: client_secret
-            - name: COOKIE_SECRET
-              valueFrom:
-                secretKeyRef:
-                  name: {{ template "fullname" . }}
-                  key: cookie_secret
-            - name: USER
+            - name: APP_HOST
+              value: http://localhost
+            - name: APP_PORT
+              value: {{ .Values.rstudio.port }}
+            - name: LOGOUT_URL
+              value: {{ .Values.proxy.auth0.logoutUrl }}
+            - name: USERNAME
               value: {{ .Values.username }}
-            - name: RSTUDIO_ADD_SECURE_COOKIE
-              value: "true"
-            - name: RSTUDIO_SECURE_COOKIE_KEY
-              valueFrom:
-                secretKeyRef:
-                  name: {{ template "fullname" . }}
-                  key: secure_cookie_key
-            - name: COOKIE_MAXAGE
-              value: "{{ .Values.authProxy.cookieMaxAge }}"
           readinessProbe:
             httpGet:
-              path: /healthz
+              path: /nginx-health
               port: proxy
             initialDelaySeconds: 15
             periodSeconds: 10
           livenessProbe:
             httpGet:
-              path: /healthz
+              path: /nginx-health
               port: proxy
             initialDelaySeconds: 20
             periodSeconds: 10
           resources:
-{{ toYaml .Values.authProxy.resources | indent 12 }}
+{{ toYaml .Values.proxy.resources | indent 12 }}
 
         - name: r-studio-server
           image: "{{ .Values.rstudio.image.repository }}:{{ .Values.rstudio.image.tag }}"
@@ -113,11 +98,6 @@ spec:
                 secretKeyRef:
                   name: {{ template "fullname" . }}
                   key: aws_default_region
-            - name: SECURE_COOKIE_KEY
-              valueFrom:
-                secretKeyRef:
-                  name: {{ template "fullname" . }}
-                  key: secure_cookie_key
           readinessProbe:
             httpGet:
               path: /
