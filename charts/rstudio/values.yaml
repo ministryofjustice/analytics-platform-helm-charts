@@ -15,15 +15,15 @@ authProxy:
     host: "0.0.0.0"
     port: 3000
   image:
-    repository: quay.io/mojanalytics/auth-proxy
-    tag: "v5.2.6"
+    repository: 593291632749.dkr.ecr.eu-west-1.amazonaws.com/nginx-proxy
+    tag: "0.0.1"
     pullPolicy: "IfNotPresent"
   resources:
     limits:
-      cpu: 100m
+      cpu: 1
       memory: 128Mi
     requests:
-      cpu: 100m
+      cpu: 0.5
       memory: 128Mi
 rstudio:
   secureCookieKey: ""
