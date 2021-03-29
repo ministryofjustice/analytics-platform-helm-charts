@@ -5,6 +5,10 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
+## [3.1.0] - 2012-03-29
+
+- Use the new [NGINX proxy container](https://github.com/ministryofjustice/analytical-platform-nginx-proxy/)
+
 ## [3.0.12] - 2021-02-15
 
 Pull [upstream changes](https://github.com/rocker-org/rocker-versioned2) for the RStudio image
