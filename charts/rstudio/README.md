@@ -52,10 +52,8 @@ Record the Client ID and Client Secret values - you'll use them in the configura
 Listing only the required params here. See `/chart-env-config/` for more
 details.
 
-| Parameter  | Description     | Default |
-| ---------- | --------------- | ------- |
-| `authProxy.auth0.clientId` | Auth0 'RStudio' application's client ID | `""`    |
-| `authProxy.auth0.clientSecret` | Auth0 'RStudio' application's client secret | `""`    |
-| `authProxy.auth0.domain` | Auth0 tenant domain e.g. `dev-analytics-moj.eu.auth0.com` | `""`    |
-| `authProxy.cookieSecret` | Random UUID `$ uuidgen` | `""` |
-| `rstudio.secureCookieKey` | Random UUID `$ uuidgen` | `""` |
+| Parameter                  | Description                                               | Default |
+| -------------------------- | --------------------------------------------------------- | ------- |
+| `proxy.auth0.clientId`     | Auth0 'RStudio' application's client ID                   | `""`    |
+| `proxy.auth0.clientSecret` | Auth0 'RStudio' application's client secret               | `""`    |
+| `proxy.auth0.domain`       | Auth0 tenant domain e.g. `dev-analytics-moj.eu.auth0.com` | `""`    |
