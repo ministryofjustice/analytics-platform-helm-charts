@@ -1,7 +1,7 @@
 apiVersion: v1
 description: RStudio with Auth0 authentication proxy
 name: rstudio
-version: 3.1.1
+version: 3.1.2
 appVersion: "RStudio: 4.0.4"
 maintainers:
   - name: ministryofjustice
