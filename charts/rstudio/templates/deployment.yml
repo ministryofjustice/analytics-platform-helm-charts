@@ -64,11 +64,11 @@ spec:
             - name: APP_HOST
               value: http://localhost
             - name: APP_PORT
-              value: {{ .Values.rstudio.port }}
+              value: {{ quote .Values.rstudio.port }}
             - name: LOGOUT_URL
-              value: {{ .Values.proxy.auth0.logoutUrl }}
+              value: {{ quote .Values.proxy.auth0.logoutUrl }}
             - name: USERNAME
-              value: {{ .Values.username }}
+              value: {{ quote .Values.username }}
           readinessProbe:
             httpGet:
               path: /nginx-health
