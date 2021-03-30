@@ -27,7 +27,7 @@ spec:
       serviceAccountName: {{ .Values.username }}-rstudio
       initContainers:
         # Use the init contianer to check if the home directory has the correct user permissions of 1000
-        # We don't mind which group the home has as it can be both staff and
+        # We don't mind which group the home has
         - name: init
           image: "bash:5.1"
           imagePullPolicy: {{ .Values.rstudio.image.pullPolicy }}
