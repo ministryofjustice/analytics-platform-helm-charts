@@ -1,10 +1,11 @@
-username: "test"
+username: "test"  # TODO: make this the right name.
 toolsDomain: "tools.EXAMPLE.COM"
 aws:
   iamRole: "test-role"
   defaultRegion: "eu-west-1"
 proxy:
   port: 3000
+  resolver: kube-dns.kube-system.svc.cluster.local
   auth0:
     clientSecret: ""
     clientId: ""
@@ -12,7 +13,7 @@ proxy:
     logoutUrl: "https://controlpanel.services.alpha.mojanalytics.xyz/"
   image:
     repository: 593291632749.dkr.ecr.eu-west-1.amazonaws.com/nginx-proxy
-    tag: "0.0.1"
+    tag: "0.0.2"
     pullPolicy: "IfNotPresent"
   resources:
     limits:
