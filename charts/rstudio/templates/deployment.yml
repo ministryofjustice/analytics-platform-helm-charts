@@ -71,18 +71,18 @@ spec:
               value: {{ quote .Values.username }}
             - name: RESOLVER
               value: {{ quote .Values.proxy.resolver }}
-          readinessProbe:
-            httpGet:
-              path: /nginx-health
-              port: proxy
-            initialDelaySeconds: 15
-            periodSeconds: 10
-          livenessProbe:
-            httpGet:
-              path: /nginx-health
-              port: proxy
-            initialDelaySeconds: 20
-            periodSeconds: 10
+          #readinessProbe:
+          #  httpGet:
+          #    path: /nginx-health
+          #    port: proxy
+          #  initialDelaySeconds: 15
+          #  periodSeconds: 10
+          #livenessProbe:
+          #  httpGet:
+          #    path: /nginx-health
+          #    port: proxy
+          #  initialDelaySeconds: 20
+          #  periodSeconds: 10
           resources:
 {{ toYaml .Values.proxy.resources | indent 12 }}
 

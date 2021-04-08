@@ -13,7 +13,7 @@ proxy:
     logoutUrl: "https://controlpanel.services.alpha.mojanalytics.xyz/"
   image:
     repository: 593291632749.dkr.ecr.eu-west-1.amazonaws.com/nginx-proxy
-    tag: "0.0.2"
+    tag: "0.0.1"
     pullPolicy: "IfNotPresent"
   resources:
     limits:
