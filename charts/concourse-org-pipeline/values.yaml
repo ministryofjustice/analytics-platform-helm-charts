@@ -55,6 +55,7 @@ ipRanges:
   quantum: ""
   mojDigitalWifiAndVpn: ""
   alanTuringInstitute: ""
+  mojo: ""
 
 kubernetes:
   apiUrl: ""
