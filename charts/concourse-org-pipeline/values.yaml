@@ -49,6 +49,9 @@ githubOrgResource:
   image: quay.io/mojanalytics/github-org-resource
   tag: v0.6.0
 
+gitCrypt:
+  symmetricKey: ""
+
 ipRanges:
   wifi102pf: ""
   dom1: ""
