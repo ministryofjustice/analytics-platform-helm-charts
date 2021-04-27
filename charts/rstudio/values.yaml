@@ -12,7 +12,7 @@ proxy:
     logoutUrl: "https://controlpanel.services.alpha.mojanalytics.xyz/"
   image:
     repository: 593291632749.dkr.ecr.eu-west-1.amazonaws.com/nginx-proxy
-    tag: "0.0.25"
+    tag: "0.0.26"
     pullPolicy: "IfNotPresent"
   resources:
     limits:
@@ -25,7 +25,7 @@ rstudio:
   port: "8787"
   image:
     repository: 593291632749.dkr.ecr.eu-west-1.amazonaws.com/rstudio
-    tag: "4.0.4"
+    tag: "4.0.5"
     pullPolicy: "IfNotPresent"
     # init option allows you to run an init container that does the setup of the conda environment
     # this is quite slow and if it was run as part of the main container then it would cause problems.
