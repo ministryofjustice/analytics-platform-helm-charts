@@ -19,6 +19,9 @@ env:
   SAML_PROVIDER: ""
   SLACK_CHANNEL: ""
 
+secrets:
+  create: true  
+
 secretEnv:
   AIRFLOW_AUTH_CLIENT_DOMAIN: ""
   AIRFLOW_AUTH_CLIENT_ID: ""

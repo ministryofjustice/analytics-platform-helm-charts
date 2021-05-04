@@ -4,6 +4,10 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
+## [3.2.0] - 2021-05-04
+### Added
+- Added `secrets.create` with a default of `true`. This dictates if the helm chart creates Kubernetes secret resources
+.
 
 ## [3.1.0] - 2020-11-23
 ### Added
