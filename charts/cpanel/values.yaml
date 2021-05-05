@@ -28,7 +28,7 @@ secretEnv:
   AIRFLOW_AUTH_CLIENT_SECRET: ""
   AIRFLOW_FERNET_KEY: ""
   AIRFLOW_SECRET_KEY: ""
-  AWS_ACCOUNT_ID: "" # TODO: Remove once CP stops using it
+  AWS_ACCOUNT_ID: ""  # TODO: Remove once CP stops using it
   AWS_COMPUTE_ACCOUNT_ID: ""
   AWS_DATA_ACCOUNT_ID: ""
   ELASTICSEARCH_HOST: ""
@@ -69,7 +69,7 @@ worker:
   replicas: 10
 
 redis:
-  scheme: "rediss" # use SSL/TLS by default
+  scheme: "rediss"  # use SSL/TLS by default
   host: ""
   port: "6379"
   password: "controlpanel"
