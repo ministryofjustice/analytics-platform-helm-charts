@@ -20,7 +20,7 @@ env:
   SLACK_CHANNEL: ""
 
 secrets:
-  create: true  
+  create: true
 
 secretEnv:
   AIRFLOW_AUTH_CLIENT_DOMAIN: ""
