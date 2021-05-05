@@ -7,6 +7,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 ## [3.2.0] - 2021-05-04
 ### Added
 - Added `secrets.create` with a default of `true`. This dictates if the helm chart creates Kubernetes secret resources
+- Change the Deployment resources to use the `apps/v1 API version` instead of `extensions/v1beta1` as this is no longer served since Kubernetes 1.16.
 .
 
 ## [3.1.0] - 2020-11-23
