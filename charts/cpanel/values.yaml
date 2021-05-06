@@ -54,7 +54,7 @@ secretEnv:
   SLACK_API_TOKEN: ""
   TOOLS_DOMAIN: ""
 
-service-accounts:
+serviceAccounts:
   create: true
 
 aws:
