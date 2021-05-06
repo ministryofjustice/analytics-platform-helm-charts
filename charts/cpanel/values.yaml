@@ -55,7 +55,7 @@ secretEnv:
   TOOLS_DOMAIN: ""
 
 service-accounts:
-  create: true  
+  create: true
 
 aws:
   defaultRegion: "eu-west-1"
