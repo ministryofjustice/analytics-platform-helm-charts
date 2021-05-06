@@ -54,6 +54,9 @@ secretEnv:
   SLACK_API_TOKEN: ""
   TOOLS_DOMAIN: ""
 
+serviceAccounts:
+  create: true
+
 aws:
   defaultRegion: "eu-west-1"
   iamRole: ""
