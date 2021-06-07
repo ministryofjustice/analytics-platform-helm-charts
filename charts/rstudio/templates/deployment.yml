@@ -69,6 +69,8 @@ spec:
               value: {{ quote .Values.proxy.auth0.logoutUrl }}
             - name: USERNAME
               value: {{ quote .Values.username }}
+            - name: REDIRECT_DOMAIN
+              value: {{ quote .Values.redirectdomain }}
           readinessProbe:
             httpGet:
               path: /nginx-health
