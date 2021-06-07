@@ -39,3 +39,4 @@ rstudio:
     requests:
       cpu: 1.5
       memory: 12Gi
+redirectdomain: "tools.alpha.mojanalytics.xyz"
