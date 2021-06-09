@@ -5,6 +5,9 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
+# [4.0.7] - 2021-06-09
+- Use the nginx proxy image with a configurable redirect url
+
 # [4.0.0] - 2021-04-26
 
 - Working version of RStudio 4 (note the synchornization of versions).
