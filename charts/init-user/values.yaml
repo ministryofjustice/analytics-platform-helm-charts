@@ -7,3 +7,5 @@ OidcDomain: ""
 
 ubuntu:
   image: 593291632749.dkr.ecr.eu-west-1.amazonaws.com/ubuntu:16.04
+
+EFSHostname: "fs-577ede63.efs.eu-west-1.amazonaws.com"

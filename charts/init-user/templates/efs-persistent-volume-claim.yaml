@@ -4,9 +4,9 @@ metadata:
   name: efs-home
   namespace: user-{{ .Values.Username }}
 spec:
+  storageClassName: ""
   accessModes:
     - ReadWriteMany
-  storageClassName: efs-sc
   resources:
     requests:
-      storage: 5Gi
+      storage: 1Mi
