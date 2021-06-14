@@ -119,6 +119,6 @@ spec:
           resources:
 {{ toYaml .Values.jupyter.resources | indent 12 }}
       volumes:
-        - name: nfs-home
+        - name: efs-home
           persistentVolumeClaim:
-            claimName: nfs-home
+            claimName: efs-home
