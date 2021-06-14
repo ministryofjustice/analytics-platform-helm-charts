@@ -39,13 +39,13 @@ jobs:
           if [[ -n "$changed" ]]; then
             echo "::set-output name=changed::true"
           fi
-          changed_unfiltered=$(ct list-changed --config .github/ct.yaml --excluded-charts "provision-user,init-user")
+          changed_unfiltered=$(ct list-changed --config .github/ct.yaml --excluded-charts "provision-user,init-user,cpanel")
           if [[ $(grep -E "^charts/common(-test)?$" <<< "$changed_unfiltered") ]]; then
             echo "::set-output name=common::true"
           fi
       - name: Run chart-testing (lint)
         id: lint
-        run: ct lint --config .github/ct.yaml --excluded-charts "provision-user,init-user"
+        run: ct lint --config .github/ct.yaml --excluded-charts "provision-user,init-user,cpanel"
         if: steps.list-changed.outputs.changed == 'true' || steps.list-changed.outputs.common == 'true'
 
   # Don't install into KIND right now

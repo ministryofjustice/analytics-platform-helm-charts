@@ -20,5 +20,5 @@ spec:
     server: {{ .Values.EFSHostname }}
     path: /
   claimRef:
-    name: tom-efs
-    namespace: user-tomskelley-gjs
+    name: efs-home
+    namespace: user-{{ .Values.Username }}
