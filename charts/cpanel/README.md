@@ -64,6 +64,7 @@ In Auth0 you need to install Extension 'Auth0 Authorization':
 | `secretEnv.ELASTICSEARCH_PASSWORD` | Elasticsearch password | `""` |
 | `secretEnv.ELASTICSEARCH_USERNAME` | Elasticsearch username | `""` |
 | `secretEnv.NFS_HOSTNAME` | NFS hostname | |
+| `secretEnv.EFS_HOSTNAME` | EFS hostname | |
 | `secretEnv.OIDC_AUTH_EXTENSION_URL` | OIDC Auth extension url. See above for installing it. For the value, take `"https://AUTH_TENANT.eu.webtask.io/adf6e2f2b84784b57522e3b19dfc9201/api"` and replace AUTH_TENANT with your Auth0 tenant name. The rest of the URL, including the hex, is fixed e.g. `"https://gds-accelerator.eu.webtask.io/adf6e2f2b84784b57522e3b19dfc9201/api"` | `""` |
 | `secretEnv.OIDC_CLIENT_ID` | Auth0 'kubectl-oidc' application's client ID | `""` |
 | `secretEnv.OIDC_CLIENT_SECRET` | Auth0 'kubectl-oidc' application's client secret | `""` |
