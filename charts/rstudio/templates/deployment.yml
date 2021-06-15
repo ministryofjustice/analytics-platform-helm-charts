@@ -38,6 +38,7 @@ spec:
               subPath: chown_home.sh
             - name: home
               mountPath: "/home/{{ .Values.username }}"
+              subPath: rstudio
       containers:
         - name: rstudio-auth-proxy
           image: "{{ .Values.proxy.image.repository }}:{{ .Values.proxy.image.tag }}"
@@ -115,6 +116,7 @@ spec:
           volumeMounts:
             - name: home
               mountPath: "/home/{{ .Values.username }}"
+              subPath: rstudio
           resources:
 {{ toYaml .Values.rstudio.resources | indent 12 }}
 
@@ -125,7 +127,7 @@ spec:
             defaultMode: 0500
         - name: home
           persistentVolumeClaim:
-            claimName: nfs-home
+            claimName: efs-home
   selector:
     matchLabels:
       app: "{{ .Chart.Name }}"

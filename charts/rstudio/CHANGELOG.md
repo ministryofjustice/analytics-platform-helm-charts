@@ -5,6 +5,11 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
+# [4.0.8] - 2021-06-15
+- Add an annotation to the Service account for IAM for Service accounts
+- Change to use EFS for PVC
+
+
 # [4.0.7] - 2021-06-09
 - Use the nginx proxy image with a configurable redirect url
 
