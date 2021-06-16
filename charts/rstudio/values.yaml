@@ -3,6 +3,7 @@ toolsDomain: "tools.EXAMPLE.COM"
 aws:
   iamRole: "test-role"
   defaultRegion: "eu-west-1"
+  accountID: "593291632749"
 proxy:
   port: 3000
   auth0:

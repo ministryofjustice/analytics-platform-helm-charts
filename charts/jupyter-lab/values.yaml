@@ -4,7 +4,7 @@ toolsDomain: "tools.example.com"
 aws:
   iamRole: ""
   defaultRegion: "eu-west-1"
-
+  accountID: "593291632749"
 service:
   port: 80
 
