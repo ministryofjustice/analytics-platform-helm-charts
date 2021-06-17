@@ -116,7 +116,7 @@ spec:
           volumeMounts:
             - name: home
               mountPath: "/home/{{ .Values.username }}"
-              subPath: rstudio
+              subPath: {{.Values.username}}/rstudio
           resources:
 {{ toYaml .Values.rstudio.resources | indent 12 }}
 
