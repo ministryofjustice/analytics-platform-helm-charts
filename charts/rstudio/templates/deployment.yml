@@ -38,7 +38,7 @@ spec:
               subPath: chown_home.sh
             - name: home
               mountPath: "/home/{{ .Values.username }}"
-              subPath: rstudio
+              subPath: {{.Values.username}}/rstudio
       containers:
         - name: rstudio-auth-proxy
           image: "{{ .Values.proxy.image.repository }}:{{ .Values.proxy.image.tag }}"
