@@ -1,0 +1,44 @@
+#!/bin/bash
+
+# This hook is called with the following parameters:
+#
+# $1 -- Name of the remote to which the push is being done
+# $2 -- URL to which the push is being done
+#
+# If pushing without using a named remote those arguments will be equal.
+#
+# Information about the commits which are being pushed is supplied as lines to
+# the standard input in the form:
+#
+#   <local ref> <local sha1> <remote ref> <remote sha1>
+#
+# Checks that the remote URL belongs to an approved Github organisation
+
+allowed_orgs=(moj-analytical-services ministryofjustice)
+
+remote="$1"
+url="$2"
+
+# extract github org or username from repo URL
+org=$(
+    echo $url | \
+    sed -E 's|^(git@\|https://)github.com([:/])([a-zA-Z0-9_-]+)/.+$|\3|g'
+)
+
+for i in "${allowed_orgs[@]}"; do
+    if [[ "$i" == "$org" ]]; then
+        exit 0;
+    fi
+done
+
+echo "
+You are attempting to push to a remote owned by \"${org}\".
+
+Only repositories owned by the following GitHub organisations are permitted as
+push targets:
+
+$(printf '%s\n' "${allowed_orgs[@]}")
+
+Please update your .git/config file and modify your remote.
+"
+exit 1

@@ -1,0 +1,53 @@
+#!/bin/bash
+#
+# Prevents large files from being committed
+
+# Redirect output to stderr.
+exec 1>&2
+
+FILE_SIZE_LIMIT=5  # In MB
+HAS_ERROR=""
+
+for file in $(git diff --cached --name-only | sort | uniq); do
+    file_size=$(du --apparent-size -m $(pwd)/$file | awk '{print $1}')
+    if [ "$file_size" -ge $FILE_SIZE_LIMIT ]; then
+        echo "$file is larger than ${FILE_SIZE_LIMIT}MB."
+        HAS_ERROR="1"
+    fi
+done
+
+if [ "$HAS_ERROR" != "" ]; then
+    echo "Can't commit due to oversize files, please unstage before committing." >&2
+    exit 1
+fi
+
+
+if [[ "$ENABLE_NBSTRIPOUT" != "false" ]]; then
+    
+    # add nbstripout to strip output from IPython notebooks 
+    if git rev-parse --verify HEAD >/dev/null 2>&1; then
+        against=HEAD
+    else
+        # Initial commit: diff against an empty tree object
+        against=4b825dc642cb6eb9a060e54bf8d69288fbee4904
+    fi
+
+    # set path for nbstripout in rstudio and jupyter
+    export PATH=/opt/conda/bin:~/.local/bin:$PATH
+
+    # Find notebooks to be committed
+    (
+    IFS='
+    '
+    NBS=`git diff --cached $against --name-only | grep '.ipynb$' | sort | uniq`
+
+    for NB in $NBS ; do
+        echo "Removing outputs from $NB"
+        nbstripout "$NB"
+        echo "nbstripout has run"
+
+        git add "$NB"
+    done
+    )
+
+fi

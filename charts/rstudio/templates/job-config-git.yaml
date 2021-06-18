@@ -1,0 +1,52 @@
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: config-git-{{ .Values.Username }}
+  labels:
+    chart: "{{ .Chart.Name }}-{{ .Chart.Version }}"
+spec:
+  template:
+    metadata:
+      name: git-config
+    spec:
+      containers:
+      - name: ubuntu
+        image: quay.io/mojanalytics/ubuntu-utility:v0.1.0
+        imagePullPolicy: IfNotPresent
+        env:
+          - name: USERNAME
+            valueFrom:
+              secretKeyRef:
+                name: user-secrets
+                key: username
+          - name: FULLNAME
+            valueFrom:
+              secretKeyRef:
+                name: user-secrets
+                key: fullname
+          - name: EMAIL
+            valueFrom:
+              secretKeyRef:
+                name: user-secrets
+                key: email
+        command:
+          - /gitconfig/git-config.sh
+        args:
+          - "$(USERNAME)"
+          - "$(FULLNAME)"
+          - "$(EMAIL)"
+        volumeMounts:
+          - name: home
+            mountPath: "/home/{{ .Values.Username }}"
+            subPath: {{.Values.username}}/rstudio
+          - name: git-config
+            mountPath: /gitconfig
+      restartPolicy: Never
+      volumes:
+      - name: home
+        persistentVolumeClaim:
+          claimName: efs-home          
+      - name: git-config
+        configMap:
+          name: git-config
+          defaultMode: 500
