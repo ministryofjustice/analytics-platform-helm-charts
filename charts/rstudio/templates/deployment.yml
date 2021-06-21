@@ -117,6 +117,9 @@ spec:
             - name: home
               mountPath: "/home/{{ .Values.username }}"
               subPath: {{.Values.username}}/rstudio
+            - name: renviron-configmap
+              mountPath: "/home/{{ .Values.username }}"/.Renviron
+              subPath: .Renviron
           resources:
 {{ toYaml .Values.rstudio.resources | indent 12 }}
 
@@ -128,6 +131,10 @@ spec:
         - name: home
           persistentVolumeClaim:
             claimName: efs-home
+        - name: renviron-configmap
+          configMap:
+            name: "renviron"
+            defaultMode: 0644
   selector:
     matchLabels:
       app: "{{ .Chart.Name }}"
