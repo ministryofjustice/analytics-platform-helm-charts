@@ -33,6 +33,9 @@ rstudio:
     # This exists here because you might want to downgrade to an older image, which doesn't take the arg
     # to the ./start.sh script
     init: false
+  renviron:
+    mount: false
+    # Whether to mount a .Renviron file in RStudio or not to set environment variables needed for AWS Authentication on EKS
   resources:
     limits:
       cpu: 1.5

@@ -6,7 +6,7 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
 # [4.1.2] - 2021-06-21
-- Mount .Renviron file to configure AWS credentials environment variables
+- Optionally mount a .Renviron file to configure environment variables used to get AWS credentials on EKS
 
 # [4.1.1] - 2021-06-18
 - Setup Git config with Rstudio
