@@ -26,7 +26,7 @@ rstudio:
   port: "8787"
   image:
     repository: 593291632749.dkr.ecr.eu-west-1.amazonaws.com/rstudio
-    tag: "4.0.5"
+    tag: "4.0.5-2"
     pullPolicy: "IfNotPresent"
     # init option allows you to run an init container that does the setup of the conda environment
     # this is quite slow and if it was run as part of the main container then it would cause problems.
