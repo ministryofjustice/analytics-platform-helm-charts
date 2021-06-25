@@ -96,6 +96,8 @@ spec:
           env:
             - name: USER
               value: "{{ .Values.username }}"
+            - name: RETICULATE_MINICONDA_ENABLED
+              value: "FALSE"
             - name: AWS_DEFAULT_REGION
               valueFrom:
                 secretKeyRef:
