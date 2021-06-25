@@ -1,5 +1,5 @@
 ---
-name: "Charts: Lint and test and publish"
+name: "Charts: Lint and test and release"
 
 "on":
   pull_request:
