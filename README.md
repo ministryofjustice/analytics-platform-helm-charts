@@ -30,7 +30,10 @@ The Github Actions Workflow uses [helm chart-releaser](https://helm.sh/docs/howt
 
 When you now push a change to your master branch, the action checks each chart for a new version. For updated charts it creates a GitHub Release and adds the chart artifact *.tgz file to the release. Now the index.yaml file on the gh-pages branch is updated to add your new chart version with the link to the GitHub Releases artifact.
 
-Charts can be deployed be specifying the helm chart url: https://ministryofjustice.github.io/analytics-platform-helm-charts
+Charts can be deployed be specifying the helm chart
+``` 
+url: https://ministryofjustice.github.io/analytics-platform-helm-charts
+```
 
 also see [Helm Chart Releaser](https://github.com/marketplace/actions/helm-chart-releaser)
 
